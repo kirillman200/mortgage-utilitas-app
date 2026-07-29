@@ -1,0 +1,43 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import AdSlot from "../../components/AdSlot.astro";
+import { ARTICLES } from "../../data/articles";
+import { SITE } from "../../data/site";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: "Mortgage field guides",
+  url: `${SITE.origin}/guides/`,
+  description: "Evidence-linked mortgage guides for planning, borrowing, rates, and mortgage basics.",
+  hasPart: ARTICLES.map((article) => ({
+    "@type": "Article",
+    headline: article.title,
+    url: `${SITE.origin}/guides/${article.slug}/`
+  }))
+};
+---
+
+<BaseLayout title="Mortgage Guides" description="Practical, evidence-linked mortgage guides on preapproval, quotes, fixed rates, payments, reverse mortgages, private mortgages, lender comparison, payoff, and rate news." jsonLd={jsonLd}>
+  <section class="page-hero" slot="hero">
+    <div class="page-shell">
+      <p class="eyebrow">Mortgage field notes</p>
+      <h1>Read the contract behind the calculation.</h1>
+      <p>Original explainers for the questions that arrive before an offer, at renewal, and after the last payment.</p>
+    </div>
+  </section>
+  <AdSlot placement="guides-index-top" />
+  <section class="section page-shell">
+    <div class="card-grid">
+      {ARTICLES.map((article) => (
+        <a class="guide-card" href={`/guides/${article.slug}/`}>
+          <span class="eyebrow">{article.category} · {article.readingMinutes} min</span>
+          <h2>{article.title}</h2>
+          <p>{article.description}</p>
+          <footer>Read guide <span aria-hidden="true">→</span></footer>
+        </a>
+      ))}
+    </div>
+  </section>
+  <AdSlot placement="guides-index-bottom" />
+</BaseLayout>

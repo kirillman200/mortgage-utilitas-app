@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.astro/
+.wrangler/
+.tmp/
+playwright-report/
+test-results/
+coverage/
+*.log
+*.cpuprofile

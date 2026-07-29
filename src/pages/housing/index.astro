@@ -1,0 +1,73 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { HOUSING_CITIES } from "../../data/housing-cities";
+import { SITE } from "../../data/site";
+
+const title = "Canadian City Housing Data";
+const description =
+  "Live asking-rent charts for six major Canadian cities, paired with current Bank of Canada mortgage and policy-rate series.";
+const collectionSchema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: title,
+  description,
+  url: `${SITE.origin}/housing/`,
+  inLanguage: SITE.locale,
+  hasPart: HOUSING_CITIES.map((city) => ({
+    "@type": "Dataset",
+    name: `${city.name} housing data`,
+    url: `${SITE.origin}/housing/${city.slug}/`,
+  })),
+};
+---
+
+<BaseLayout title={title} description={description} canonical="/housing/" jsonLd={collectionSchema}>
+  <section class="page-hero" slot="hero">
+    <div class="page-shell">
+      <p class="eyebrow">Live public data</p>
+      <h1>Housing signals for major Canadian cities</h1>
+      <p>
+        Explore quarterly asking-rent trends alongside daily national mortgage and policy-rate
+        benchmarks. Data is fetched from official public APIs and cached to reduce upstream requests.
+      </p>
+    </div>
+  </section>
+
+  <section class="section page-shell">
+    <div class="section-heading">
+      <p class="eyebrow">Choose a market</p>
+      <h2>Six city dashboards</h2>
+      <p>Each page includes current values, accessible charts, source links, and important limits on interpretation.</p>
+    </div>
+    <div class="city-grid">
+      {HOUSING_CITIES.map((city, index) => (
+        <a class="city-card" href={`/housing/${city.slug}/`}>
+          <span class="card-number">{String(index + 1).padStart(2, "0")}</span>
+          <span class="eyebrow">{city.province}</span>
+          <h3>{city.name}</h3>
+          <p>{city.description}</p>
+          <footer>Open live dashboard <span aria-hidden="true">→</span></footer>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="section page-shell data-method">
+    <div>
+      <p class="eyebrow">What the numbers mean</p>
+      <h2>Asking rent is not the same as rent paid</h2>
+    </div>
+    <div>
+      <p>
+        Statistics Canada’s asking-rent series describes advertised rental listings. It is useful
+        for understanding what a person shopping for a unit may encounter, but it does not measure
+        the rent paid by every existing tenant.
+      </p>
+      <p>
+        Mortgage figures are conventional posted-rate series from the Bank of Canada. They are
+        benchmarks, not personalized lender offers. Use the <a href="/calculators/payment/">mortgage
+        payment calculator</a> to test the rate and terms you can actually obtain.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

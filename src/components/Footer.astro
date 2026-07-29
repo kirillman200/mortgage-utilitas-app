@@ -1,0 +1,36 @@
+---
+import { CALCULATORS, SITE, TRUST_ROUTES } from "../data/site";
+import { ARTICLES } from "../data/articles";
+---
+
+<footer class="site-footer">
+  <div class="footer-top">
+    <div class="footer-intro">
+      <a class="brand footer-brand" href="/">
+        <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M7 24.5 24 9l17 15.5v15H29V29H19v10H7z" /></svg>
+        <span><b>Mortgage</b><i>Compass</i></span>
+      </a>
+      <p>Decision tools for the biggest line in your household budget. Private by design and built by Utilitas.</p>
+      <a href={`mailto:${SITE.contact}`}>{SITE.contact}</a>
+    </div>
+    <div>
+      <h2>Plan</h2>
+      <ul>{CALCULATORS.slice(0, 5).map((item) => <li><a href={`/calculators/${item.slug}/`}>{item.name}</a></li>)}</ul>
+    </div>
+    <div>
+      <h2>Learn</h2>
+      <ul>
+        <li><a href="/housing/">City housing data</a></li>
+        {ARTICLES.slice(0, 4).map((item) => <li><a href={`/guides/${item.slug}/`}>{item.keyword}</a></li>)}
+      </ul>
+    </div>
+    <div>
+      <h2>Trust</h2>
+      <ul>{TRUST_ROUTES.map((item) => <li><a href={item.href}>{item.label}</a></li>)}</ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Utilitas. Mortgage Compass provides planning estimates, not financial, legal, tax, or lending advice.</p>
+    <p><a href="/llms.txt">AI content index</a> <span aria-hidden="true">·</span> <a href="/sitemap.xml">Sitemap</a></p>
+  </div>
+</footer>

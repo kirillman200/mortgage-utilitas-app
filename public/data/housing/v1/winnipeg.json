@@ -1,0 +1,89 @@
+{
+  "citySlug": "winnipeg",
+  "generatedAt": "2026-07-29T05:09:51.434Z",
+  "rent": {
+    "oneBedroom": {
+      "label": "One-bedroom asking rent",
+      "unit": "CAD",
+      "points": [
+        {
+          "date": "2024-04-01",
+          "value": 1220
+        },
+        {
+          "date": "2024-07-01",
+          "value": 1220
+        },
+        {
+          "date": "2024-10-01",
+          "value": 1220
+        },
+        {
+          "date": "2025-01-01",
+          "value": 1270
+        },
+        {
+          "date": "2025-04-01",
+          "value": 1270,
+          "estimated": true
+        },
+        {
+          "date": "2025-07-01",
+          "value": 1280
+        },
+        {
+          "date": "2025-10-01",
+          "value": 1290
+        },
+        {
+          "date": "2026-01-01",
+          "value": 1300
+        }
+      ]
+    },
+    "twoBedroom": {
+      "label": "Two-bedroom asking rent",
+      "unit": "CAD",
+      "points": [
+        {
+          "date": "2024-04-01",
+          "value": 1560
+        },
+        {
+          "date": "2024-07-01",
+          "value": 1570
+        },
+        {
+          "date": "2024-10-01",
+          "value": 1580
+        },
+        {
+          "date": "2025-01-01",
+          "value": 1600
+        },
+        {
+          "date": "2025-04-01",
+          "value": 1630,
+          "estimated": true
+        },
+        {
+          "date": "2025-07-01",
+          "value": 1640
+        },
+        {
+          "date": "2025-10-01",
+          "value": 1620
+        },
+        {
+          "date": "2026-01-01",
+          "value": 1650
+        }
+      ]
+    }
+  },
+  "source": {
+    "name": "Statistics Canada table 46-10-0092-01",
+    "url": "https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=4610009201",
+    "note": "Quarterly advertised asking rents, not rents paid by all existing tenants."
+  }
+}

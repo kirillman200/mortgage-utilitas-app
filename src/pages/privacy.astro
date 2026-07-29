@@ -1,0 +1,24 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { SITE } from "../data/site";
+---
+
+<BaseLayout title="Privacy" description="How Mortgage Compass handles calculator inputs, local storage, sharing, downloads, advertising, and external links.">
+  <article class="prose narrow-shell">
+    <p class="eyebrow">Privacy</p>
+    <h1>Your mortgage scenario belongs to you.</h1>
+    <p><strong>Effective July 28, 2026.</strong> The calculator is designed to work without an account and without sending calculator values to a Utilitas server.</p>
+    <h2>Calculator data</h2>
+    <p>Inputs and calculations run in your browser. The Save button stores the current scenario in browser local storage on the device you are using. Load reads that local copy. Reset removes it.</p>
+    <h2>Sharing and downloads</h2>
+    <p>Share link places selected planning assumptions in the URL so you can copy or send it. Anyone with that URL can read those values. Do not include sensitive personal information. CSV and PDF files are generated in the browser and downloaded to your device.</p>
+    <h2>Advertising</h2>
+    <p>The site reserves clearly labelled spaces for advertising. Unfilled placeholders do not track you. If advertising technology is activated later, this policy and consent behaviour must be updated before personalized advertising is served where consent is required.</p>
+    <h2>Technical records</h2>
+    <p>The hosting provider may process ordinary request information such as IP address, requested path, device or browser details, and security events to deliver and protect the site. We do not ask you to submit mortgage documents, banking credentials, government identifiers, or a lender application.</p>
+    <h2>External sources</h2>
+    <p>Guides link to government, regulator, and lender sources. Their privacy practices apply when you leave this site.</p>
+    <h2>Contact</h2>
+    <p>Send privacy questions to <a href={`mailto:${SITE.contact}`}>{SITE.contact}</a>.</p>
+  </article>
+</BaseLayout>

@@ -1,0 +1,120 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import AdSlot from "../components/AdSlot.astro";
+import MortgageWorkbench from "../components/MortgageWorkbench.vue";
+import { CALCULATORS, SITE } from "../data/site";
+import { ARTICLES } from "../data/articles";
+
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    name: "Mortgage Compass",
+    url: SITE.origin,
+    applicationCategory: "FinanceApplication",
+    operatingSystem: "Any modern web browser",
+    browserRequirements: "JavaScript enabled for calculators",
+    isAccessibleForFree: true,
+    offers: { "@type": "Offer", price: "0", priceCurrency: "CAD" },
+    description: SITE.description,
+    featureList: CALCULATORS.map((calculator) => calculator.name),
+    publisher: {
+      "@type": "Organization",
+      name: "Utilitas",
+      url: "https://utilitas.app"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Mortgage Compass",
+    url: SITE.origin,
+    inLanguage: ["en-CA", "en-US"]
+  }
+];
+---
+
+<BaseLayout title="Mortgage Calculator Suite" description={SITE.description} jsonLd={jsonLd}>
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <p class="eyebrow">A Utilitas planning studio</p>
+        <h1>Find the payment. <em>See the whole path.</em></h1>
+        <p>Model a mortgage from first offer to final payment with transparent assumptions, stress tests, scenario comparison, and downloadable plans.</p>
+        <div class="hero-actions">
+          <a class="button" href="#calculator">Build my plan</a>
+          <a class="button secondary" href="/guides/">Read the field guides</a>
+        </div>
+        <ul class="hero-proof">
+          <li>Canada and U.S. modes</li>
+          <li>Local-only scenario storage</li>
+          <li>CSV and PDF exports</li>
+          <li>No account required</li>
+        </ul>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <svg class="blueprint-house" viewBox="0 0 520 420">
+          <path d="M48 200 258 28l214 172v185H330V270H190v115H48z"/>
+          <path d="M112 148V48h84v31M22 385h476M258 28v357M48 200h424"/>
+          <path class="accent" d="M80 334c84-56 156-43 211-91 53-46 81-115 155-157"/>
+          <circle class="accent" cx="446" cy="86" r="8"/>
+        </svg>
+        <div class="floating-note note-one"><span>Payment scenario</span><strong>$3,216</strong><span>principal + interest</span></div>
+        <div class="floating-note note-two"><span>Extra-payment path</span><strong>4.2 years sooner</strong><span>with a contract-safe plan</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div id="calculator">
+    <MortgageWorkbench client:load initialMode="payment" />
+  </div>
+
+  <AdSlot placement="home-after-calculator" />
+
+  <section class="section page-shell">
+    <div class="section-heading">
+      <p class="eyebrow">Nine connected tools</p>
+      <h2>A mortgage is more than a monthly payment</h2>
+      <p>Move from affordability to closing, renewal risk, payoff, and long-term alternatives without re-entering the core scenario.</p>
+    </div>
+    <div class="card-grid">
+      {CALCULATORS.map((calculator, index) => (
+        <a class="tool-card" href={`/calculators/${calculator.slug}/`}>
+          <span class="card-number">{String(index + 1).padStart(2, "0")}</span>
+          <h3>{calculator.name}</h3>
+          <p>{calculator.description}</p>
+          <footer>{calculator.eyebrow} <span aria-hidden="true">→</span></footer>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="trust-strip">
+    <div class="page-shell trust-strip-inner">
+      <h2>Built to help you question the number.</h2>
+      <article><h3>Private by default</h3><p>Calculations stay in your browser. Save is local and sharing is your choice.</p></article>
+      <article><h3>Visible assumptions</h3><p>Rates, fees, growth, debt ratios, and compounding choices are editable.</p></article>
+      <article><h3>Planning, not selling</h3><p>No lead form, lender ranking, personalized quote, or hidden recommendation.</p></article>
+    </div>
+  </section>
+
+  <section class="section page-shell">
+    <div class="section-heading">
+      <p class="eyebrow">Mortgage field notes</p>
+      <h2>Read before the rate becomes a decision</h2>
+      <p>Original explainers connect calculations to contracts, cash flow, verification, and the next question to ask.</p>
+    </div>
+    <div class="card-grid">
+      {ARTICLES.slice(0, 6).map((article) => (
+        <a class="guide-card" href={`/guides/${article.slug}/`}>
+          <span class="eyebrow">{article.category} · {article.readingMinutes} min</span>
+          <h3>{article.title}</h3>
+          <p>{article.description}</p>
+          <footer>Read guide <span aria-hidden="true">→</span></footer>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <AdSlot placement="home-before-footer" />
+</BaseLayout>

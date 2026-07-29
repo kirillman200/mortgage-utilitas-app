@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#122633"/>
+  <path d="M0 60H1200M0 140H1200M0 220H1200M0 300H1200M0 380H1200M0 460H1200M0 540H1200M80 0V630M160 0V630M240 0V630M320 0V630M400 0V630M480 0V630M560 0V630M640 0V630M720 0V630M800 0V630M880 0V630M960 0V630M1040 0V630M1120 0V630" stroke="#fffaf0" opacity=".08"/>
+  <path d="M735 315 910 155l175 160v175H965V380H855v110H735z" fill="none" stroke="#fffaf0" stroke-width="7"/>
+  <path d="M790 260V165h70v38" fill="none" stroke="#f3b94f" stroke-width="12"/>
+  <text x="90" y="255" fill="#fffaf0" font-family="Georgia,serif" font-size="82">Mortgage</text>
+  <text x="90" y="350" fill="#f3b94f" font-family="Georgia,serif" font-size="92" font-style="italic">Compass</text>
+  <text x="95" y="415" fill="#cbd4d6" font-family="Arial,sans-serif" font-size="29">Plan the payment. See the whole path.</text>
+</svg>

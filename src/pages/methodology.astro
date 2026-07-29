@@ -1,0 +1,42 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Calculator Methodology" description="Mortgage Compass formulas, rate conventions, assumptions, limitations, and validation approach.">
+  <article class="prose narrow-shell">
+    <p class="eyebrow">Transparent methodology</p>
+    <h1>Every output starts with an assumption you can see.</h1>
+    <p>This page documents the calculator model. Lender systems may use different day-count, compounding, insurance, fee, tax, rounding, and qualification rules. Contract documents and official disclosures control real transactions.</p>
+
+    <h2>Fixed-payment calculation</h2>
+    <p>For financed principal P, periodic interest rate r, and n payments, the regular payment is P × r × (1 + r)<sup>n</sup> ÷ ((1 + r)<sup>n</sup> - 1). At a zero rate, payment is P ÷ n.</p>
+    <p>U.S. mode uses the nominal annual rate divided by payments per year. Canada mode converts a nominal rate compounded semi-annually to an equivalent rate for the selected payment period.</p>
+
+    <h2>Payment frequencies</h2>
+    <ul>
+      <li>Monthly uses 12 payments per year.</li>
+      <li>Semi-monthly uses 24 calculated payments per year.</li>
+      <li>Biweekly uses 26 calculated payments per year.</li>
+      <li>Accelerated biweekly uses half the calculated monthly payment every two weeks.</li>
+    </ul>
+
+    <h2>Affordability</h2>
+    <p>The tool calculates a monthly housing cap as the lower of the selected housing ratio and total-debt ratio after other monthly debt. It subtracts property tax, insurance, and fees, converts the remaining principal-and-interest capacity into a maximum principal, and adds available cash after the chosen reserve.</p>
+    <p>This is not an underwriting decision. It intentionally exposes ratio caps and retained cash instead of claiming a universal qualification rule.</p>
+
+    <h2>Extra payment and amortization</h2>
+    <p>The schedule accrues interest each period, applies the regular payment, adds recurring and annual principal, and stops at a zero balance. It caps the last payment to prevent a negative balance. It does not apply contract penalties or prepayment limits.</p>
+
+    <h2>Refinance</h2>
+    <p>The current and proposed mortgages are compared as amortizing balances. Proposed fees and penalty are added to the new principal for payment modelling. Rough break-even divides total entered fees and penalty by positive monthly payment savings. A longer new amortization can lower payment while increasing lifetime cost.</p>
+
+    <h2>Rent versus buy</h2>
+    <p>The model projects home value, loan balance, selling costs, rent growth, ownership costs, and an investment account funded by available starting cash and positive monthly savings from renting. It excludes taxes on gains or investments, transaction-specific credits, and the non-financial value of tenure.</p>
+
+    <h2>Reverse mortgage</h2>
+    <p>The projection compounds the entered loan rate monthly, adds optional monthly advances, grows home value at the selected assumption, and reports remaining equity. It does not estimate eligibility, maximum proceeds, fees, insurance, non-recourse limits, or product-specific rules.</p>
+
+    <h2>Validation</h2>
+    <p>Automated tests cover standard fixed-payment examples, zero-rate loans, full payoff without negative balances, accelerated and extra-payment behaviour, payment inversion, refinance break-even, reverse-mortgage projection, public route contracts, export branding, and discovery files.</p>
+  </article>
+</BaseLayout>

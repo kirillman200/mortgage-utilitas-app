@@ -1,0 +1,89 @@
+{
+  "citySlug": "vancouver",
+  "generatedAt": "2026-07-29T05:09:51.434Z",
+  "rent": {
+    "oneBedroom": {
+      "label": "One-bedroom asking rent",
+      "unit": "CAD",
+      "points": [
+        {
+          "date": "2024-04-01",
+          "value": 2520
+        },
+        {
+          "date": "2024-07-01",
+          "value": 2510
+        },
+        {
+          "date": "2024-10-01",
+          "value": 2450
+        },
+        {
+          "date": "2025-01-01",
+          "value": 2380
+        },
+        {
+          "date": "2025-04-01",
+          "value": 2380,
+          "estimated": true
+        },
+        {
+          "date": "2025-07-01",
+          "value": 2390
+        },
+        {
+          "date": "2025-10-01",
+          "value": 2320
+        },
+        {
+          "date": "2026-01-01",
+          "value": 2290
+        }
+      ]
+    },
+    "twoBedroom": {
+      "label": "Two-bedroom asking rent",
+      "unit": "CAD",
+      "points": [
+        {
+          "date": "2024-04-01",
+          "value": 3360
+        },
+        {
+          "date": "2024-07-01",
+          "value": 3390
+        },
+        {
+          "date": "2024-10-01",
+          "value": 3250
+        },
+        {
+          "date": "2025-01-01",
+          "value": 3170
+        },
+        {
+          "date": "2025-04-01",
+          "value": 3160,
+          "estimated": true
+        },
+        {
+          "date": "2025-07-01",
+          "value": 3190
+        },
+        {
+          "date": "2025-10-01",
+          "value": 3090
+        },
+        {
+          "date": "2026-01-01",
+          "value": 3100
+        }
+      ]
+    }
+  },
+  "source": {
+    "name": "Statistics Canada table 46-10-0092-01",
+    "url": "https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=4610009201",
+    "note": "Quarterly advertised asking rents, not rents paid by all existing tenants."
+  }
+}

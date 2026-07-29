@@ -1,0 +1,22 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { SITE } from "../data/site";
+---
+
+<BaseLayout title="Contact" description="Contact Utilitas about Mortgage Compass corrections, accessibility, privacy, or security.">
+  <article class="prose narrow-shell">
+    <p class="eyebrow">Contact</p>
+    <h1>Found a rough edge or a number worth checking?</h1>
+    <p>Email <a href={`mailto:${SITE.contact}`}>{SITE.contact}</a> for calculator bugs, content corrections, accessibility issues, privacy questions, or general feedback.</p>
+    <h2>Helpful details</h2>
+    <ul>
+      <li>The page address and calculator mode</li>
+      <li>Your browser and device type</li>
+      <li>Steps that reproduce the issue</li>
+      <li>The result you expected and the result you saw</li>
+    </ul>
+    <aside class="callout">Do not email tax records, bank statements, identity documents, account credentials, credit reports, or other sensitive financial information.</aside>
+    <h2>Security reports</h2>
+    <p>For vulnerability reporting instructions, see <a href="/.well-known/security.txt">security.txt</a>. Please do not test against other people, access data that is not yours, or disrupt service.</p>
+  </article>
+</BaseLayout>

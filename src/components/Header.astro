@@ -1,0 +1,35 @@
+---
+import { CALCULATORS } from "../data/site";
+const path = Astro.url.pathname;
+---
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="/" aria-label="Mortgage Compass home">
+      <svg viewBox="0 0 48 48" aria-hidden="true">
+        <path d="M7 24.5 24 9l17 15.5v15H29V29H19v10H7z" />
+        <path d="M13 20.5V11h7v3.4" class="brand-accent" />
+      </svg>
+      <span><b>Mortgage</b><i>Compass</i></span>
+    </a>
+    <nav class="desktop-nav" aria-label="Primary navigation">
+      <a href="/calculators/" aria-current={path.startsWith("/calculators") ? "page" : undefined}>Calculators</a>
+      <a href="/guides/" aria-current={path.startsWith("/guides") ? "page" : undefined}>Guides</a>
+      <a href="/housing/" aria-current={path.startsWith("/housing") ? "page" : undefined}>City data</a>
+      <a href="/methodology/" aria-current={path === "/methodology/" ? "page" : undefined}>Methodology</a>
+      <a class="nav-cta" href="/calculators/payment/">Open workspace</a>
+    </nav>
+    <details class="mobile-menu">
+      <summary aria-label="Open navigation"><span></span><span></span><span></span></summary>
+      <nav aria-label="Mobile navigation">
+        <a href="/calculators/">All calculators</a>
+        {CALCULATORS.slice(0, 5).map((calculator) => (
+          <a href={`/calculators/${calculator.slug}/`}>{calculator.name}</a>
+        ))}
+        <a href="/guides/">Guides</a>
+        <a href="/housing/">City housing data</a>
+        <a href="/methodology/">Methodology</a>
+      </nav>
+    </details>
+  </div>
+</header>

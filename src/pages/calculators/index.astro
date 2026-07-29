@@ -1,0 +1,42 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import AdSlot from "../../components/AdSlot.astro";
+import { CALCULATORS, SITE } from "../../data/site";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: "Mortgage calculators",
+  url: `${SITE.origin}/calculators/`,
+  description: "Nine connected mortgage planning calculators for Canada and the United States.",
+  hasPart: CALCULATORS.map((calculator) => ({
+    "@type": "WebApplication",
+    name: calculator.name,
+    url: `${SITE.origin}/calculators/${calculator.slug}/`
+  }))
+};
+---
+
+<BaseLayout title="Mortgage Calculators" description="Nine advanced mortgage calculators for payments, affordability, payoff, refinancing, schedules, closing costs, rent versus buy, stress tests, and reverse mortgages." jsonLd={jsonLd}>
+  <section class="page-hero" slot="hero">
+    <div class="page-shell">
+      <p class="eyebrow">Calculator library</p>
+      <h1>One scenario. Nine ways to pressure-test it.</h1>
+      <p>Every calculator uses editable assumptions, Canada or U.S. conventions, local scenario storage, shareable links, and branded exports.</p>
+    </div>
+  </section>
+  <AdSlot placement="calculators-index-top" />
+  <section class="section page-shell">
+    <div class="card-grid">
+      {CALCULATORS.map((calculator, index) => (
+        <a class="tool-card" href={`/calculators/${calculator.slug}/`}>
+          <span class="card-number">{String(index + 1).padStart(2, "0")}</span>
+          <h2>{calculator.name}</h2>
+          <p>{calculator.description}</p>
+          <footer>Open {calculator.short.toLowerCase()} <span aria-hidden="true">→</span></footer>
+        </a>
+      ))}
+    </div>
+  </section>
+  <AdSlot placement="calculators-index-bottom" />
+</BaseLayout>

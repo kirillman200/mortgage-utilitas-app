@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+Content-Signal: ai-train=no, search=yes, ai-input=yes
+Sitemap: https://mortgage.utilitas.app/sitemap.xml

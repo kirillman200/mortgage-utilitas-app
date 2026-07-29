@@ -1,0 +1,15 @@
+{
+  "$schema": "https://schemas.agentskills.io/discovery/0.2.0/schema.json",
+  "name": "Mortgage Compass",
+  "description": "Browser-local mortgage planning calculators and evidence-linked guides.",
+  "homepage": "https://mortgage.utilitas.app",
+  "skills": [
+    {
+      "name": "mortgage-planning",
+      "description": "Calculate and compare mortgage payment, affordability, payoff, refinance, amortization, closing, rent-versus-buy, rate stress, and reverse-mortgage scenarios.",
+      "url": "https://mortgage.utilitas.app/.well-known/agent-skills/mortgage-planning/SKILL.md",
+      "media_type": "text/markdown",
+      "sha256": "04f232c007e302178a4ab853298347a29f0126a8bf9c33655755675c4092d8ad"
+    }
+  ]
+}

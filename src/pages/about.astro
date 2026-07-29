@@ -1,0 +1,20 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { SITE } from "../data/site";
+---
+
+<BaseLayout title="About" description="About Mortgage Compass, a private browser-based mortgage planning suite from Utilitas.">
+  <article class="prose narrow-shell">
+    <p class="eyebrow">About Mortgage Compass</p>
+    <h1>A calmer way to interrogate a very large number.</h1>
+    <p>Mortgage Compass is a browser-based planning suite from Utilitas. It connects payment, affordability, payoff, refinance, amortization, closing, rent-versus-buy, stress-test, and reverse-mortgage projections in one editable workspace.</p>
+    <h2>Why it exists</h2>
+    <p>Mortgage decisions are often compressed into a headline rate or a maximum approval. A household actually needs to understand cash to close, payment resilience, future balances, contract limits, opportunity cost, and what happens when assumptions change.</p>
+    <p>The product is intentionally independent of lead generation. It does not sell applications, rank lenders, or request personal financial documents.</p>
+    <h2>What stays private</h2>
+    <p>Calculations run in the browser. Saved scenarios use local browser storage. A scenario leaves the device only if you use a browser sharing feature or manually send an exported file or link.</p>
+    <h2>Who maintains it</h2>
+    <p>Utilitas maintains the code, models, and editorial material. Questions and corrections can be sent to <a href={`mailto:${SITE.contact}`}>{SITE.contact}</a>.</p>
+    <aside class="callout">Mortgage Compass provides educational planning estimates. It is not a lender, broker, financial adviser, lawyer, appraiser, insurer, or tax professional.</aside>
+  </article>
+</BaseLayout>

@@ -1,0 +1,95 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import CityHousingDashboard from "../../components/CityHousingDashboard.vue";
+import { HOUSING_CITIES } from "../../data/housing-cities";
+import { SITE } from "../../data/site";
+
+export function getStaticPaths() {
+  return HOUSING_CITIES.map((city) => ({
+    params: { city: city.slug },
+    props: { city },
+  }));
+}
+
+const { city } = Astro.props;
+const canonical = `/housing/${city.slug}/`;
+const title = `${city.name} Housing Data and Asking Rents`;
+const description = `${city.description} View sourced charts, freshness details, and methodology.`;
+const datasetSchema = {
+  "@context": "https://schema.org",
+  "@type": "Dataset",
+  name: `${city.name} asking rents and Canadian mortgage rates`,
+  description,
+  url: `${SITE.origin}${canonical}`,
+  inLanguage: SITE.locale,
+  spatialCoverage: {
+    "@type": "Place",
+    name: `${city.name}, ${city.province}, Canada`,
+  },
+  isBasedOn: [
+    "https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=4610009201",
+    "https://www.bankofcanada.ca/valet-api-how-to/",
+  ],
+  creator: [
+    { "@type": "Organization", name: "Statistics Canada" },
+    { "@type": "Organization", name: "Bank of Canada" },
+  ],
+};
+---
+
+<BaseLayout title={title} description={description} canonical={canonical} jsonLd={datasetSchema}>
+  <section class="page-hero city-hero" slot="hero">
+    <div class="page-shell">
+      <p class="eyebrow">{city.province} market dashboard</p>
+      <h1>{city.name} housing data</h1>
+      <p>
+        Track advertised one-bedroom and two-bedroom rents in {city.name}, then compare them with
+        current Canadian posted mortgage rates. The data comes from official public sources.
+      </p>
+    </div>
+  </section>
+
+  <section class="section page-shell">
+    <CityHousingDashboard client:load citySlug={city.slug} cityName={city.name} />
+  </section>
+
+  <section class="section page-shell city-context">
+    <article>
+      <p class="eyebrow">Read this first</p>
+      <h2>What this dashboard measures</h2>
+      <p>
+        The rent series is Statistics Canada table 46-10-0092-01. It measures advertised asking
+        prices for available units, not the rent paid by every household in {city.name}. Quarterly
+        points may be marked as estimates by the source.
+      </p>
+      <p>
+        The rate chart uses Bank of Canada conventional posted mortgage-rate series. Posted rates
+        can differ from negotiated rates, insured rates, variable rates, and the offer available to
+        a particular borrower.
+      </p>
+    </article>
+    <aside>
+      <p class="eyebrow">Turn data into a plan</p>
+      <h2>Test your own numbers</h2>
+      <p>Market context is useful, but a housing decision depends on your budget, cash, debts, rate, and time horizon.</p>
+      <ul>
+        <li><a href="/calculators/payment/">Calculate a mortgage payment</a></li>
+        <li><a href="/calculators/rent-vs-buy/">Compare renting and buying</a></li>
+        <li><a href="/calculators/affordability/">Estimate an affordable range</a></li>
+      </ul>
+    </aside>
+  </section>
+
+  <section class="section page-shell source-panel">
+    <p class="eyebrow">Sources and freshness</p>
+    <h2>Official APIs, cached responsibly</h2>
+    <p>
+      The server fetches the public Statistics Canada Web Data Service and Bank of Canada Valet API. National rate data and each city rent record use separate Cloudflare KV entries for six hours. A scheduled refresh prewarms those entries. If an upstream source is briefly unavailable, cached data can be served for up to seven days. A validated static snapshot is the final fallback and is clearly labelled. No browser receives an API key because these public endpoints do not require one.
+    </p>
+    <ul>
+      <li><a href="https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=4610009201" rel="external">Statistics Canada asking-rent table</a></li>
+      <li><a href="https://www.bankofcanada.ca/valet-api-how-to/" rel="external">Bank of Canada Valet API guide</a></li>
+      <li><a href="/methodology/">Mortgage Compass methodology</a></li>
+    </ul>
+  </section>
+</BaseLayout>

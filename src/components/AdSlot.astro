@@ -1,0 +1,18 @@
+---
+interface Props {
+  placement: string;
+  format?: "leaderboard" | "rectangle" | "rail";
+}
+
+const { placement, format = "leaderboard" } = Astro.props;
+---
+
+<aside
+  class:list={["ad-slot", `ad-slot--${format}`]}
+  aria-label="Advertisement"
+  data-ad-placement={placement}
+  data-ad-status="unfilled"
+>
+  <span>Advertisement</span>
+  <p>Reserved ad space</p>
+</aside>

@@ -1,0 +1,89 @@
+{
+  "citySlug": "edmonton",
+  "generatedAt": "2026-07-29T05:09:51.434Z",
+  "rent": {
+    "oneBedroom": {
+      "label": "One-bedroom asking rent",
+      "unit": "CAD",
+      "points": [
+        {
+          "date": "2024-04-01",
+          "value": 1290
+        },
+        {
+          "date": "2024-07-01",
+          "value": 1320
+        },
+        {
+          "date": "2024-10-01",
+          "value": 1280
+        },
+        {
+          "date": "2025-01-01",
+          "value": 1280
+        },
+        {
+          "date": "2025-04-01",
+          "value": 1290,
+          "estimated": true
+        },
+        {
+          "date": "2025-07-01",
+          "value": 1320
+        },
+        {
+          "date": "2025-10-01",
+          "value": 1300
+        },
+        {
+          "date": "2026-01-01",
+          "value": 1280
+        }
+      ]
+    },
+    "twoBedroom": {
+      "label": "Two-bedroom asking rent",
+      "unit": "CAD",
+      "points": [
+        {
+          "date": "2024-04-01",
+          "value": 1620
+        },
+        {
+          "date": "2024-07-01",
+          "value": 1620
+        },
+        {
+          "date": "2024-10-01",
+          "value": 1590
+        },
+        {
+          "date": "2025-01-01",
+          "value": 1590
+        },
+        {
+          "date": "2025-04-01",
+          "value": 1610,
+          "estimated": true
+        },
+        {
+          "date": "2025-07-01",
+          "value": 1640
+        },
+        {
+          "date": "2025-10-01",
+          "value": 1620
+        },
+        {
+          "date": "2026-01-01",
+          "value": 1580
+        }
+      ]
+    }
+  },
+  "source": {
+    "name": "Statistics Canada table 46-10-0092-01",
+    "url": "https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=4610009201",
+    "note": "Quarterly advertised asking rents, not rents paid by all existing tenants."
+  }
+}

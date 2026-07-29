@@ -1,0 +1,17 @@
+{
+  "name": "Mortgage Compass by Utilitas",
+  "short_name": "Mortgage Compass",
+  "description": "Private mortgage planning calculators and guides.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fffaf0",
+  "theme_color": "#122633",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
