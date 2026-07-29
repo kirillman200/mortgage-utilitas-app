@@ -2,6 +2,7 @@ import { describe, expect, it, vi } from "vitest";
 import {
   acceptsMarkdown,
   addDiscoveryHeaders,
+  createCanonicalRedirect,
   createMarkdownResponse,
   createSecureHtmlResponse,
   handleHousingApi,
@@ -103,6 +104,27 @@ describe("agent discovery response helpers", () => {
     expect(production.headers.get("Content-Security-Policy")).not.toContain(
       "'sha256-g5a3SrOYIecCloZ8S7M4xdT1pbYi6e7mjHrmwphRxfE='",
     );
+  });
+});
+
+describe("production routing", () => {
+  it("redirects canonical HTTP URLs to HTTPS", () => {
+    const response = createCanonicalRedirect(
+      new URL("http://mortgage.utilitas.app/calculators/payment/?term=25"),
+      true,
+    );
+
+    expect(response?.status).toBe(308);
+    expect(response?.headers.get("Location")).toBe(
+      "https://mortgage.utilitas.app/calculators/payment/?term=25",
+    );
+    expect(
+      createCanonicalRedirect(
+        new URL("http://mortgage.utilitas.app/"),
+        false,
+        "mortgage.utilitas.app",
+      ),
+    ).toBeNull();
   });
 });
 

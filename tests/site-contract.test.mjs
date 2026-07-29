@@ -109,7 +109,7 @@ test("local serving uses the Worker runtime required by live data", async () => 
   assert.match(packageJson.scripts.dev, /run-worker-dev\.mjs/);
   assert.match(packageJson.scripts.preview, /run-worker-dev\.mjs --no-watch/);
   assert.match(developmentRunner, /wrangler\.js/);
-  assert.match(developmentRunner, /"dev", "--local", "--port", "4321"/);
+  assert.match(developmentRunner, /"dev", "--local"[\s\S]*"--host", "127.0.0.1"[\s\S]*"--port", "4321"/);
   assert.match(e2eRunner, /wranglerCli/);
 });
 

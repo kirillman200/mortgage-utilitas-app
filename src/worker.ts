@@ -13,6 +13,7 @@ import {
 } from "./lib/housing-data";
 
 const SITE_ORIGIN = "https://mortgage.utilitas.app";
+const SITE_HOSTNAME = "mortgage.utilitas.app";
 const HOUSING_API_PREFIX = "/api/housing/";
 const HOUSING_CACHE_VERSION = "v1";
 const HOUSING_SNAPSHOT_PREFIX = "/data/housing/v1";
@@ -145,6 +146,23 @@ function createSecureHtmlResponse(
     statusText: assetResponse.statusText,
     headers,
   });
+}
+
+function createCanonicalRedirect(
+  url: URL,
+  isCloudflareRequest: boolean,
+  requestHost = url.host,
+): Response | null {
+  const requestHostname = requestHost.replace(/:\d+$/, "").toLowerCase();
+  if (
+    isCloudflareRequest &&
+    requestHostname === SITE_HOSTNAME &&
+    url.hostname === SITE_HOSTNAME &&
+    url.protocol !== "https:"
+  ) {
+    return Response.redirect(new URL(url.pathname + url.search, SITE_ORIGIN), 308);
+  }
+  return null;
 }
 
 function housingJsonResponse(
@@ -407,6 +425,9 @@ async function refreshScheduledHousingData(env: Env): Promise<void> {
 export default {
   async fetch(request, env, ctx): Promise<Response> {
     const url = new URL(request.url);
+    const redirect = createCanonicalRedirect(url, request.cf != null, request.headers.get("Host") ?? url.host);
+    if (redirect) return redirect;
+
     if (url.pathname.startsWith(HOUSING_API_PREFIX)) {
       return handleHousingApi(request, env, ctx);
     }
@@ -439,6 +460,7 @@ export default {
 export {
   acceptsMarkdown,
   addDiscoveryHeaders,
+  createCanonicalRedirect,
   createMarkdownResponse,
   createSecureHtmlResponse,
   handleHousingApi,

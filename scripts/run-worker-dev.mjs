@@ -36,7 +36,7 @@ if (initialBuildCode !== 0) process.exit(initialBuildCode);
 
 const worker = spawn(
   process.execPath,
-  [wranglerCli, "dev", "--local", "--port", "4321", "--no-live-reload"],
+  [wranglerCli, "dev", "--local", "--host", "127.0.0.1", "--port", "4321", "--no-live-reload"],
   {
     cwd: root,
     env: childEnvironment,
