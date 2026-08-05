@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
-import { readFile, readdir } from "node:fs/promises";
+import { readFile, readdir, stat } from "node:fs/promises";
 import { join } from "node:path";
 import test from "node:test";
 
@@ -30,7 +30,9 @@ const articleSlugs = [
   "what-is-a-reverse-mortgage",
   "private-mortgage",
   "rocket-mortgage",
-  "mortgage-rates-news"
+  "mortgage-rates-news",
+  "mortgage-renewal-calculator-canada",
+  "mortgage-penalty-calculator-canada"
 ];
 const citySlugs = ["toronto", "vancouver", "montreal", "calgary", "edmonton", "winnipeg"];
 
@@ -91,6 +93,15 @@ test("every article reserves at least five labelled ad placements", async () => 
   }
 });
 
+test("new SEO guides show their actual publication date", async () => {
+  for (const slug of ["mortgage-renewal-calculator-canada", "mortgage-penalty-calculator-canada"]) {
+    const html = await readDist(join("guides", slug, "index.html"));
+    assert.match(html, /datetime="2026-08-05">August 5, 2026<\/time>/);
+    assert.match(html, /"datePublished":"2026-08-05"/);
+    assert.match(html, /"dateModified":"2026-08-05"/);
+  }
+});
+
 test("exports and machine indexes identify the production URL", async () => {
   const component = await read("src/components/MortgageWorkbench.vue");
   const pdf = await read("src/lib/pdf.ts");
@@ -128,6 +139,39 @@ test("robots, security, access, and ad contracts are truthful", async () => {
   assert.match(await readDist("ads.txt"), /not currently authorized/);
 });
 
+test("favicon family is published and wired into the shared head", async () => {
+  const layout = await read("src/layouts/BaseLayout.astro");
+  const manifest = JSON.parse(await read("public/manifest.webmanifest"));
+  const requiredFiles = [
+    "public/favicon.svg",
+    "public/favicon.ico",
+    "public/favicon-32.png",
+    "public/apple-touch-icon.png",
+    "public/favicon-192.png",
+    "public/favicon-512.png",
+  ];
+
+  for (const file of requiredFiles) {
+    assert.ok((await stat(join(root, file))).size > 0, `${file} must not be empty`);
+  }
+
+  assert.match(layout, /href="\/favicon\.ico" sizes="any"/);
+  assert.match(layout, /href="\/favicon\.svg" type="image\/svg\+xml"/);
+  assert.match(layout, /href="\/favicon-32\.png" type="image\/png" sizes="32x32"/);
+  assert.match(layout, /href="\/apple-touch-icon\.png" sizes="180x180"/);
+  assert.deepEqual(
+    manifest.icons.map(({ src, sizes, type }) => ({ src, sizes, type })),
+    [
+      { src: "/favicon.svg", sizes: "any", type: "image/svg+xml" },
+      { src: "/favicon-192.png", sizes: "192x192", type: "image/png" },
+      { src: "/favicon-512.png", sizes: "512x512", type: "image/png" },
+    ],
+  );
+
+  const ico = await readFile(join(root, "public/favicon.ico"));
+  assert.deepEqual([...ico.subarray(0, 4)], [0, 0, 1, 0]);
+  assert.equal(ico.readUInt16LE(4), 3);
+});
 test("source and public content contain no em dash characters", async () => {
   async function walk(directory) {
     const entries = await readdir(directory, { withFileTypes: true });

@@ -795,6 +795,186 @@ export const ARTICLES: Article[] = [
       }
     ],
     calculator: "stress-test"
+  },
+  {
+    slug: "mortgage-renewal-calculator-canada",
+    title: "Mortgage Renewal Calculator Canada Guide",
+    description:
+      "Estimate a Canadian mortgage renewal payment, compare stay-versus-switch costs, and prepare for rate, term, and amortization decisions.",
+    keyword: "mortgage renewal calculator Canada",
+    category: "Planning",
+    readingMinutes: 10,
+    published: "2026-08-05",
+    updated: "2026-08-05",
+    intro: [
+      "A mortgage renewal calculator for Canada starts with the balance expected on the renewal date, not the amount originally borrowed. Add the proposed rate, remaining amortization, payment frequency, and any costs to switch lenders. The result is a planning estimate that helps you compare offers on consistent assumptions.",
+      "Renewal deserves an early calculation because the offered rate is only one part of the decision. Term length, fixed or variable pricing, prepayment privileges, portability, fees, and a changed amortization can alter both the next payment and the longer-run interest cost."
+    ],
+    keyTakeaways: [
+      "Use the projected balance on the renewal date and the remaining amortization.",
+      "Compare the same balance, payment frequency, amortization, and term assumptions across offers.",
+      "Start shopping a few months before renewal instead of relying on an automatic offer.",
+      "Treat a lower payment from a longer amortization as a tradeoff, not a free saving.",
+      "A straight switch may avoid a set federal stress-test rate, but the new lender still decides whether to approve the application."
+    ],
+    sections: [
+      {
+        heading: "Gather the inputs for a renewal payment estimate",
+        paragraphs: [
+          "Find the remaining principal expected at the end of the current term. Your lender's renewal statement should show the balance at renewal, offered interest rate, payment frequency, term, and applicable charges. A federally regulated lender must provide that statement at least 21 days before the end of the term, but waiting for it can leave too little time to compare alternatives.",
+          "For an earlier estimate, use the current amortization schedule or account balance and project it forward to the renewal date. Enter that future balance in the refinance break-even calculator, set fees and the prepayment penalty to zero for an at-term renewal, and run each proposed rate with the same remaining amortization."
+        ],
+        bullets: [
+          "Projected principal on the renewal date",
+          "Offered annual rate and fixed or variable structure",
+          "Remaining amortization and proposed term",
+          "Monthly, biweekly, accelerated biweekly, or other payment frequency",
+          "Transfer, appraisal, legal, registration, discharge, or administration costs"
+        ]
+      },
+      {
+        heading: "Measure payment shock with more than one rate",
+        paragraphs: [
+          "Model the renewal offer, at least one competing offer, and a higher-rate scenario. Compare the dollar payment, total interest during the proposed term, and expected balance at the next renewal. A single monthly number can hide the cost of stretching the amortization or selecting a longer term.",
+          "Bank of Canada staff estimated that about 60% of outstanding Canadian mortgages would renew in 2025 or 2026. Under the study's assumptions, the average monthly payment for 2026 renewals could be 6% above December 2024, while five-year fixed borrowers renewing in 2026 could average a 20% increase. Those are portfolio estimates, not forecasts for a specific household, so your balance and offer matter more than the national average."
+        ]
+      },
+      {
+        heading: "Compare staying with switching lenders",
+        paragraphs: [
+          "The existing lender's renewal letter is a starting point, not a complete market comparison. Ask for a better rate and compare the term, prepayment privileges, penalty method, portability, collateral-charge implications, service, and optional insurance. A slightly lower rate may not win after transfer costs or less flexible terms are included.",
+          "Since November 21, 2024, OSFI has not required a set minimum qualifying rate for an uninsured straight switch between federally regulated lenders when neither the loan amount nor amortization increases. This does not guarantee approval or remove underwriting. The new lender can apply its own criteria, and refinancing, increasing the balance, or extending amortization changes the situation."
+        ]
+      },
+      {
+        heading: "Use a renewal checklist before accepting",
+        paragraphs: [
+          "Start several months before the term ends. Confirm the maturity date, registration type, insurance certificate if applicable, transfer costs, and the documents a new lender will require. Keep written copies of each offer so the rate, assumptions, and conditions can be compared on the same day.",
+          "Before signing, rerun the payment with the final balance and disclosed rate. Check whether the household budget still leaves room for taxes, insurance, condominium fees, repairs, other debt, and emergency savings. If the payment is difficult, contact the lender early and compare options with a qualified professional before extending amortization or adding debt."
+        ]
+      }
+    ],
+    faqs: [
+      {
+        question: "What balance should I use in a Canadian mortgage renewal calculator?",
+        answer: "Use the principal expected on the renewal date. Obtain it from the renewal statement or project the current balance to the end of the term with an amortization schedule."
+      },
+      {
+        question: "Do I have to renew with my current lender?",
+        answer: "No. You may apply to switch lenders, but the new lender must approve the application and transfer, appraisal, legal, registration, discharge, or administration costs may apply."
+      },
+      {
+        question: "Do I need to pass the mortgage stress test when switching at renewal?",
+        answer: "OSFI does not require a set minimum qualifying rate for an uninsured straight switch between federally regulated lenders when the loan amount and amortization do not increase. Lenders still underwrite the application, and other transactions may be treated differently."
+      },
+      {
+        question: "Does extending amortization make a renewal cheaper?",
+        answer: "It can lower the scheduled payment, but it usually increases the time in debt and total interest. Compare payment relief with the longer-run cost."
+      }
+    ],
+    sources: [
+      {
+        label: "FCAC: renewing your mortgage",
+        href: "https://www.canada.ca/en/financial-consumer-agency/services/mortgages/renew-mortgage.html"
+      },
+      {
+        label: "OSFI: minimum qualifying rate for uninsured straight switches",
+        href: "https://www.osfi-bsif.gc.ca/en/news/backgrounder-minimum-qualifying-rate-mqr"
+      },
+      {
+        label: "Bank of Canada: how mortgage payments may change at renewal",
+        href: "https://www.bankofcanada.ca/2025/07/staff-analytical-note-2025-21/"
+      }
+    ],
+    calculator: "refinance"
+  },
+  {
+    slug: "mortgage-penalty-calculator-canada",
+    title: "Mortgage Penalty Calculator Canada Guide",
+    description:
+      "Estimate a Canadian mortgage prepayment penalty, understand three-month-interest and IRD methods, and test the full refinance break-even cost.",
+    keyword: "mortgage penalty calculator Canada",
+    category: "Borrowing",
+    readingMinutes: 10,
+    published: "2026-08-05",
+    updated: "2026-08-05",
+    intro: [
+      "A mortgage penalty calculator in Canada can provide a rough prepayment-charge estimate, but the lender's written quote is the number that belongs in a refinance decision. Contracts differ, and an interest rate differential can depend on posted rates, discounts, the comparison term, and the lender's stated method.",
+      "The useful decision is broader than the penalty alone. Add discharge, administration, appraisal, legal, registration, and possible cash-back repayment costs, then compare that total with payment and interest savings over the period you realistically expect to keep the replacement mortgage."
+    ],
+    keyTakeaways: [
+      "An open mortgage can generally be repaid without a prepayment penalty, while a closed mortgage commonly has limits.",
+      "A closed-mortgage charge is often based on three months of interest or an interest rate differential.",
+      "IRD methods vary, so an online estimate may differ materially from the lender's payout quote.",
+      "Use the full switching cost, not only the penalty, in a refinance break-even comparison.",
+      "Check prepayment, portability, blend-and-extend, and wait-until-renewal options before breaking the term."
+    ],
+    sections: [
+      {
+        heading: "Check whether a prepayment penalty applies",
+        paragraphs: [
+          "Read the mortgage contract for open or closed status, prepayment privileges, annual limits, portability, and the penalty formula. A lender may charge when you exceed an allowed lump sum, break the contract, transfer before term-end, sell and repay the mortgage, or otherwise pay the balance earlier than permitted.",
+          "The Financial Consumer Agency of Canada says open mortgages allow lump-sum or full repayment without a prepayment penalty. Closed contracts normally restrict extra repayment, and the charge can reach thousands of dollars. Other fees and cash-back repayment may still apply, so request a complete payout or discharge statement."
+        ]
+      },
+      {
+        heading: "Estimate three months of interest and the IRD",
+        paragraphs: [
+          "A simple three-month-interest estimate is the outstanding balance multiplied by the annual contract rate and then multiplied by three-twelfths. This is a planning shortcut. The contract may define the balance, rate, dates, and calculation conventions differently, so compare the estimate with the lender's calculator and written quote.",
+          "For a fixed mortgage, the lender may instead use an interest rate differential. FCAC explains that lenders can compare the remaining interest under the current contract with interest based on a similar remaining term, using posted or discounted rates according to the contract. Because those inputs and discount treatments vary, there is no universal IRD result from only the balance and contract rate."
+        ],
+        bullets: [
+          "Outstanding balance and amount being prepaid",
+          "Contract rate and original rate discount",
+          "Months remaining in the term",
+          "Current comparison rate selected under the contract",
+          "The lender's posted-rate or discounted-rate method"
+        ]
+      },
+      {
+        heading: "Calculate the complete refinance break-even",
+        paragraphs: [
+          "Add the quoted penalty to discharge, administration, appraisal, legal, registration, reinvestment, and new-lender setup costs. Include any cash-back repayment. If costs are added to the new principal, they also generate interest, so model the financed amount rather than treating every fee as cash paid today.",
+          "Enter the actual lender penalty and other fees in the refinance break-even calculator. Compare the current and replacement mortgages over the same remaining horizon. A lower payment is not enough if it comes from extending amortization, and a short break-even period is not useful if you expect to sell or refinance again before reaching it."
+        ]
+      },
+      {
+        heading: "Compare ways to reduce or avoid the charge",
+        paragraphs: [
+          "Ask whether you can use an available lump-sum privilege before requesting the payout, since a lower balance may reduce the charge. Confirm timing first because some contracts restrict prepayments close to a discharge. Waiting until the term ends can remove the mid-term penalty, although rates and other circumstances can change while you wait.",
+          "If you are moving, ask whether the mortgage can be ported. If you want a different rate with the same lender, ask about blend-and-extend and compare its full cost and new penalty terms. Do not assume an apparently penalty-free option is cheaper without calculating the new rate, fees, remaining balance, and flexibility."
+        ]
+      }
+    ],
+    faqs: [
+      {
+        question: "How do I estimate three months of mortgage interest?",
+        answer: "For a rough estimate, multiply the balance by the annual contract rate and by 3/12. The lender's contract and written payout quote determine the actual charge."
+      },
+      {
+        question: "What is an interest rate differential mortgage penalty?",
+        answer: "An IRD estimates the interest the lender may lose over the remaining term by comparing contract interest with interest based on a current comparison rate. The exact method and rate inputs vary by lender and contract."
+      },
+      {
+        question: "Can I avoid a mortgage penalty by waiting for renewal?",
+        answer: "You can generally repay or switch at the end of the term without a mid-term prepayment penalty, but discharge, transfer, legal, registration, or other fees may still apply. Confirm the exact maturity and payout process with the lender."
+      },
+      {
+        question: "Should I refinance if the new rate is lower?",
+        answer: "Only after the interest and payment savings exceed the penalty and all other switching costs within a realistic holding period, while accounting for any change in amortization and loan amount."
+      }
+    ],
+    sources: [
+      {
+        label: "FCAC: mortgage fees and prepayment penalties",
+        href: "https://www.canada.ca/en/financial-consumer-agency/services/mortgages/reduce-prepayment-penalties.html"
+      },
+      {
+        label: "FCAC: breaking your mortgage contract",
+        href: "https://www.canada.ca/en/financial-consumer-agency/services/mortgages/break-mortgage-contract.html"
+      }
+    ],
+    calculator: "refinance"
   }
 ];
 

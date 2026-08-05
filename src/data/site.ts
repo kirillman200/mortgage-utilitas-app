@@ -9,7 +9,7 @@ export const SITE = {
   contact: "contact@utilitas.app",
   locale: "en-CA",
   published: "2026-07-28",
-  updated: "2026-07-28"
+  updated: "2026-08-05"
 } as const;
 
 export type CalculatorSlug =
