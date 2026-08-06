@@ -4,6 +4,7 @@ import MortgageWorkbench from "../../components/MortgageWorkbench.vue";
 import AdSlot from "../../components/AdSlot.astro";
 import { CALCULATORS, SITE, type CalculatorSlug } from "../../data/site";
 import { ARTICLES } from "../../data/articles";
+import { CALCULATOR_CONTENT } from "../../data/calculator-content";
 
 export function getStaticPaths() {
   return CALCULATORS.map((calculator) => ({
@@ -15,6 +16,7 @@ export function getStaticPaths() {
 const { calculator } = Astro.props;
 const related = ARTICLES.filter((article) => article.calculator === calculator.slug).slice(0, 3);
 const canonical = `/calculators/${calculator.slug}/`;
+const content = CALCULATOR_CONTENT[calculator.slug as CalculatorSlug];
 const jsonLd = [
   {
     "@context": "https://schema.org",
@@ -26,6 +28,15 @@ const jsonLd = [
     isAccessibleForFree: true,
     offers: { "@type": "Offer", price: "0", priceCurrency: "CAD" },
     description: calculator.description
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: content.faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: { "@type": "Answer", text: faq.answer }
+    }))
   }
 ];
 ---
@@ -43,6 +54,41 @@ const jsonLd = [
     <MortgageWorkbench client:load initialMode={calculator.slug as CalculatorSlug} />
   </div>
   <AdSlot placement={`calculator-${calculator.slug}-after-results`} />
+
+  <section class="section page-shell calculator-explainer">
+    <div class="section-heading">
+      <p class="eyebrow">Calculator guide</p>
+      <h2>{content.heading}</h2>
+      {content.intro.map((paragraph) => <p>{paragraph}</p>)}
+    </div>
+    <div class="card-grid calculator-reading-grid">
+      <article class="tool-card">
+        <span class="card-number">01</span>
+        <h3>Enter a useful scenario</h3>
+        <ol>{content.steps.map((step) => <li>{step}</li>)}</ol>
+      </article>
+      <article class="tool-card">
+        <span class="card-number">02</span>
+        <h3>{content.resultHeading}</h3>
+        {content.resultParagraphs.map((paragraph) => <p>{paragraph}</p>)}
+      </article>
+    </div>
+    <div class="calculator-faq">
+      <p class="eyebrow">Questions answered</p>
+      <h2>Frequently asked questions</h2>
+      {content.faqs.map((faq) => (
+        <details class="faq-item">
+          <summary>{faq.question}</summary>
+          <p>{faq.answer}</p>
+        </details>
+      ))}
+    </div>
+    <div class="calculator-sources sources">
+      <h2>Official references</h2>
+      <p>Rules and tax programs can change. Confirm the current requirements before acting.</p>
+      <ul>{content.sources.map((source) => <li><a href={source.href} rel="external">{source.label}</a></li>)}</ul>
+    </div>
+  </section>
 
   <section class="section page-shell">
     <div class="section-heading">

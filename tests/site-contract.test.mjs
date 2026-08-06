@@ -32,7 +32,12 @@ const articleSlugs = [
   "rocket-mortgage",
   "mortgage-rates-news",
   "mortgage-renewal-calculator-canada",
-  "mortgage-penalty-calculator-canada"
+  "mortgage-penalty-calculator-canada",
+  "mortgage-amortization-schedule-calculator-canada",
+  "mortgage-extra-payment-calculator-canada",
+  "closing-cost-calculator-canada",
+  "mortgage-refinance-break-even-calculator-canada",
+  "rent-vs-buy-calculator-canada"
 ];
 const citySlugs = ["toronto", "vancouver", "montreal", "calgary", "edmonton", "winnipeg"];
 
@@ -94,11 +99,27 @@ test("every article reserves at least five labelled ad placements", async () => 
 });
 
 test("new SEO guides show their actual publication date", async () => {
-  for (const slug of ["mortgage-renewal-calculator-canada", "mortgage-penalty-calculator-canada"]) {
+  for (const slug of [
+    "mortgage-amortization-schedule-calculator-canada",
+    "mortgage-extra-payment-calculator-canada",
+    "closing-cost-calculator-canada",
+    "mortgage-refinance-break-even-calculator-canada",
+    "rent-vs-buy-calculator-canada"
+  ]) {
     const html = await readDist(join("guides", slug, "index.html"));
-    assert.match(html, /datetime="2026-08-05">August 5, 2026<\/time>/);
-    assert.match(html, /"datePublished":"2026-08-05"/);
-    assert.match(html, /"dateModified":"2026-08-05"/);
+    assert.match(html, /datetime="2026-08-06">August 6, 2026<\/time>/);
+    assert.match(html, /"datePublished":"2026-08-06"/);
+    assert.match(html, /"dateModified":"2026-08-06"/);
+  }
+});
+
+test("calculator pages publish specific guidance and FAQ schema", async () => {
+  for (const slug of calculatorSlugs) {
+    const html = await readDist(join("calculators", slug, "index.html"));
+    assert.match(html, /Calculator guide/);
+    assert.match(html, /"@type":"FAQPage"/);
+    assert.match(html, /Frequently asked questions/);
+    assert.match(html, /Official references/);
   }
 });
 

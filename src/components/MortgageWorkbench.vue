@@ -7,6 +7,7 @@ import {
   paymentForFrequency,
   periodicPayment,
   periodicRate,
+  propertyTransferTax,
   refinanceComparison,
   reverseMortgageProjection,
   totalInterest,
@@ -45,6 +46,8 @@ const state = reactive({
   cashBuffer: 15000,
   extraPerPayment: 200,
   annualExtra: 3000,
+  oneTimeExtra: 10000,
+  oneTimeExtraAtPayment: 12,
   currentBalance: 420000,
   currentRate: 5.8,
   remainingYears: 22,
@@ -56,6 +59,8 @@ const state = reactive({
   inspection: 550,
   appraisal: 500,
   moving: 1800,
+  closingJurisdiction: "toronto" as "manual" | "ontario" | "toronto" | "british-columbia",
+  firstTimeBuyer: false,
   transferTaxRate: 1.5,
   titleInsurance: 450,
   initialRepairs: 2500,
@@ -105,7 +110,9 @@ const paymentSchedule = computed(() =>
   buildSchedule({
     ...loanInputs.value,
     extraPerPayment: mode.value === "extra-payments" ? state.extraPerPayment : 0,
-    annualExtra: mode.value === "extra-payments" ? state.annualExtra : 0
+    annualExtra: mode.value === "extra-payments" ? state.annualExtra : 0,
+    oneTimeExtra: mode.value === "extra-payments" ? state.oneTimeExtra : 0,
+    oneTimeExtraAtPayment: state.oneTimeExtraAtPayment
   })
 );
 const regularPayment = computed(() => paymentForFrequency(loanInputs.value));
@@ -171,7 +178,19 @@ const refinance = computed(() =>
 );
 
 const closing = computed(() => {
-  const transferTax = state.homePrice * state.transferTaxRate / 100;
+  const tax = state.closingJurisdiction === "manual"
+    ? {
+        provincial: state.homePrice * state.transferTaxRate / 100,
+        municipal: 0,
+        gross: state.homePrice * state.transferTaxRate / 100,
+        rebate: 0,
+        net: state.homePrice * state.transferTaxRate / 100
+      }
+    : propertyTransferTax({
+        value: state.homePrice,
+        jurisdiction: state.closingJurisdiction,
+        firstTimeBuyer: state.firstTimeBuyer
+      });
   const other =
     state.legalFees +
     state.inspection +
@@ -179,9 +198,13 @@ const closing = computed(() => {
     state.moving +
     state.titleInsurance +
     state.initialRepairs;
-  const total = state.downPayment + transferTax + other + state.cashBuffer;
+  const total = state.downPayment + tax.net + other + state.cashBuffer;
   return {
-    transferTax,
+    transferTax: tax.net,
+    transferTaxGross: tax.gross,
+    transferTaxRebate: tax.rebate,
+    provincialTax: tax.provincial,
+    municipalTax: tax.municipal,
     other,
     total,
     gap: state.availableCash - total
@@ -422,6 +445,31 @@ const exportRows = computed(() => {
   if (mode.value === "stress-test") return stressRows.value;
   if (mode.value === "rent-vs-buy") return rentVsBuy.value;
   if (mode.value === "reverse-mortgage") return reverseRows.value;
+  if (mode.value === "refinance") return [{
+    currentPayment: refinance.value.currentPayment,
+    newPayment: refinance.value.newPayment,
+    monthlySavings: refinance.value.monthlySavings,
+    breakEvenMonths: refinance.value.breakEvenMonths,
+    currentInterest: refinance.value.currentInterest,
+    newInterest: refinance.value.newInterest,
+    lifetimeSavings: refinance.value.lifetimeSavings
+  }];
+  if (mode.value === "closing-costs") return [{
+    downPayment: state.downPayment,
+    provincialTransferTaxBeforeRelief: closing.value.provincialTax,
+    municipalTransferTaxBeforeRelief: closing.value.municipalTax,
+    estimatedFirstTimeBuyerRelief: closing.value.transferTaxRebate,
+    transferTaxAfterRelief: closing.value.transferTax,
+    legalFees: state.legalFees,
+    inspection: state.inspection,
+    appraisal: state.appraisal,
+    titleInsurance: state.titleInsurance,
+    moving: state.moving,
+    initialRepairs: state.initialRepairs,
+    retainedCashBuffer: state.cashBuffer,
+    estimatedCashToClose: closing.value.total,
+    cashRemaining: closing.value.gap
+  }];
   return paymentSchedule.value.map((row) => ({
     paymentNumber: row.paymentNumber,
     date: row.date.toISOString().slice(0, 10),
@@ -549,7 +597,9 @@ async function share() {
     years: String(state.years),
     frequency: state.frequency,
     extra: String(state.extraPerPayment),
-    annualExtra: String(state.annualExtra)
+    annualExtra: String(state.annualExtra),
+    oneTimeExtra: String(state.oneTimeExtra),
+    oneTimeAt: String(state.oneTimeExtraAtPayment)
   });
   const url = `${window.location.origin}${window.location.pathname}?${params.toString()}`;
   try {
@@ -629,7 +679,9 @@ function applyUrlState() {
     ["rate", "rate"],
     ["years", "years"],
     ["extra", "extraPerPayment"],
-    ["annualExtra", "annualExtra"]
+    ["annualExtra", "annualExtra"],
+    ["oneTimeExtra", "oneTimeExtra"],
+    ["oneTimeAt", "oneTimeExtraAtPayment"]
   ];
   for (const [param, key] of map) {
     if (!params.has(param)) continue;
@@ -754,8 +806,10 @@ onMounted(() => {
           <div class="field-grid">
             <label><span>Extra each payment</span><input v-model.number="state.extraPerPayment" type="number" min="0" step="25"></label>
             <label><span>Annual lump sum</span><input v-model.number="state.annualExtra" type="number" min="0" step="250"></label>
+            <label><span>One-time lump sum</span><input v-model.number="state.oneTimeExtra" type="number" min="0" step="250"></label>
+            <label><span>Apply at payment number</span><input v-model.number="state.oneTimeExtraAtPayment" type="number" min="1" :max="state.years * periodsPerYear" step="1"></label>
           </div>
-          <p class="field-note">Check your contract for prepayment privileges and penalties before acting.</p>
+          <p class="field-note">The one-time amount is applied at payment {{ state.oneTimeExtraAtPayment }}. Check your contract for prepayment privileges, timing rules, and penalties before acting.</p>
         </fieldset>
 
         <fieldset v-if="mode === 'refinance'" :disabled="!hydrated">
@@ -777,7 +831,17 @@ onMounted(() => {
         <fieldset v-if="mode === 'closing-costs'" :disabled="!hydrated">
           <legend>Closing cost assumptions</legend>
           <div class="field-grid">
-            <label><span>Transfer tax rate</span><span class="input-suffix"><input v-model.number="state.transferTaxRate" type="number" min="0" max="10" step="0.1"><b>%</b></span></label>
+            <label>
+              <span>Land transfer tax location</span>
+              <select v-model="state.closingJurisdiction">
+                <option value="toronto">Toronto, Ontario</option>
+                <option value="ontario">Ontario outside Toronto</option>
+                <option value="british-columbia">British Columbia</option>
+                <option value="manual">Other or manual rate</option>
+              </select>
+            </label>
+            <label v-if="state.closingJurisdiction === 'manual'"><span>Transfer tax rate</span><span class="input-suffix"><input v-model.number="state.transferTaxRate" type="number" min="0" max="10" step="0.1"><b>%</b></span></label>
+            <label v-else class="checkbox-field"><input v-model="state.firstTimeBuyer" type="checkbox"><span>Apply estimated eligible first-time buyer relief</span></label>
             <label><span>Legal or settlement fees</span><input v-model.number="state.legalFees" type="number" min="0" step="100"></label>
             <label><span>Inspection</span><input v-model.number="state.inspection" type="number" min="0" step="50"></label>
             <label><span>Appraisal</span><input v-model.number="state.appraisal" type="number" min="0" step="50"></label>
@@ -876,6 +940,7 @@ onMounted(() => {
           <div><span>Time saved</span><strong>{{ number(state.years - payoffYears, 1) }} years</strong></div>
           <div><span>New payoff time</span><strong>{{ number(payoffYears, 1) }} years</strong></div>
           <div><span>Extra per year</span><strong>{{ money(state.extraPerPayment * periodsPerYear + state.annualExtra) }}</strong></div>
+          <div><span>One-time at payment {{ state.oneTimeExtraAtPayment }}</span><strong>{{ money(state.oneTimeExtra) }}</strong></div>
         </div>
 
         <div class="metric-grid" v-if="mode === 'affordability'">
@@ -894,7 +959,9 @@ onMounted(() => {
 
         <div class="metric-grid" v-if="mode === 'closing-costs'">
           <div><span>Down payment</span><strong>{{ money(state.downPayment) }}</strong></div>
-          <div><span>Transfer tax</span><strong>{{ money(closing.transferTax) }}</strong></div>
+          <div><span>Transfer tax after relief</span><strong>{{ money(closing.transferTax) }}</strong></div>
+          <div v-if="closing.transferTaxRebate > 0"><span>Estimated first-time buyer relief</span><strong>{{ money(closing.transferTaxRebate) }}</strong></div>
+          <div v-if="closing.municipalTax > 0"><span>Toronto municipal tax before relief</span><strong>{{ money(closing.municipalTax) }}</strong></div>
           <div><span>Other costs</span><strong>{{ money(closing.other) }}</strong></div>
           <div><span>Cash after close</span><strong :class="{ negative: closing.gap < 0 }">{{ money(closing.gap) }}</strong></div>
         </div>

@@ -9,7 +9,7 @@ export const SITE = {
   contact: "contact@utilitas.app",
   locale: "en-CA",
   published: "2026-07-28",
-  updated: "2026-08-05"
+  updated: "2026-08-06"
 } as const;
 
 export type CalculatorSlug =
@@ -48,7 +48,7 @@ export const CALCULATORS: Array<{
     slug: "extra-payments",
     name: "Extra payment payoff",
     short: "Payoff",
-    description: "Compare recurring and annual prepayments, interest saved, and a target payoff date.",
+    description: "Compare recurring, annual, and one-time prepayments, interest saved, and a target payoff date.",
     eyebrow: "Accelerate"
   },
   {
@@ -69,7 +69,7 @@ export const CALCULATORS: Array<{
     slug: "closing-costs",
     name: "Closing cost planner",
     short: "Closing costs",
-    description: "Plan land transfer tax, legal fees, inspection, appraisal, moving, and reserves.",
+    description: "Calculate Ontario, Toronto, or B.C. transfer tax and plan legal fees, moving, and reserves.",
     eyebrow: "Cash to close"
   },
   {

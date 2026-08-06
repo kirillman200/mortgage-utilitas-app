@@ -653,7 +653,7 @@ export const ARTICLES: Article[] = [
     category: "Borrowing",
     readingMinutes: 7,
     published: "2026-07-28",
-    updated: "2026-07-28",
+    updated: "2026-08-06",
     intro: [
       "Rocket Mortgage is a U.S. online mortgage lender and digital mortgage experience. Its official materials describe purchase and refinance options and an online process for application, document exchange, approval tasks, closing, and servicing for many loans.",
       "Mortgage Compass is not affiliated with, endorsed by, or sponsored by Rocket Mortgage. This guide does not rank lenders. It explains how to compare one online lender with banks, credit unions, brokers, and other direct lenders using the same assumptions."
@@ -682,8 +682,8 @@ export const ARTICLES: Article[] = [
       {
         heading: "Service and product-fit questions",
         paragraphs: [
-          "Ask who will handle questions, how documents are secured, what happens when a file needs manual review, whether the loan may be transferred, and how closing works in your location. Confirm the lender supports the property and loan program you need.",
-          "A fast interface is not a substitute for understanding the contract. Read rate-lock, appraisal, refund, servicing, and complaint information before paying a fee."
+          "Rocket's official FAQ says an online account can be used during origination to communicate, send documents, and view loan and closing details. If Rocket services the loan after closing, the account can support payments, transaction history, mortgage documents, paperless statements, tax and insurance information, and escrow changes. The FAQ also directs signed-in customers to online chat for questions.",
+          "Ask what happens when a file needs manual review, whether servicing may be transferred, and how closing works in your location. A fast interface is not a substitute for understanding the contract, and online tools do not guarantee approval or a customized loan that fits every future goal."
         ]
       },
       {
@@ -706,12 +706,32 @@ export const ARTICLES: Article[] = [
       {
         question: "Is an online lender always cheaper?",
         answer: "No. Compare formal offers, points, credits, fees, insurance, lock terms, product fit, and service. Delivery channel alone does not determine cost."
+      },
+      {
+        question: "Does Rocket Mortgage offer an online application and servicing tools?",
+        answer: "Its official FAQ describes an online process for application, documents, communication, approval tasks, and closing details. For loans it services, the signed-in account can also support payments, statements, documents, tax and insurance information, and escrow changes."
+      },
+      {
+        question: "Can Rocket Mortgage adjust my payment schedule or recast a loan?",
+        answer: "Options depend on the loan and servicer. Rocket's current recast guide says eligible conventional loans may be recast after qualifying principal reduction and payment-history requirements. Borrowers facing payment difficulty should contact the servicer about available repayment, forbearance, modification, or deferral options."
+      },
+      {
+        question: "Can a self-employed borrower apply online?",
+        answer: "Rocket publishes an online application path and self-employed documentation guidance. Approval still depends on verified income, assets, credit, debt, property, and the selected loan program."
       }
     ],
     sources: [
       {
         label: "Rocket Mortgage official FAQ",
         href: "https://www.rocketmortgage.com/faqs"
+      },
+      {
+        label: "Rocket Mortgage: mortgage recasting",
+        href: "https://www.rocketmortgage.com/learn/recast-mortgage"
+      },
+      {
+        label: "Rocket Mortgage: self-employed borrowers",
+        href: "https://www.rocketmortgage.com/learn/self-employed-mortgage"
       },
       {
         label: "CFPB: shopping for a mortgage",
@@ -975,6 +995,316 @@ export const ARTICLES: Article[] = [
       }
     ],
     calculator: "refinance"
+  },
+  {
+    slug: "mortgage-amortization-schedule-calculator-canada",
+    title: "Mortgage Amortization Schedule Calculator Canada Guide",
+    description:
+      "Build a Canadian mortgage amortization schedule, read principal and interest by payment or year, and understand what changes at renewal.",
+    keyword: "mortgage amortization schedule calculator Canada",
+    category: "Mortgage basics",
+    readingMinutes: 8,
+    published: "2026-08-06",
+    updated: "2026-08-06",
+    intro: [
+      "A mortgage amortization schedule is a payment-by-payment table showing how much goes to interest, how much reduces principal, and what balance remains. Enter the amount borrowed, annual rate, amortization, and payment frequency to generate the schedule.",
+      "For a Canadian mortgage, the schedule is a projection rather than a promise that one rate lasts until the loan reaches zero. The mortgage term is usually shorter than the amortization, so a new rate and payment can create a new schedule at renewal."
+    ],
+    keyTakeaways: [
+      "Amortization is the estimated repayment period, while the mortgage term is the current contract period.",
+      "Early payments usually contain more interest because the balance is larger.",
+      "Payment frequency and Canadian compounding conventions can change the result.",
+      "Use the projected renewal balance as the principal for the next term's scenario."
+    ],
+    sections: [
+      {
+        heading: "Inputs that determine the amortization table",
+        paragraphs: [
+          "Start with mortgage principal, which is normally the purchase price minus the down payment plus any amount financed into the loan. Add the contract rate, amortization period, payment frequency, and the correct country convention. Do not use the original purchase price as principal after years of repayment.",
+          "The payment formula converts the annual rate into a periodic rate and spreads repayment across the number of scheduled payments. Canadian fixed-rate mortgage examples commonly use a nominal annual rate compounded semi-annually. Exact lender dates, rounding, fees, insurance, and contract terms may produce small differences."
+        ]
+      },
+      {
+        heading: "How to read principal, interest, and balance",
+        paragraphs: [
+          "Interest for a period is based on the outstanding balance and periodic rate. The rest of the scheduled payment reduces principal. Because the balance is highest near the beginning, interest usually takes a larger share of early payments even though the fixed payment amount stays the same.",
+          "The yearly view is useful for comparing progress and estimating a renewal balance. The detailed table is better for checking a particular payment date or exporting a complete schedule. Treat the final decimals as estimates until compared with the lender's statement."
+        ]
+      },
+      {
+        heading: "What changes the schedule",
+        paragraphs: [
+          "A new rate at renewal, a changed amortization, a different payment frequency, or an extra principal payment changes the path. A longer amortization normally reduces the required payment but increases the time in debt and total interest. A valid prepayment reduces the balance and can shorten payoff.",
+          "Create a fresh schedule whenever a material input changes. For renewal planning, use the balance expected on the maturity date, then compare the offered rate with higher-rate and alternative-amortization cases."
+        ]
+      },
+      {
+        heading: "Check the calculator against the contract",
+        paragraphs: [
+          "A financial calculator or spreadsheet can reproduce the fixed-payment formula when the periodic rate and number of payments are entered correctly. The most common mistake is dividing a Canadian quoted rate by 12 without first accounting for its stated compounding convention.",
+          "Compare the first payment, a year-end balance, and the renewal-date balance with lender documents. Differences can come from funding dates, payment dates, rounding, rate changes, skipped payments, fees, insurance, or prepayments that the simple schedule does not know about."
+        ]
+      }
+    ],
+    faqs: [
+      { question: "What does a mortgage amortization schedule show?", answer: "It shows each payment, the principal and interest portions, and the remaining balance. This calculator also provides yearly rollups." },
+      { question: "Is amortization the same as the mortgage term?", answer: "No. Amortization is the estimated full repayment period. The term is the shorter contract period that ends at renewal or repayment." },
+      { question: "Can I download an amortization table?", answer: "Yes. The amortization calculator can show every payment and export the detailed rows as CSV." }
+    ],
+    sources: [
+      { label: "FCAC: mortgage terms and amortization", href: "https://www.canada.ca/en/financial-consumer-agency/services/mortgages/mortgage-terms-amortization.html" },
+      { label: "FCAC: interest on mortgages", href: "https://www.canada.ca/en/financial-consumer-agency/services/mortgages/interest-on-mortgages.html" }
+    ],
+    calculator: "amortization"
+  },
+  {
+    slug: "mortgage-extra-payment-calculator-canada",
+    title: "Mortgage Extra Payment Calculator Canada Guide",
+    description:
+      "Compare one-time, annual, and recurring mortgage prepayments in Canada, including interest saved, payoff time, and contract limits.",
+    keyword: "mortgage extra payment calculator Canada",
+    category: "Planning",
+    readingMinutes: 8,
+    published: "2026-08-06",
+    updated: "2026-08-06",
+    intro: [
+      "A mortgage extra payment calculator compares the regular amortization with a schedule that applies more money to principal. It can model an increase on every payment, an annual lump sum, a separate one-time lump sum, or a combination of the three.",
+      "The calculation shows a potential interest saving and earlier payoff, but the mortgage contract decides whether the payment is allowed without a charge. Check the amount, timing, notice, and annual reset rules before acting."
+    ],
+    keyTakeaways: [
+      "Extra principal reduces the balance used for future interest calculations.",
+      "A one-time payment needs both an amount and the payment number when it will occur.",
+      "Earlier prepayments usually have more time to reduce interest.",
+      "Prepayment privileges and penalties vary by contract and lender."
+    ],
+    sections: [
+      {
+        heading: "Choose the prepayment pattern you can sustain",
+        paragraphs: [
+          "Use extra-per-payment for a recurring increase tied to every regular payment. Use annual lump sum for a repeatable once-a-year amount. Use one-time lump sum when modeling a tax refund, bonus, inheritance, sale proceeds, or other single principal reduction at a chosen future payment.",
+          "Keep the base mortgage assumptions identical when comparing strategies. If the rate, amortization, or frequency also changes, you will not know how much of the difference came from the prepayment itself."
+        ]
+      },
+      {
+        heading: "Interpret interest saved and time saved",
+        paragraphs: [
+          "Interest saved is the difference between the base schedule's total interest and the accelerated schedule's total interest under the same rate assumption. Time saved compares the modeled payoff dates. The result will change at renewal if the interest rate or payment changes.",
+          "A prepayment is not automatically the best use of cash. Compare the guaranteed mortgage interest avoided with emergency reserves, higher-interest debt, tax considerations, and the uncertain return from other uses of the money."
+        ]
+      },
+      {
+        heading: "Check the contract before paying extra",
+        paragraphs: [
+          "The Financial Consumer Agency of Canada advises borrowers to check the mortgage contract for the permitted lump-sum amount and dates. Paying more than the privilege allows can trigger a prepayment penalty. Some lenders also limit payment increases or define when an annual privilege resets.",
+          "Ask the lender to confirm in writing how the payment will be applied and whether notice is required. After it posts, compare the new balance with the calculator and keep the lender statement with your plan."
+        ]
+      },
+      {
+        heading: "Compare the prepayment with other uses of cash",
+        paragraphs: [
+          "Run a conservative case with no future lump sums, a sustainable recurring increase, and the largest one-time amount you are seriously considering. This shows the range of interest and payoff outcomes without assuming that every future bonus or refund will be available.",
+          "Keep enough liquidity for repairs, income disruption, and other priorities. A calculator can measure avoided mortgage interest, but it cannot value flexibility or decide whether higher-interest debt, employer matching, or another goal should come first."
+        ]
+      }
+    ],
+    faqs: [
+      { question: "Can I calculate one extra mortgage payment?", answer: "Yes. Enter the amount as a one-time lump sum and select the payment number at which it will reduce principal." },
+      { question: "Do extra payments always save interest?", answer: "A valid principal prepayment normally reduces later interest, but penalties or lost liquidity can change the broader financial outcome." },
+      { question: "Is accelerated biweekly the same as regular biweekly?", answer: "No. Accelerated biweekly commonly pays half the monthly amount every two weeks, which creates the equivalent of one additional monthly payment each year." }
+    ],
+    sources: [
+      { label: "FCAC: paying off your mortgage faster", href: "https://www.canada.ca/en/financial-consumer-agency/services/mortgages/pay-mortgage-faster.html" },
+      { label: "FCAC: mortgage prepayment rights", href: "https://www.canada.ca/en/financial-consumer-agency/services/rights-responsibilities/rights-mortgages/rights-prepayments.html" }
+    ],
+    calculator: "extra-payments"
+  },
+  {
+    slug: "closing-cost-calculator-canada",
+    title: "Closing Cost Calculator Canada Guide",
+    description:
+      "Estimate cash to close in Canada, including Ontario, Toronto, and British Columbia transfer taxes, fees, adjustments, and a reserve.",
+    keyword: "closing cost calculator Canada",
+    category: "Planning",
+    readingMinutes: 8,
+    published: "2026-08-06",
+    updated: "2026-08-06",
+    intro: [
+      "A Canadian closing-cost estimate starts with the down payment and adds the cash required to complete the purchase. Common items include land or property transfer tax, legal fees, inspection, appraisal, title insurance, moving costs, adjustments, and a reserve for immediate work.",
+      "Location matters. Ontario has provincial land transfer tax, Toronto adds a municipal land transfer tax, and British Columbia uses property transfer tax. First-time buyer relief has eligibility conditions and should be treated as an estimate until confirmed by the legal professional handling the transfer."
+    ],
+    keyTakeaways: [
+      "Keep the down payment separate from other closing costs when building the budget.",
+      "Toronto buyers can face both provincial and municipal land transfer tax.",
+      "B.C. property transfer tax uses progressive brackets and may have first-time buyer relief.",
+      "A lawyer's final statement of adjustments determines the actual cash required."
+    ],
+    sections: [
+      {
+        heading: "Build the complete cash-to-close list",
+        paragraphs: [
+          "Enter the purchase price, down payment, location, available cash, and a reserve that will remain after closing. Replace default legal, inspection, appraisal, title, moving, and repair amounts with written quotes as they become available.",
+          "Also ask about property-tax and utility adjustments, condo-related documents or fees, lender charges, mortgage insurance, sales tax on a new home, and unusual legal work. These items vary and are not all calculated by a general planner."
+        ]
+      },
+      {
+        heading: "Ontario and Toronto land transfer tax",
+        paragraphs: [
+          "Ontario applies progressive land transfer tax rates to the value of consideration. A Toronto property can also have municipal land transfer tax, with higher municipal brackets for high-value residential properties effective April 1, 2026. The calculator applies both systems when Toronto is selected.",
+          "Eligible first-time purchasers may receive up to $4,000 of Ontario relief and up to $4,475 of Toronto municipal relief. Eligibility depends on ownership history, age, occupancy, status in Canada, spouse history, and the purchaser's share, so the checkbox is not an eligibility determination."
+        ]
+      },
+      {
+        heading: "British Columbia property transfer tax",
+        paragraphs: [
+          "B.C. general property transfer tax is based on fair market value using progressive rates. The calculator includes the additional general rate on residential value over $3 million but does not calculate the additional property transfer tax that can apply to some foreign entities or taxable trustees.",
+          "For an eligible first-time buyer, the current program can exempt the tax on the first $500,000 for homes in the qualifying range, with a maximum $8,000 exemption and a phase-out between $835,000 and $860,000. Confirm the property, purchaser, residence, citizenship or permanent-residence, and prior-ownership requirements with the official program."
+        ]
+      },
+      {
+        heading: "Replace estimates before the closing date",
+        paragraphs: [
+          "As the transaction progresses, replace every initial estimate with the lender commitment, lawyer's estimate, inspection invoice, insurance quote, moving quote, and documented adjustments. Keep the emergency buffer as a separate amount instead of silently spending it on closing.",
+          "Ask the lawyer when certified funds or a wire must arrive and what name and account controls apply. Verify payment instructions through a trusted channel because a correct cost estimate does not protect against payment-direction fraud."
+        ]
+      }
+    ],
+    faqs: [
+      { question: "How much should I budget for closing costs in Canada?", answer: "The amount varies by price, location, property, lender, and transaction. FCAC notes that upfront closing costs commonly include inspection, legal fees, adjustments, and title insurance, so calculate item by item rather than relying only on a percentage." },
+      { question: "Does a Toronto condo have two land transfer taxes?", answer: "A Toronto condo purchase can have Ontario land transfer tax and Toronto municipal land transfer tax, subject to the transaction and any available relief." },
+      { question: "Does the calculator confirm first-time buyer eligibility?", answer: "No. It estimates the tax relief amount after you select it. A legal or tax professional must confirm eligibility and the final transfer filing." }
+    ],
+    sources: [
+      { label: "FCAC: buying a home", href: "https://www.canada.ca/en/financial-consumer-agency/services/buying-home.html" },
+      { label: "Ontario: calculating land transfer tax", href: "https://www.ontario.ca/document/land-transfer-tax/calculating-land-transfer-tax" },
+      { label: "Ontario: first-time homebuyer land transfer tax refund", href: "https://www.ontario.ca/document/land-transfer-tax/land-transfer-tax-refunds-first-time-homebuyers" },
+      { label: "Toronto: municipal land transfer tax rates", href: "https://www.toronto.ca/services-payments/property-taxes-utilities/municipal-land-transfer-tax-mltt/municipal-land-transfer-tax-mltt-rates-and-fees/" },
+      { label: "Toronto: first-time homebuyer rebate", href: "https://www.toronto.ca/services-payments/property-taxes-utilities/municipal-land-transfer-tax-mltt/municipal-land-transfer-tax-mltt-rebate-opportunities/" },
+      { label: "British Columbia: property transfer tax", href: "https://www2.gov.bc.ca/gov/content/taxes/property-taxes/property-transfer-tax" },
+      { label: "British Columbia: first-time buyer exemption amounts", href: "https://www2.gov.bc.ca/gov/content/taxes/property-taxes/property-transfer-tax/exemptions/first-time-home-buyers/current-amount" }
+    ],
+    calculator: "closing-costs"
+  },
+  {
+    slug: "mortgage-refinance-break-even-calculator-canada",
+    title: "Mortgage Refinance Break-Even Calculator Canada Guide",
+    description:
+      "Calculate mortgage refinance break-even in Canada using payment savings, penalties, fees, amortization, and a realistic holding period.",
+    keyword: "mortgage refinance break even calculator Canada",
+    category: "Borrowing",
+    readingMinutes: 8,
+    published: "2026-08-06",
+    updated: "2026-08-06",
+    intro: [
+      "A mortgage refinance break-even calculation estimates how long a lower payment takes to recover the cost of switching. The basic result divides the prepayment penalty and other entered fees by monthly payment savings.",
+      "That result is only one test. A longer replacement amortization can create a lower payment without lowering total cost, and a break-even month has little value if you expect to sell, refinance, or make a large prepayment before reaching it."
+    ],
+    keyTakeaways: [
+      "Use the current balance and remaining amortization, not the original mortgage amount.",
+      "Add the written penalty and every switching fee to the break-even cost.",
+      "Compare current and new payments on consistent amortization assumptions.",
+      "Check both the break-even month and the modeled interest difference."
+    ],
+    sections: [
+      {
+        heading: "Gather current and proposed mortgage inputs",
+        paragraphs: [
+          "For the current mortgage, enter the outstanding balance, contract rate, and remaining amortization. For the proposed mortgage, enter the quoted rate and amortization. If fees and penalties will be added to the new loan, include them because financed costs increase principal and accrue interest.",
+          "Request a written payout quote from the current lender. A rough penalty estimate can be materially wrong when an interest rate differential depends on the lender's posted rates, discounts, comparison term, and contract method."
+        ]
+      },
+      {
+        heading: "Calculate break-even without hiding amortization",
+        paragraphs: [
+          "If the new payment is lower, divide total switching costs by monthly savings and round up to the next month. That produces a payment-based break-even point. If the new payment is equal or higher, there is no payment-savings break-even even if another strategic reason for refinancing exists.",
+          "Keep the new amortization equal to the remaining amortization for a clean rate comparison. Then run a second case if extending amortization is under consideration. The gap between those cases reveals how much payment relief comes from slower principal repayment."
+        ]
+      },
+      {
+        heading: "Decide whether the break-even period is useful",
+        paragraphs: [
+          "Compare the break-even month with the time you expect to keep the replacement mortgage. Add the risk of another move, sale, renewal, or refinance. Also compare prepayment privileges, portability, penalty method, fixed or variable structure, and lender service rather than treating rate as the only term.",
+          "FCAC recommends comparing the benefits of breaking a mortgage with the penalty, administration, appraisal, reinvestment, discharge, and new-mortgage setup costs. Ask whether waiting for renewal, porting, or a blend-and-extend option changes the outcome."
+        ]
+      },
+      {
+        heading: "Stress-test the refinance result",
+        paragraphs: [
+          "Run the proposed quote, a slightly higher final rate, and a case with larger fees. Rate holds can expire and a property appraisal or legal review can change the transaction, so a decision that only works at one exact input has little margin.",
+          "Compare paying costs in cash with adding them to the mortgage. Then pin the clean same-amortization case before testing payment relief from an extension, so the cost of slower principal repayment remains visible."
+        ]
+      }
+    ],
+    faqs: [
+      { question: "How do I calculate refinance break-even?", answer: "Divide the penalty and other switching costs by estimated monthly payment savings. Then compare that month with your realistic holding period." },
+      { question: "What costs belong in a refinance calculator?", answer: "Include the prepayment penalty, discharge, legal, registration, appraisal, administration, setup, and any cash-back repayment that applies." },
+      { question: "Can a lower refinance payment cost more overall?", answer: "Yes. Extending amortization or financing fees can lower the payment while increasing total interest and time in debt." }
+    ],
+    sources: [
+      { label: "FCAC: breaking your mortgage contract", href: "https://www.canada.ca/en/financial-consumer-agency/services/mortgages/break-mortgage-contract.html" },
+      { label: "FCAC: mortgage prepayment penalties", href: "https://www.canada.ca/en/financial-consumer-agency/services/mortgages/reduce-prepayment-penalties.html" }
+    ],
+    calculator: "refinance"
+  },
+  {
+    slug: "rent-vs-buy-calculator-canada",
+    title: "Rent vs Buy Calculator Canada Guide",
+    description:
+      "Compare renting and buying in Canada using equity, unrecoverable costs, investment opportunity cost, selling costs, and time horizon.",
+    keyword: "rent vs buy calculator Canada",
+    category: "Planning",
+    readingMinutes: 8,
+    published: "2026-08-06",
+    updated: "2026-08-06",
+    intro: [
+      "A useful rent-versus-buy comparison does not place rent beside the full mortgage payment and stop. Mortgage principal builds equity, while mortgage interest, property tax, insurance, maintenance, condo fees, and transaction costs are ownership costs that may not be recovered.",
+      "Renting also has more than one cost, and it can leave cash available to invest. A fair model tracks both paths over the same time horizon and makes the uncertain assumptions visible."
+    ],
+    keyTakeaways: [
+      "Compare net positions over the same number of years, not only the first monthly payment.",
+      "Include maintenance, property tax, insurance, fees, and eventual selling costs for buying.",
+      "Include rent growth and the opportunity to invest unused cash for renting.",
+      "Stress-test home growth and investment returns instead of relying on one forecast."
+    ],
+    sections: [
+      {
+        heading: "Build the buying side",
+        paragraphs: [
+          "Enter the purchase price, down payment, rate, amortization, property tax, insurance, condo or association fees, maintenance, and expected selling cost. The model reduces the mortgage balance as principal is paid and applies the entered home-value growth rate.",
+          "At each year, buy net position equals modeled home value minus remaining mortgage and selling costs. This is not spendable cash unless the home is sold or equity is borrowed, and the result excludes tax or transaction details not entered."
+        ]
+      },
+      {
+        heading: "Build the renting and investing side",
+        paragraphs: [
+          "Enter current rent and rent growth. Cash available today that is not used as a down payment begins on the renting side, and positive monthly differences between modeled ownership cost and rent are added to the investment balance.",
+          "The investment return is uncertain and may have fees and taxes. Test lower returns, and do not assume every renter will consistently invest the difference. The purpose is to expose opportunity cost, not to promise a portfolio outcome."
+        ]
+      },
+      {
+        heading: "Interpret the break-even horizon",
+        paragraphs: [
+          "Review the difference at every year, not only the final result. Transaction costs often make a short ownership period less attractive, while a longer stay gives principal repayment and any home growth more time to accumulate. A small modeled lead can reverse after a minor assumption change.",
+          "The financial result is not the entire decision. Stability, control of the space, repair responsibility, mobility, job uncertainty, family plans, and access to cash can matter more than a narrow projected difference."
+        ]
+      },
+      {
+        heading: "Use local data without confusing it with a forecast",
+        paragraphs: [
+          "For Toronto, Montréal, Edmonton, or another city, begin with the rent and purchase options actually available to you. National posted mortgage rates are useful benchmarks, but negotiated offers depend on the borrower, property, term, insurance, and lender rather than the city name alone.",
+          "Update the scenario when a written mortgage quote, target property, rent renewal, condo fee, tax bill, or inspection changes. A current local input is more useful than a confident long-range growth assumption."
+        ]
+      }
+    ],
+    faqs: [
+      { question: "Is renting always worse because it builds no equity?", answer: "No. Owners also pay interest, tax, insurance, maintenance, and transaction costs, while renters may keep and invest more liquid cash." },
+      { question: "What time horizon should I use?", answer: "Use the period you realistically expect to remain in the property, then compare shorter and longer cases because transaction costs make timing important." },
+      { question: "Does a rent-versus-buy calculator predict home prices?", answer: "No. Home growth, rent growth, maintenance, selling costs, and investment returns are editable assumptions, not forecasts." }
+    ],
+    sources: [
+      { label: "FCAC: buying a home", href: "https://www.canada.ca/en/financial-consumer-agency/services/buying-home.html" },
+      { label: "FCAC: renting an apartment or house", href: "https://www.canada.ca/en/financial-consumer-agency/services/renting-first-apartment.html" }
+    ],
+    calculator: "rent-vs-buy"
   }
 ];
 

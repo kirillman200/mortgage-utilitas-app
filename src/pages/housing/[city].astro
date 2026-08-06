@@ -13,8 +13,8 @@ export function getStaticPaths() {
 
 const { city } = Astro.props;
 const canonical = `/housing/${city.slug}/`;
-const title = `${city.name} Housing Data and Asking Rents`;
-const description = `${city.description} View sourced charts, freshness details, and methodology.`;
+const title = `${city.name} Mortgage Rates and Housing Data`;
+const description = `Compare current Canadian posted mortgage-rate benchmarks with ${city.name} asking rents. Official data, freshness details, and methodology included.`;
 const datasetSchema = {
   "@context": "https://schema.org",
   "@type": "Dataset",
@@ -41,7 +41,7 @@ const datasetSchema = {
   <section class="page-hero city-hero" slot="hero">
     <div class="page-shell">
       <p class="eyebrow">{city.province} market dashboard</p>
-      <h1>{city.name} housing data</h1>
+      <h1>{city.name} mortgage rates and housing data</h1>
       <p>
         Track advertised one-bedroom and two-bedroom rents in {city.name}, then compare them with
         current Canadian posted mortgage rates. The data comes from official public sources.
@@ -66,6 +66,11 @@ const datasetSchema = {
         The rate chart uses Bank of Canada conventional posted mortgage-rate series. Posted rates
         can differ from negotiated rates, insured rates, variable rates, and the offer available to
         a particular borrower.
+      </p>
+      <p>
+        These are national Canadian benchmarks, not a claim that every lender offers a distinct
+        {city.name} rate. Use them as market context, then compare current written quotes for your
+        borrower profile, property, term, and mortgage type.
       </p>
     </article>
     <aside>

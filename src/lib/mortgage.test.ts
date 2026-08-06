@@ -4,6 +4,7 @@ import {
   maxPrincipalForPayment,
   paymentForFrequency,
   periodicPayment,
+  propertyTransferTax,
   refinanceComparison,
   reverseMortgageProjection,
   totalInterest
@@ -43,6 +44,19 @@ describe("mortgage math", () => {
     })).toBeGreaterThan(0);
   });
 
+  it("applies a one-time prepayment at the selected payment", () => {
+    const schedule = buildSchedule({
+      principal: 500_000,
+      annualRate: 5,
+      years: 25,
+      oneTimeExtra: 25_000,
+      oneTimeExtraAtPayment: 12
+    });
+    expect(schedule[10]?.extra).toBe(0);
+    expect(schedule[11]?.extra).toBe(25_000);
+    expect(schedule.length).toBeLessThan(300);
+  });
+
   it("inverts a payment into principal", () => {
     const principal = maxPrincipalForPayment(2000, 5, 25);
     expect(periodicPayment(principal, 5, 25)).toBeCloseTo(2000, 6);
@@ -74,5 +88,33 @@ describe("mortgage math", () => {
     expect(rows).toHaveLength(10);
     expect(rows.at(-1)?.balance).toBeGreaterThan(150_000);
     expect(rows.at(-1)?.equity).toBeGreaterThanOrEqual(0);
+  });
+
+  it("calculates Ontario and Toronto land transfer taxes and rebates", () => {
+    const ontario = propertyTransferTax({ value: 1_000_000, jurisdiction: "ontario" });
+    expect(ontario.gross).toBe(16_475);
+    expect(ontario.net).toBe(16_475);
+
+    const torontoFirstTime = propertyTransferTax({
+      value: 1_000_000,
+      jurisdiction: "toronto",
+      firstTimeBuyer: true
+    });
+    expect(torontoFirstTime.gross).toBe(32_950);
+    expect(torontoFirstTime.rebate).toBe(8_475);
+    expect(torontoFirstTime.net).toBe(24_475);
+  });
+
+  it("calculates British Columbia property transfer tax and first-time exemptions", () => {
+    const standard = propertyTransferTax({ value: 850_000, jurisdiction: "british-columbia" });
+    expect(standard.gross).toBe(15_000);
+
+    const firstTime = propertyTransferTax({
+      value: 850_000,
+      jurisdiction: "british-columbia",
+      firstTimeBuyer: true
+    });
+    expect(firstTime.rebate).toBe(3_200);
+    expect(firstTime.net).toBe(11_800);
   });
 });

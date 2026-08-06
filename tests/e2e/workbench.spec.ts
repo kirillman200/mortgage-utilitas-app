@@ -14,6 +14,36 @@ test("all calculator tabs render a usable result", async ({ page }) => {
   }
 });
 
+test("one-time mortgage prepayment changes the payoff result", async ({ page }) => {
+  await page.goto("/calculators/extra-payments/");
+  const oneTime = page.getByLabel("One-time lump sum");
+  const interestSaved = page.locator(".metric-grid > div").filter({ hasText: "Interest saved" }).locator("strong");
+
+  await oneTime.fill("0");
+  const withoutOneTime = await interestSaved.textContent();
+  await oneTime.fill("25000");
+  await expect(oneTime).toHaveValue("25000");
+  await expect(interestSaved).not.toHaveText(withoutOneTime ?? "");
+  await expect(page.getByText("One-time at payment 12")).toBeVisible();
+});
+
+test("closing-cost presets calculate Toronto tax and first-time relief", async ({ page }, testInfo) => {
+  await page.goto("/calculators/closing-costs/");
+  const transferTax = page.locator(".metric-grid > div").filter({ hasText: "Transfer tax after relief" });
+
+  await expect(page.getByLabel("Land transfer tax location")).toHaveValue("toronto");
+  await expect(transferTax).toContainText("$18,950");
+  await page.getByLabel("Apply estimated eligible first-time buyer relief").check();
+  await expect(transferTax).toContainText("$10,475");
+  await expect(page.getByText("Estimated first-time buyer relief", { exact: true })).toBeVisible();
+
+  if (testInfo.project.name.startsWith("mobile")) {
+    const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
+    expect(overflow).toBeLessThanOrEqual(1);
+    await page.screenshot({ path: ".tmp/closing-costs-mobile.png", fullPage: true });
+  }
+});
+
 test("changing calculator tabs does not move the page", async ({ page }) => {
   await page.goto("/calculators/payment/");
   const tabs = page.locator(".tool-tabs");

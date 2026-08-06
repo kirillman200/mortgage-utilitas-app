@@ -43,7 +43,7 @@ if (buildCode !== 0) process.exit(buildCode);
 
 const preview = spawn(
   process.execPath,
-  [wranglerCli, "dev", "--local", "--port", "4321", "--no-live-reload"],
+  [wranglerCli, "dev", "--local", "--host", "127.0.0.1", "--port", "4321", "--no-live-reload"],
   { stdio: "inherit", env: childEnvironment }
 );
 

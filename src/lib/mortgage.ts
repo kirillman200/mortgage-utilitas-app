@@ -7,6 +7,8 @@ export interface LoanInputs {
   frequency?: PaymentFrequency;
   extraPerPayment?: number;
   annualExtra?: number;
+  oneTimeExtra?: number;
+  oneTimeExtraAtPayment?: number;
   rateConvention?: "canada" | "us";
 }
 
@@ -85,6 +87,13 @@ export function buildSchedule(inputs: LoanInputs, startDate = new Date()): Sched
   const ratePerPeriod = periodicRate(inputs.annualRate, periods, inputs.rateConvention);
   const recurringExtra = clampNumber(inputs.extraPerPayment ?? 0, 0, 10_000_000, 0);
   const annualExtra = clampNumber(inputs.annualExtra ?? 0, 0, 100_000_000, 0);
+  const oneTimeExtra = clampNumber(inputs.oneTimeExtra ?? 0, 0, 100_000_000, 0);
+  const oneTimeExtraAtPayment = Math.max(1, Math.round(clampNumber(
+    inputs.oneTimeExtraAtPayment ?? 1,
+    1,
+    50 * periods,
+    1
+  )));
   const maximumPeriods = Math.ceil(50 * periods);
   const rows: ScheduleRow[] = [];
   let balance = clampNumber(inputs.principal, 0, 100_000_000, 0);
@@ -92,7 +101,8 @@ export function buildSchedule(inputs: LoanInputs, startDate = new Date()): Sched
   for (let index = 1; index <= maximumPeriods && balance > 0.005; index += 1) {
     const interest = balance * ratePerPeriod;
     const annualTopUp = index % periods === 0 ? annualExtra : 0;
-    const plannedExtra = recurringExtra + annualTopUp;
+    const oneTimeTopUp = index === oneTimeExtraAtPayment ? oneTimeExtra : 0;
+    const plannedExtra = recurringExtra + annualTopUp + oneTimeTopUp;
     const plannedPrincipal = Math.max(0, basePayment - interest) + plannedExtra;
     const principal = Math.min(balance, plannedPrincipal);
     const extra = Math.min(plannedExtra, Math.max(0, principal - Math.max(0, basePayment - interest)));
@@ -107,6 +117,96 @@ export function buildSchedule(inputs: LoanInputs, startDate = new Date()): Sched
     rows.push({ paymentNumber: index, date, payment, principal, interest, extra, balance });
   }
   return rows;
+}
+
+export type PropertyTransferTaxJurisdiction = "ontario" | "toronto" | "british-columbia";
+
+function progressiveTax(value: number, bands: Array<{ upTo: number; rate: number }>): number {
+  let remaining = clampNumber(value, 0, 100_000_000, 0);
+  let lowerBound = 0;
+  let tax = 0;
+
+  for (const band of bands) {
+    const width = Math.max(0, band.upTo - lowerBound);
+    const taxable = Math.min(remaining, width);
+    tax += taxable * band.rate;
+    remaining -= taxable;
+    lowerBound = band.upTo;
+    if (remaining <= 0) break;
+  }
+
+  return tax;
+}
+
+function ontarioLandTransferTax(value: number): number {
+  return progressiveTax(value, [
+    { upTo: 55_000, rate: 0.005 },
+    { upTo: 250_000, rate: 0.01 },
+    { upTo: 400_000, rate: 0.015 },
+    { upTo: 2_000_000, rate: 0.02 },
+    { upTo: Number.POSITIVE_INFINITY, rate: 0.025 }
+  ]);
+}
+
+function torontoMunicipalLandTransferTax(value: number): number {
+  return progressiveTax(value, [
+    { upTo: 55_000, rate: 0.005 },
+    { upTo: 250_000, rate: 0.01 },
+    { upTo: 400_000, rate: 0.015 },
+    { upTo: 2_000_000, rate: 0.02 },
+    { upTo: 3_000_000, rate: 0.025 },
+    { upTo: 4_000_000, rate: 0.044 },
+    { upTo: 5_000_000, rate: 0.0545 },
+    { upTo: 10_000_000, rate: 0.065 },
+    { upTo: 20_000_000, rate: 0.0755 },
+    { upTo: Number.POSITIVE_INFINITY, rate: 0.086 }
+  ]);
+}
+
+function britishColumbiaPropertyTransferTax(value: number): number {
+  return progressiveTax(value, [
+    { upTo: 200_000, rate: 0.01 },
+    { upTo: 2_000_000, rate: 0.02 },
+    { upTo: 3_000_000, rate: 0.03 },
+    { upTo: Number.POSITIVE_INFINITY, rate: 0.05 }
+  ]);
+}
+
+function britishColumbiaFirstTimeExemption(value: number): number {
+  if (value <= 500_000) return britishColumbiaPropertyTransferTax(value);
+  if (value <= 835_000) return 8_000;
+  if (value < 860_000) return 8_000 * ((860_000 - value) / 25_000);
+  return 0;
+}
+
+export function propertyTransferTax(input: {
+  value: number;
+  jurisdiction: PropertyTransferTaxJurisdiction;
+  firstTimeBuyer?: boolean;
+}) {
+  const value = clampNumber(input.value, 0, 100_000_000, 0);
+  const firstTimeBuyer = input.firstTimeBuyer ?? false;
+  let provincial = 0;
+  let municipal = 0;
+  let rebate = 0;
+
+  if (input.jurisdiction === "ontario" || input.jurisdiction === "toronto") {
+    provincial = ontarioLandTransferTax(value);
+    if (firstTimeBuyer) rebate += Math.min(provincial, 4_000);
+  }
+
+  if (input.jurisdiction === "toronto") {
+    municipal = torontoMunicipalLandTransferTax(value);
+    if (firstTimeBuyer) rebate += Math.min(municipal, 4_475);
+  }
+
+  if (input.jurisdiction === "british-columbia") {
+    provincial = britishColumbiaPropertyTransferTax(value);
+    if (firstTimeBuyer) rebate += Math.min(provincial, britishColumbiaFirstTimeExemption(value));
+  }
+
+  const gross = provincial + municipal;
+  return { provincial, municipal, gross, rebate, net: Math.max(0, gross - rebate) };
 }
 
 export function totalInterest(schedule: ScheduleRow[]): number {
