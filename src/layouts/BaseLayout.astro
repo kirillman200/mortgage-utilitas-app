@@ -86,6 +86,7 @@ const schemas = [pageSchema, ...(breadcrumbSchema ? [breadcrumbSchema] : []), ..
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta name="theme-color" content="#122633">
+    <meta name="google-analytics-id" content="G-4L8SL3JCFW" data-host="mortgage.utilitas.app">
     <meta name="description" content={description}>
     <meta name="author" content="Utilitas">
     <meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow, max-image-preview:large"}>
@@ -121,6 +122,20 @@ const schemas = [pageSchema, ...(breadcrumbSchema ? [breadcrumbSchema] : []), ..
       <slot />
     </main>
     <Footer />
+    <aside class="analytics-consent" data-analytics-consent hidden aria-labelledby="analytics-consent-title">
+      <div>
+        <p class="analytics-consent__kicker">Optional site analytics</p>
+        <h2 id="analytics-consent-title">Help improve Mortgage Compass</h2>
+        <p>Google Analytics loads only if you allow it. It receives the page path, page title, referrer origin, and ordinary device or browser information. Mortgage inputs, saved scenarios, and share-link queries are excluded. <a href="/privacy/">Read the privacy policy</a>.</p>
+        <p class="analytics-consent__status" data-analytics-status aria-live="polite"></p>
+      </div>
+      <div class="analytics-consent__actions">
+        <button type="button" data-analytics-allow>Allow analytics</button>
+        <button type="button" data-analytics-deny>Do not allow</button>
+      </div>
+    </aside>
+    <button class="analytics-settings" type="button" data-analytics-settings hidden>Analytics choices</button>
     <script is:inline src="/js/webmcp.js" defer></script>
+    <script is:inline src="/js/analytics.js" defer></script>
   </body>
 </html>

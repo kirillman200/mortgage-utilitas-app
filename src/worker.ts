@@ -130,7 +130,7 @@ function createSecureHtmlResponse(
   headers.set("Content-Signal", "ai-train=no, search=yes, ai-input=yes");
   headers.set(
     "Content-Security-Policy",
-    `default-src 'self'; script-src 'self' 'nonce-${nonce}'${localScriptHash}; style-src 'self' 'nonce-${nonce}'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests`,
+    `default-src 'self'; script-src 'self' 'nonce-${nonce}'${localScriptHash} https://www.googletagmanager.com; style-src 'self' 'nonce-${nonce}'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests`,
   );
   headers.set("X-Utilitas-App", "mortgage-compass");
   if (pathname === "/") {

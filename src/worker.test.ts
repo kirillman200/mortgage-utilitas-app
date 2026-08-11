@@ -81,6 +81,12 @@ describe("agent discovery response helpers", () => {
     expect(response.headers.get("Content-Security-Policy")).toContain(
       `'nonce-${nonce}'`,
     );
+    expect(response.headers.get("Content-Security-Policy")).toContain(
+      "https://www.googletagmanager.com",
+    );
+    expect(response.headers.get("Content-Security-Policy")).toContain(
+      "https://*.google-analytics.com",
+    );
     expect(response.headers.get("Content-Length")).toBeNull();
     expect(response.headers.get("Link")).toContain("/llms.txt");
   });

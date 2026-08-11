@@ -193,6 +193,19 @@ test("favicon family is published and wired into the shared head", async () => {
   assert.deepEqual([...ico.subarray(0, 4)], [0, 0, 1, 0]);
   assert.equal(ico.readUInt16LE(4), 3);
 });
+
+test("the site-specific GA4 stream is consent gated and excludes scenario queries", async () => {
+  const layout = await read("src/layouts/BaseLayout.astro");
+  const analytics = await read("public/js/analytics.js");
+  const privacy = await read("src/pages/privacy.astro");
+  assert.match(layout, /G-4L8SL3JCFW/);
+  assert.match(layout, /data-analytics-consent/);
+  assert.match(layout, /src="\/js\/analytics\.js"/);
+  assert.match(analytics, /navigator\.globalPrivacyControl === true/);
+  assert.match(analytics, /window\.location\.origin \+ window\.location\.pathname/);
+  assert.doesNotMatch(analytics, /window\.location\.search/);
+  assert.match(privacy, /Mortgage inputs, saved scenarios, downloads, and share-link queries are excluded/);
+});
 test("source and public content contain no em dash characters", async () => {
   async function walk(directory) {
     const entries = await readdir(directory, { withFileTypes: true });
