@@ -1305,6 +1305,92 @@ export const ARTICLES: Article[] = [
       { label: "FCAC: renting an apartment or house", href: "https://www.canada.ca/en/financial-consumer-agency/services/renting-first-apartment.html" }
     ],
     calculator: "rent-vs-buy"
+  },
+  {
+    slug: "porting-a-mortgage-canada",
+    title: "Porting a Mortgage in Canada: Questions to Ask Before You Move",
+    description:
+      "Learn how mortgage portability works in Canada, when it may avoid a prepayment penalty, and what to compare before selling and buying.",
+    keyword: "porting a mortgage Canada",
+    category: "Planning",
+    readingMinutes: 9,
+    published: "2026-08-25",
+    updated: "2026-08-25",
+    intro: [
+      "Porting a mortgage means asking your existing lender to transfer the mortgage balance, rate, and remaining contract terms from the home you are selling to the home you are buying. It can preserve favourable terms and may avoid a penalty for breaking the contract, but portability is not automatic approval.",
+      "The lender still needs to accept the new property, timing, loan amount, and borrowers. Before relying on a port, get the rules in writing and compare the complete port transaction with paying out the mortgage and taking a new one."
+    ],
+    keyTakeaways: [
+      "Confirm that the contract is portable and ask for every timing and property restriction in writing.",
+      "Expect a new credit, income, debt, and property review even when the current terms transfer.",
+      "Separate a straight port from a larger blend-and-extend or top-up transaction.",
+      "Compare penalties, fees, rate differences, amortization, and flexibility over the time you expect to keep the loan."
+    ],
+    sections: [
+      {
+        heading: "Start with the mortgage contract and lender rules",
+        paragraphs: [
+          "The Financial Consumer Agency of Canada describes a portable mortgage as one that can transfer the existing balance, interest rate, and terms and conditions to another home. The contract and lender policy determine whether your mortgage qualifies, the allowed gap between sale and purchase, and whether both transactions must close in a particular order.",
+          "Ask the lender for a written port quote or checklist. Confirm the deadline, application steps, appraisal requirements, legal or administration fees, and what happens if either closing date changes. A portable feature has limited value if the transaction cannot meet its conditions."
+        ]
+      },
+      {
+        heading: "Match the port type to the new purchase",
+        paragraphs: [
+          "A straight port is closest to transferring the current balance and remaining terms without increasing the loan. If the new home needs more borrowing, the lender may offer a top-up or blended structure with a different rate on the added amount. If the new home needs less borrowing, paying down the difference may trigger a prepayment charge beyond the contract privilege.",
+          "Ask for the payment, rate calculation, remaining amortization, maturity date, and prepayment privileges for every portion. A blended rate can look attractive while extending the term or changing penalty rules, so compare the contract details rather than only the displayed rate."
+        ],
+        bullets: [
+          "Straight port: similar balance and remaining terms.",
+          "Port and increase: additional borrowing may receive a new or blended rate.",
+          "Port and decrease: the amount paid down may be limited by prepayment rules.",
+          "New mortgage instead: the old loan is paid out and any applicable penalty becomes a transaction cost."
+        ]
+      },
+      {
+        heading: "Compare the port with a clean new-mortgage option",
+        paragraphs: [
+          "Request a written payout statement for the current mortgage and a complete quote for the alternative. Include any prepayment penalty, discharge, appraisal, legal, registration, administration, and new-mortgage fees. Then compare payments and interest over the same remaining amortization and expected holding period.",
+          "Use the mortgage penalty calculator to organize the quoted penalty and the refinance break-even calculator to compare switching costs with payment differences. These models cannot decide eligibility or reproduce a lender's internal blend calculation, but they make the cost assumptions visible."
+        ]
+      },
+      {
+        heading: "Plan for approval and closing risk",
+        paragraphs: [
+          "Porting does not move the old property security interest by itself. The lender must approve the new collateral and may reassess employment, income, debts, credit, insurance, and the property. Keep financing conditions in purchase documents until your legal and lending advisers say they can be removed.",
+          "If the existing loan is CMHC-insured, mortgage loan insurance portability is a related but separate question. CMHC publishes eligibility conditions for transferring its insurance to a new property. Ask the lender and insurer how the mortgage port and insurance port interact in your transaction."
+        ]
+      }
+    ],
+    faqs: [
+      {
+        question: "Does porting a mortgage avoid every penalty?",
+        answer: "Not necessarily. A qualifying port may avoid a full break penalty, but reducing the balance, missing a deadline, changing the structure, or failing a condition may still create charges."
+      },
+      {
+        question: "Do I need to qualify again when porting?",
+        answer: "Usually expect the lender to review the borrowers and new property. The transferred terms do not remove the lender's approval and security requirements."
+      },
+      {
+        question: "Can I port a mortgage to a more expensive home?",
+        answer: "Potentially, if the lender allows a port with additional funds and approves the application. Ask how the added amount is priced and whether the maturity or amortization changes."
+      }
+    ],
+    sources: [
+      {
+        label: "FCAC: choosing a mortgage, including portable mortgages",
+        href: "https://www.canada.ca/en/financial-consumer-agency/services/mortgages/choose-mortgage.html"
+      },
+      {
+        label: "FCAC: breaking your mortgage contract",
+        href: "https://www.canada.ca/en/financial-consumer-agency/services/mortgages/break-mortgage-contract.html"
+      },
+      {
+        label: "CMHC: mortgage loan insurance portability",
+        href: "https://www.cmhc-schl.gc.ca/professionals/project-funding-and-mortgage-financing/mortgage-loan-insurance/mortgage-loan-insurance-homeownership-programs/portability"
+      }
+    ],
+    calculator: "refinance"
   }
 ];
 
