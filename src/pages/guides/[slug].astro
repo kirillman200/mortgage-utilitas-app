@@ -72,6 +72,7 @@ const faqSchema = {
               <h2>{section.heading}</h2>
               {section.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
               {section.bullets && <ul>{section.bullets.map((bullet) => <li>{bullet}</li>)}</ul>}
+              {section.links && <ul>{section.links.map((link) => <li><a href={link.href}>{link.label}</a></li>)}</ul>}
             </section>
             {(index === 0 || index === 2) && <AdSlot placement={`article-${article.slug}-section-${index + 1}`} format="rectangle" />}
           </>

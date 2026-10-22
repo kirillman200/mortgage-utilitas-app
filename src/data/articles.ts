@@ -2,6 +2,7 @@ export interface ArticleSection {
   heading: string;
   paragraphs: string[];
   bullets?: string[];
+  links?: Array<{ href: string; label: string }>;
 }
 
 export interface Article {
@@ -22,6 +23,132 @@ export interface Article {
 }
 
 export const ARTICLES: Article[] = [
+{
+  "slug": "mortgage-payment-relief-offer-checklist-canada",
+  "title": "Before accepting mortgage payment relief: a written-offer checklist",
+  "description": "Use a Canadian mortgage relief checklist to ask your lender for written payment terms, balance changes, costs, dates and a plan for what happens next.",
+  "keyword": "mortgage payment relief Canada",
+  "category": "Planning",
+  "readingMinutes": 5,
+  "published": "2026-10-22",
+  "updated": "2026-10-22",
+  "intro": [
+    "Before accepting mortgage payment relief, ask your lender for the agreed terms in writing. Organise the offer around what you owe now, what you would pay during relief, and what happens afterwards. A conversation is a starting point, not a completed agreement.",
+    "This Canadian checklist helps you prepare questions, not choose a product or decide whether relief is suitable for you. FCAC describes support expectations for federally regulated mortgage providers. That is not guaranteed approval for a particular option, or a statement that every Canadian lender follows the same framework. Contact your lender promptly if a payment may be difficult. See FCAC's financial-difficulties guidance in the sources."
+  ],
+  "keyTakeaways": [
+    "Request written confirmation of the agreed arrangement before changing how you pay.",
+    "Record today's position separately from the proposed position and the position after relief ends.",
+    "Ask about the total cost and remaining repayment period, not just the next payment.",
+    "Leave unanswered questions visibly open rather than treating a blank as zero or approval.",
+    "Keep the lender's offer, your questions and its final answers together."
+  ],
+  "sections": [
+    {
+      "heading": "Establish what is being offered",
+      "paragraphs": [
+        "FCAC's financial-difficulties guidance addresses existing residential mortgages on principal residences where borrowers are at risk of missing regular payments. It describes expectations for tailored support by banks and other federally regulated mortgage providers. Ask your provider which options it will assess for your circumstances.",
+        "Start a separate worksheet for each proposal. Give it the lender's reference and a date so a revised proposal does not get confused with an earlier conversation. The worksheet is your organisation tool, not the lender's approval document."
+      ],
+      "bullets": [
+        "Lender and contact: ______",
+        "Offer reference and date: ______",
+        "Relief measure being considered: ______",
+        "Information still needed for an assessment: ______",
+        "Conditions still awaiting approval: ______",
+        "Written offer location and response deadline: ______"
+      ]
+    },
+    {
+      "heading": "Put the before-and-after figures beside each other",
+      "paragraphs": [
+        "FCAC's financial-difficulties guidance says information before consent should cover the outstanding amount, dollar cost impact, amortization impact, revised payment schedule, interest rate and type, and effective date. Use those categories to request a comparison you can understand.",
+        "Ask the lender to date each figure and identify its assumptions. Keep a separate line for money paid immediately and money added to the loan. If two figures do not reconcile, write down the difference as a question rather than supplying your own explanation.",
+        "Planning estimates do not determine lender-specific relief terms or approval. Ask your lender for the arrangement that applies to your mortgage."
+      ],
+      "bullets": [
+        "Balance before relief, CAD, as of date: ______",
+        "Balance when relief starts, CAD, with explanation of changes: ______",
+        "Projected balance when relief ends, CAD, and assumptions: ______",
+        "Current payment, CAD, frequency and next due date: ______",
+        "Relief-period payment, CAD, frequency and first due date: ______",
+        "Payment after relief, CAD, or how and when it will be determined: ______",
+        "Current and proposed annual interest rate and fixed or variable type: ______",
+        "Remaining amortization before and after, in years and months: ______",
+        "Total mortgage cost impact, CAD, and calculation assumptions: ______",
+        "Upfront charges, amounts added to the loan and any confirmed waivers: ______"
+      ],
+      "links": [
+        {
+          "href": "/guides/mortgage-renewal-calculator-canada/",
+          "label": "If renewal is relevant, compare mortgage renewal scenarios"
+        },
+        {
+          "href": "/methodology/",
+          "label": "How our planning estimates work"
+        }
+      ]
+    },
+    {
+      "heading": "Ask what happens when temporary relief ends",
+      "paragraphs": [
+        "FCAC's relief-options page explains that a deferral is an agreement to delay payments, not erase them. Deferred payments must be repaid. Relief can increase overall mortgage costs. An amortization extension can reduce payments while increasing interest paid over time. These tradeoffs deserve their own questions, separate from the immediate payment amount.",
+        "Ask for a written sequence from the first changed payment to the review or end date. Do not assume that an end date automatically returns every part of the mortgage to its previous position. Request the lender's explanation of the next step and who will contact whom."
+      ],
+      "bullets": [
+        "Relief start and end dates: ______",
+        "First payment after relief and its due date: ______",
+        "Treatment and repayment schedule for amounts delayed: ______",
+        "Proposed remaining amortization after relief: ______",
+        "If amortization is extended, plan and review date for returning towards the original schedule: ______",
+        "What happens if circumstances have not improved: ______"
+      ]
+    },
+    {
+      "heading": "Confirm the arrangement before changing payments",
+      "paragraphs": [
+        "Do not skip a payment or cancel an automatic withdrawal because you have asked about relief. Request confirmation of what has actually been agreed, when it takes effect and what you must pay while the request is being assessed. If the next due date is approaching, contact the lender rather than assuming the proposal already applies.",
+        "Keep the final written terms beside your worksheet and check that they answer the same questions. Ask your lender how the agreed arrangement will be recorded and reported. This checklist does not promise a credit-reporting outcome. If the explanation remains unclear, seek help from a trustworthy qualified adviser before deciding."
+      ],
+      "bullets": [
+        "Agreement confirmed and copy received: ______",
+        "Payment instructions while assessment is pending: ______",
+        "Automatic withdrawal instructions confirmed by lender: ______",
+        "How the arrangement will be recorded and reported: ______",
+        "Open question, responsible contact and answer needed by: ______",
+        "Follow-up date and documents to retain: ______"
+      ]
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Does asking for relief mean I can stop paying?",
+      "answer": "No. A request is not an agreed change. Contact the lender about the approaching due date and ask for written confirmation of the payment instructions that apply. Do not assume a pending assessment changes your existing schedule."
+    },
+    {
+      "question": "Is a lower payment the same as a cheaper mortgage?",
+      "answer": "No. FCAC's relief-options guidance warns that relief can increase overall costs. Ask for the payment comparison, remaining amortization and dollar cost impact together, with the assumptions clearly identified."
+    },
+    {
+      "question": "Is mortgage relief guaranteed for every Canadian borrower?",
+      "answer": "No. FCAC describes expectations for federally regulated institutions and support tailored to the borrower's circumstances. Ask your lender which options it can assess and what conditions apply. Do not treat this checklist as an eligibility decision."
+    },
+    {
+      "question": "What if the offer leaves a figure blank?",
+      "answer": "Mark it as unanswered and ask the lender for the amount or the method and date for determining it. A blank is not confirmation that there is no cost or no later payment change."
+    }
+  ],
+  "sources": [
+    {
+      "label": "FCAC: paying your mortgage when experiencing financial difficulties",
+      "href": "https://www.canada.ca/en/financial-consumer-agency/services/rights-responsibilities/rights-mortgages/financial-difficulties.html"
+    },
+    {
+      "label": "FCAC: mortgage relief options",
+      "href": "https://www.canada.ca/en/financial-consumer-agency/services/mortgages/relief-options.html"
+    }
+  ]
+},
   {
     slug: "paying-off-your-mortgage-game-changer",
     title: "Paying Off Your Mortgage: The Game Changer Is What You Do Next",
