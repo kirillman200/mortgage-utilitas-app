@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "repository": "kirillman200/mortgage-utilitas-app",
+  "worker": "mortgage-utilitas-app",
+  "canonical_host": "mortgage.utilitas.app",
+  "trigger_id": "a1fce9f3-41f7-4148-b466-1cffa3503a7e",
+  "expected_before": {
+    "branch_includes": ["*"],
+    "branch_excludes": ["master"]
+  },
+  "desired_after": {
+    "branch_includes": ["master"],
+    "branch_excludes": []
+  },
+  "unchanged": {
+    "build_command": "npm run build",
+    "deploy_command": "npx wrangler deploy",
+    "root_directory": "/"
+  }
+}
