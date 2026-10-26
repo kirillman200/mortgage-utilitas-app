@@ -1,20 +1,37 @@
 {
-  "version": 1,
+  "version": 2,
   "repository": "kirillman200/mortgage-utilitas-app",
   "worker": "mortgage-utilitas-app",
   "canonical_host": "mortgage.utilitas.app",
   "trigger_id": "a1fce9f3-41f7-4148-b466-1cffa3503a7e",
   "expected_before": {
-    "branch_includes": ["*"],
-    "branch_excludes": ["master"]
+    "branch_includes": [
+      "*"
+    ],
+    "branch_excludes": [
+      "master"
+    ]
   },
   "desired_after": {
-    "branch_includes": ["master"],
-    "branch_excludes": []
+    "target_trigger_active": false
   },
   "unchanged": {
     "build_command": "npm run build",
     "deploy_command": "npx wrangler deploy",
     "root_directory": "/"
+  },
+  "supersedes": "9c69d221647c234599f7d20d1ca551a2ea01ee23",
+  "operation": {
+    "method": "DELETE",
+    "path": "/accounts/7286f66e88cf4452198ef6b4c2554c1f/builds/triggers/a1fce9f3-41f7-4148-b466-1cffa3503a7e",
+    "body": "OMIT",
+    "effect": "Remove only this trigger and cancel its unfinished builds"
+  },
+  "preserve_trigger": {
+    "trigger_id": "c8fddddc-2793-45f2-a0da-3d19a47e5e06",
+    "branch_includes": [
+      "master"
+    ],
+    "branch_excludes": []
   }
 }

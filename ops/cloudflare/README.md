@@ -1,85 +1,84 @@
-# Mortgage production branch trigger repair
+# Mortgage production trigger removal contract
 
-This directory defines the bounded provider configuration change required by
-TES-195. It is a desired-state contract, not a provider request body or an
-executable deployment command. No provider change occurs by committing it.
+This nonexecuting contract supersedes the filter conversion in commit
+9c69d221647c234599f7d20d1ca551a2ea01ee23. It is prepared for independent
+review, not evidence of provider application. Keep it local until pushes are safe.
 
-## Defect and scope
+## Finding and selected repair
 
-Cloudflare trigger `a1fce9f3-41f7-4148-b466-1cffa3503a7e` runs
-`npx wrangler deploy` against the production `mortgage-utilitas-app` Worker.
-Its wildcard include and `master` exclusion deployed the article branch before
-review and subsequently replaced it with Dependabot branches. The exact source,
-build, version and deployment associations are recorded in the delivery's
-`deployment-provenance` document, revision
-`46aa5b16-caa7-4e92-8aaa-30d8965ad109`.
+The two optional filter fields match the public PATCH schema, but Keanu's two
+attempts returned Invalid request body (upstream 400/code 12002). The recorded
+error does not isolate serialization, headers or provider validation as the cause.
+Do not retry that unchanged request or supply redacted build-token fields.
 
-The JSON contract changes only this trigger's branch filters: include exact
-`master` and exclude nothing. Keep the repository, Worker, custom domain,
-bindings, build command, deploy command and root directory unchanged. Retain
-other trigger fields when the native endpoint requires a full update. Do not
-create a second trigger, rename a branch or add a preview deployment.
+The complete recorded inventory also contains an existing master-only trigger,
+c8fddddc-2793-45f2-a0da-3d19a47e5e06. Converting the unsafe trigger to master
+would duplicate production builds. Instead remove only unsafe trigger
+a1fce9f3-41f7-4148-b466-1cffa3503a7e and preserve the existing master trigger.
+This is removal, not a reversible enabled flag. The public update schema exposes
+no enabled flag. Recovery must not recreate the unsafe trigger.
 
-`master` is the verified Git remote default and existing production branch.
-Only independently accepted commits may be integrated there. The filters
-prevent automatic production deployment from issue and dependency branches;
-they do not themselves enforce review or replace branch protection.
+Official API contracts, inspected October 26, 2026:
+- https://developers.cloudflare.com/api/resources/workers_builds/subresources/triggers/methods/update/
+- https://developers.cloudflare.com/api/resources/workers_builds/subresources/triggers/methods/delete/
 
-## Review and application
+DELETE takes the account and trigger path parameters, with no request body.
+It removes the target trigger and cancels its unfinished builds. This cancellation
+side effect is part of the proposed review scope, not a separate blanket grant.
+Native authorization remains binding. No raw provider request or credential is
+permitted; Keanu must use his existing managed connection and current identity.
 
-1. Keep this change local. Do not push an issue branch while the unsafe trigger
-   remains active. Viola reviews this exact configuration artifact first, then
-   Cillian records technical acceptance. Existing article receipts cover their
-   earlier commit, not this change.
-2. Keanu uses his existing scoped managed Cloudflare connection and current run
-   identity. Morgan's October 26 discovery has no usable Cloudflare connection;
-   it is not a company-wide access failure. Read the current provider schema
-   through the reviewed search descriptor and construct the documented update
-   for this exact trigger. This file does not guess an endpoint or mutation
-   parameter. Preserve any native denial or enforced approval.
-3. Immediately before applying, read the exact trigger and repository/Worker
-   association. Require the expected-before filters and unchanged fields from
-   the contract. If different, stop and reconcile the changed artifact with
-   reviewers. Inspect other active triggers for this same Worker; a second
-   non-master production trigger would leave the hazard unresolved.
-4. Apply only the two reviewed branch-filter changes. Preserve every other
-   provider field. Do not deploy or push to test the filters. Read back the
-   trigger, verify exact desired filters and unchanged fields, and retain a
-   sanitized operation ID/time and result on the issue.
-5. Check in-flight and queued builds for this Worker. A build started under the
-   old filters can still deploy after the filter change. Resolve those builds
-   through supported scoped native operations before declaring branch pushes
-   safe. Any cancellation must target an identified non-master build for this
-   Worker; never cancel unrelated work. If this needs an additional reviewed
-   mutation, record it and obtain the relevant acceptance first.
-6. Check the complete active trigger set and effective branch selection without
-   generating a build. `master` must match. The current issue branch,
-   `dependabot/npm_and_yarn/vite-8.3.5`,
-   `dependabot/npm_and_yarn/multi-456d42d8d4`, `main`, and arbitrary feature
-   branches must not match. Record provider read-back separately from this local
-   branch-filter expectation.
+## Preconditions and bounded application
 
-The trigger label currently says "Deploy non-production branches". It is not
-used as identity or authorization. Renaming it is outside this minimal change.
+1. Obtain independent Viola QA and technical acceptance of this exact revision.
+   Since Cillian prepared it, obtain Keanu's independent technical inspection of
+   the operation as well before application; Cillian's release verdict must not
+   represent self-authored preparation as independent verification.
+2. Inspect the current native DELETE descriptor before constructing the managed
+   call. Require it to agree with the JSON method/path and omitted body. If the
+   descriptor changes semantics, stop for review. Do not guess aliases or replay
+   redacted values. Keep any enforced native approval or denial intact.
+3. Freshly read the complete trigger inventory, repository association, Worker
+   and production domain. Require kirillman200/mortgage-utilitas-app,
+   mortgage-utilitas-app, mortgage.utilitas.app and target wildcard includes [*],
+   excludes [master]. Require both triggers' build/deploy/root settings to match
+   the unchanged fields. Require the preserved trigger to be active and include
+   only master with no excludes. Stop on any discrepancy or additional unsafe
+   production trigger. Save sanitized nonsecret before-state evidence.
+4. Fetch all pages of current builds. Identify unfinished builds belonging to
+   the target trigger, including exact branch and commit. Proceed only if each
+   is a non-master build for this repository/Worker. If an association is unknown
+   or a master build is attached to the target, stop for review. Never cancel
+   builds of the preserved trigger. Zero active builds in prior evidence is
+   historical and must be refreshed. A new target build can race this read;
+   the DELETE cancellation side effect addresses that race for this trigger.
+5. Apply the exact DELETE once through the managed route. Do not deploy, push,
+   delete the Worker, remove its repository connection, revoke build tokens,
+   modify the master trigger or perform any other mutation. Record sanitized
+   operation identity/time and result. After a timeout, reconcile inventory and
+   builds before considering any retry. A 404 alone is not successful proof.
+6. Read the complete trigger inventory back. Require target absent or marked
+   deleted, and the preserved master trigger's nonsecret configuration unchanged.
+   Verify its association and filters plus all other active triggers. Fetch all
+   build pages again and require no queued/running target or other non-master
+   production builds. Check latest deployment/version for any race deployment;
+   distinguish observed changes from changes this operation caused. If uncertain,
+   keep pushes paused. No test push or synthetic deployment is authorized.
 
-## Release continuation and recovery
+## Recovery and release continuation
 
-After verified provider application, return the same delivery to Morgan.
-Complete the README housing refresh in the isolated worktree, validate and
-commit any changed snapshots, and obtain renewed relevant Viola then Cillian
-acceptance of the final commit before integration into `master`. Reuse Margot's
-editorial/media acceptance only for unchanged copy and media. Preserve the
-proven original article publication date of October 22, 2026.
+If removal fails, preserve provider state and keep branch pushes paused. If the
+master trigger is missing or unhealthy, do not recreate a wildcard or mutate
+unrelated fields. Return the exact finding for a separately reviewed repair.
+The existing deployed Worker remains the recovery baseline; this operation does
+not roll it back or restore the article. No automatic undo is claimed.
 
-If update or read-back fails, do not push or deploy. Re-read after a timeout
-before retrying a mutation. Keep the last deployed version unchanged and record
-the precise failure with the operational owner. Never restore the unsafe
-wildcard filters as a rollback. If the provider cannot maintain the reviewed
-filters, prepare a separately reviewed disablement of this exact trigger using
-its documented native operation. Do not delete or recreate triggers blindly.
-
-Final release still requires actual reviewed production integration/deployment,
-HTTP 200 at the canonical article, matching title/H1/body/metadata, valid links
-and schema, approved shared brand card, index and sitemap checks, guarded
-IndexNow and the valid article outcome receipt. This internal configuration
-repair has no significant-release notification receipt of its own.
+After verified repair, hand this same issue to Morgan. Preserve concurrent
+master work, most recently recorded at 4731f8e5b85fce2c36b34e4870906407f3c3b49c;
+recheck remote HEAD and protection before integration. Complete the required
+housing refresh and renewed final-artifact Viola QA then Cillian acceptance.
+Preserve October 22 original publication date and unchanged editorial/media
+acceptance. Integrate through actual master, then verify deployment and complete
+article HTTP/title/H1/body/canonical/metadata/links/schema/media/index/sitemap
+checks and guarded IndexNow. Save the valid article outcome only after success.
+This internal configuration artifact warrants no significant_release receipt.
