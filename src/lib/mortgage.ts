@@ -109,7 +109,14 @@ export function buildSchedule(inputs: LoanInputs, startDate = new Date()): Sched
     const payment = interest + principal;
     balance = Math.max(0, balance - principal);
     const date = new Date(startDate);
-    if (frequency === "monthly") date.setMonth(date.getMonth() + index);
+    if (frequency === "monthly") {
+      // Move from day one so short months cannot roll into the next month.
+      // Anchor to the original day again after February or a 30-day month.
+      date.setDate(1);
+      date.setMonth(date.getMonth() + index);
+      const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
+      date.setDate(Math.min(startDate.getDate(), lastDay));
+    }
     if (frequency === "semi-monthly") date.setDate(date.getDate() + Math.round(index * 365.25 / 24));
     if (frequency === "biweekly" || frequency === "accelerated-biweekly") {
       date.setDate(date.getDate() + index * 14);
