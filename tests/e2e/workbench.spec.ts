@@ -155,6 +155,21 @@ test("CSV export includes the production app URL", async ({ page }) => {
   expect(content).toContain("Mortgage Compass export");
 });
 
+test("month-end schedules export a February payment instead of skipping to March", async ({ page }) => {
+  await page.clock.setFixedTime(new Date("2024-01-31T12:00:00Z"));
+  await page.goto("/calculators/amortization/");
+  await expect(page.getByRole("tab", { name: "Schedule" })).toHaveAttribute("aria-selected", "true");
+  const downloadPromise = page.waitForEvent("download");
+  await page.getByRole("button", { name: "Download CSV" }).click();
+  const download = await downloadPromise;
+  const path = await download.path();
+  expect(path).toBeTruthy();
+  const csv = await import("node:fs/promises").then((fs) => fs.readFile(path!, "utf8"));
+  const rows = csv.split("\r\n").slice(6);
+  expect(rows[0]?.split(",").slice(0, 2)).toEqual(['"1"', '"2024-02-29"']);
+  expect(rows[1]?.split(",").slice(0, 2)).toEqual(['"2"', '"2024-03-31"']);
+});
+
 test("PDF export downloads a PDF", async ({ page }) => {
   test.slow();
   await page.goto("/calculators/payment/");

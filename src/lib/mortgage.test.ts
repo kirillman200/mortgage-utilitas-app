@@ -26,6 +26,27 @@ describe("mortgage math", () => {
     expect(totalInterest(schedule)).toBeGreaterThan(0);
   });
 
+  it.each([2023, 2024])("keeps monthly payment dates in consecutive months from January 31 in %i", (year) => {
+    const start = new Date(year, 0, 31, 12);
+    const schedule = buildSchedule({ principal: 120_000, annualRate: 0, years: 1 }, start);
+    expect(schedule).toHaveLength(12);
+    for (const [index, row] of schedule.entries()) {
+      const lastDay = new Date(year, index + 2, 0).getDate();
+      expect([row.date.getFullYear(), row.date.getMonth(), row.date.getDate()])
+        .toEqual([year + Math.floor((index + 1) / 12), (index + 1) % 12, lastDay]);
+    }
+    expect(start.getMonth()).toBe(0);
+    expect(start.getDate()).toBe(31);
+  });
+
+  it("restores the original monthly payment day after a shorter month", () => {
+    const schedule = buildSchedule(
+      { principal: 120_000, annualRate: 0, years: 1 }, new Date(2024, 0, 30, 12),
+    );
+    expect(schedule.slice(0, 3).map((row) => [row.date.getMonth(), row.date.getDate()]))
+      .toEqual([[1, 29], [2, 30], [3, 30]]);
+  });
+
   it("accelerated biweekly and extra payments shorten payoff", () => {
     const base = buildSchedule({ principal: 500_000, annualRate: 5, years: 25 });
     const accelerated = buildSchedule({
