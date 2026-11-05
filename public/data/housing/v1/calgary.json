@@ -1,15 +1,11 @@
 {
   "citySlug": "calgary",
-  "generatedAt": "2026-07-29T05:09:51.434Z",
+  "generatedAt": "2026-11-05T04:07:13.881Z",
   "rent": {
     "oneBedroom": {
       "label": "One-bedroom asking rent",
       "unit": "CAD",
       "points": [
-        {
-          "date": "2024-04-01",
-          "value": 1760
-        },
         {
           "date": "2024-07-01",
           "value": 1720
@@ -39,6 +35,10 @@
         {
           "date": "2026-01-01",
           "value": 1550
+        },
+        {
+          "date": "2026-04-01",
+          "value": 1550
         }
       ]
     },
@@ -46,10 +46,6 @@
       "label": "Two-bedroom asking rent",
       "unit": "CAD",
       "points": [
-        {
-          "date": "2024-04-01",
-          "value": 2150
-        },
         {
           "date": "2024-07-01",
           "value": 2050
@@ -79,6 +75,10 @@
         {
           "date": "2026-01-01",
           "value": 1900
+        },
+        {
+          "date": "2026-04-01",
+          "value": 1890
         }
       ]
     }
