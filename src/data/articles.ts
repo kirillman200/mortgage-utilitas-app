@@ -549,16 +549,16 @@ export const ARTICLES: Article[] = [
   },
   {
     slug: "how-to-calculate-mortgage-payments",
-    title: "How to Calculate Mortgage Payments and Check the Result",
+    title: "How to Calculate Mortgage Payments by Hand or on a Financial Calculator",
     description:
-      "Learn the fixed-payment formula, compounding conventions, total housing costs, and the assumptions behind a mortgage calculator.",
+      "Work through a Canadian mortgage payment by hand, reproduce it on a BA II Plus financial calculator, and check how much of the first payment reduces your balance.",
     keyword: "how to calculate mortgage payments",
     category: "Mortgage basics",
     readingMinutes: 9,
     published: "2026-07-28",
-    updated: "2026-07-28",
+    updated: "2026-11-02",
     intro: [
-      "A standard mortgage payment is built from principal, periodic interest rate, and number of payments. The formula is compact, but real results also depend on compounding convention, payment frequency, insurance, taxes, fees, and rounding.",
+      "Borrow $300,000 at a nominal annual rate of 5% compounded semi-annually, with monthly payments over a 25-year amortization, and the scheduled principal and interest payment is $1,744.81. Here is how to reproduce it using either the formula or a financial calculator. The rate is illustrative.",
       "Mortgage Compass calculates the loan schedule in your browser and lets you switch between Canadian and U.S. conventions. The result is a planning estimate, not a lender quote."
     ],
     keyTakeaways: [
@@ -580,6 +580,22 @@ export const ARTICLES: Article[] = [
         paragraphs: [
           "Many U.S. fixed mortgages use a nominal annual rate divided by 12 for monthly calculations. Canadian fixed mortgage rates are generally quoted with semi-annual compounding, which requires an equivalent periodic conversion. The same displayed rate can therefore produce a slightly different payment.",
           "Payment frequency adds another layer. Ordinary biweekly payment divides the annual schedule into 26 calculated periods. Accelerated biweekly is often defined as half the monthly payment every two weeks, creating the equivalent of an extra monthly payment each year."
+        ]
+      },
+      {
+        heading: "How to calculate a monthly mortgage payment by hand",
+        paragraphs: [
+          "Start with the example above. Six monthly periods must earn the same interest as one half-year at 2.5%. The monthly rate is therefore r = (1.025)^(1/6) - 1, about 0.004123915465. Keep the full decimal in your calculation. With payments at month end, n = 25 × 12 = 300.",
+          "Substitute into the payment formula. Payment = 300,000 × r / (1 - (1 + r)^(-300)) = $1,744.81 to the nearest cent. For a five-year term on this loan, use 300 payments to set the payment size. The first 60 fall within that term.",
+          "Check the first amortization row. Interest is $300,000 × r = $1,237.17. Subtract that from $1,744.81 and you get $507.64 in principal. The next month starts with $299,492.36 and accrues about $1,235.08 in interest at the same rate."
+        ]
+      },
+      {
+        heading: "How to calculate mortgage payments on a BA II Plus financial calculator",
+        paragraphs: [
+          "Use the same loan so the hand calculation gives you a check. Clear the time-value-of-money registers with [2nd] [FV] (CLR TVM). Check that the calculator is in END mode for month-end payments. If BGN is displayed, press [2nd] [PMT], then [2nd] [ENTER] to switch to END, and [2nd] [CPT] to quit.",
+          "Set both frequencies before entering the loan. Press [2nd] [I/Y] to open P/Y, enter 12 and press [ENTER]. Press the down arrow to C/Y, enter 2 and press [ENTER]. Exit with [2nd] [CPT]. This tells the calculator that you pay 12 times a year and the quoted rate compounds twice.",
+          "Enter 300 [N], 5 [I/Y], 300000 [PV] and 0 [FV]. Press [CPT] [PMT]. The result rounds to -1,744.81. A positive loan advance and a negative repayment represent cash flowing in opposite directions. If your answer differs, check END mode, P/Y and C/Y first. Enter the annual percentage as 5 in I/Y, even though the hand formula uses a decimal periodic rate."
         ]
       },
       {
@@ -612,6 +628,10 @@ export const ARTICLES: Article[] = [
       }
     ],
     sources: [
+      {
+        label: "UBC Sauder School of Business BA II Plus mortgage payment examples",
+        href: "https://professional.sauder.ubc.ca/re_creditprogram/course_resources/courses/content/shared/financial-calculations-ti-ba.pdf"
+      },
       {
         label: "CFPB: how lenders calculate monthly payments",
         href: "https://www.consumerfinance.gov/ask-cfpb/how-do-mortgage-lenders-calculate-monthly-payments-en-1965/"
@@ -1125,14 +1145,14 @@ export const ARTICLES: Article[] = [
   },
   {
     slug: "mortgage-amortization-schedule-calculator-canada",
-    title: "Mortgage Amortization Schedule Calculator Canada Guide",
+    title: "How to Calculate Mortgage Amortization in Canada",
     description:
       "Build a Canadian mortgage amortization schedule, read principal and interest by payment or year, and understand what changes at renewal.",
     keyword: "mortgage amortization schedule calculator Canada",
     category: "Mortgage basics",
     readingMinutes: 8,
     published: "2026-08-06",
-    updated: "2026-08-06",
+    updated: "2026-11-02",
     intro: [
       "A mortgage amortization schedule is a payment-by-payment table showing how much goes to interest, how much reduces principal, and what balance remains. Enter the amount borrowed, annual rate, amortization, and payment frequency to generate the schedule.",
       "For a Canadian mortgage, the schedule is a projection rather than a promise that one rate lasts until the loan reaches zero. The mortgage term is usually shorter than the amortization, so a new rate and payment can create a new schedule at renewal."
@@ -1149,6 +1169,14 @@ export const ARTICLES: Article[] = [
         paragraphs: [
           "Start with mortgage principal, which is normally the purchase price minus the down payment plus any amount financed into the loan. Add the contract rate, amortization period, payment frequency, and the correct country convention. Do not use the original purchase price as principal after years of repayment.",
           "The payment formula converts the annual rate into a periodic rate and spreads repayment across the number of scheduled payments. Canadian fixed-rate mortgage examples commonly use a nominal annual rate compounded semi-annually. Exact lender dates, rounding, fees, insurance, and contract terms may produce small differences."
+        ]
+      },
+      {
+        heading: "How many payments are left at your current payment amount?",
+        paragraphs: [
+          "Suppose you owe $300,000 and pay $2,000 in principal and interest at the end of each month. At an illustrative 5% nominal rate compounded twice a year, the monthly rate r is (1.025)^(1/6) - 1, about 0.004123915465. The first month accrues $1,237.17 in interest, so the payment reduces the balance by $762.83.",
+          "To solve for time, use n = -ln(1 - balance × r / payment) / ln(1 + r), where ln is the natural logarithm. With these inputs n is about 234.21. That means 234 full payments followed by a smaller payment in month 235 if the rate and payment stay the same. Repeat the calculation with the actual balance and rate at renewal.",
+          "At zero interest, divide the balance by the payment. At a positive rate, the payment must exceed the interest for the period. If it only covers interest, the balance stays flat and there is no finite payoff date at that payment."
         ]
       },
       {
@@ -1186,16 +1214,16 @@ export const ARTICLES: Article[] = [
   },
   {
     slug: "mortgage-extra-payment-calculator-canada",
-    title: "Mortgage Extra Payment Calculator Canada Guide",
+    title: "Mortgage Prepayment Calculator Guide for Canada",
     description:
       "Compare one-time, annual, and recurring mortgage prepayments in Canada, including interest saved, payoff time, and contract limits.",
     keyword: "mortgage extra payment calculator Canada",
     category: "Planning",
     readingMinutes: 8,
     published: "2026-08-06",
-    updated: "2026-08-06",
+    updated: "2026-11-02",
     intro: [
-      "A mortgage extra payment calculator compares the regular amortization with a schedule that applies more money to principal. It can model an increase on every payment, an annual lump sum, a separate one-time lump sum, or a combination of the three.",
+      "A mortgage prepayment calculator shows how much interest you could save and how soon you could pay off the loan by making extra payments. Start with your current balance, rate, regular payment schedule and remaining amortization. Compare that baseline with a recurring increase, an annual lump sum or a single extra payment.",
       "The calculation shows a potential interest saving and earlier payoff, but the mortgage contract decides whether the payment is allowed without a charge. Check the amount, timing, notice, and annual reset rules before acting."
     ],
     keyTakeaways: [

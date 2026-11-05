@@ -15,10 +15,11 @@ const { article } = Astro.props;
 const canonical = `/guides/${article.slug}/`;
 const tool = CALCULATORS.find((calculator) => calculator.slug === article.calculator);
 const related = ARTICLES.filter((candidate) => candidate.slug !== article.slug).slice(0, 4);
-const updatedLabel = new Intl.DateTimeFormat("en-CA", {
+const dateFormatter = new Intl.DateTimeFormat("en-CA", {
   dateStyle: "long",
   timeZone: "UTC"
-}).format(new Date(`${article.updated}T00:00:00Z`));
+});
+const dateLabel = (date: string) => dateFormatter.format(new Date(`${date}T00:00:00Z`));
 const articleSchema = {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -52,7 +53,10 @@ const faqSchema = {
         <p class="dek">{article.description}</p>
         <div class="article-meta">
           <span>By Utilitas Editorial</span>
-          <span>Updated <time datetime={article.updated}>{updatedLabel}</time></span>
+          <span>Published <time datetime={article.published}>{dateLabel(article.published)}</time></span>
+          {article.updated !== article.published && (
+            <span>Updated <time datetime={article.updated}>{dateLabel(article.updated)}</time></span>
+          )}
           <span>{article.readingMinutes} minute read</span>
           <span>Reviewed against linked primary sources</span>
         </div>
