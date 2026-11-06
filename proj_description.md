@@ -1,0 +1,13 @@
+# Mortgage Compass repository context
+
+Canadian mortgage planning calculators and educational guides, in English with CAD examples. Canonical origin: https://mortgage.utilitas.app. No individualized lender advice or guaranteed savings. Inputs remain in the browser.
+
+Astro static pages with Vue calculators; Cloudflare Worker and Workers KV provide city housing dashboards. `src/data/articles.ts` owns repository-backed content and publication/modification dates; no CMS. Guides render through `src/pages/guides/[slug].astro`, with Article/FAQ schema and shared established `/assets/mortgage-compass-card.svg` social media. Index: `/guides/`; sitemap: `/sitemap.xml`. The sitemap currently uses the global `SITE.updated` date. Preserve original publication dates on refreshes.
+
+`src/components/MortgageWorkbench.vue` renders calculator fields; `src/lib/mortgage.ts` owns formulas. Refinance mode uses monthly payments, finances Fees plus Prepayment penalty into the proposed balance, and also uses their sum as the cost-recovery numerator. It has no separate upfront-cost field or existing-offer fee field. Explain those limits rather than implying a complete renewal comparison.
+
+Verified November 5, 2026: origin is `kirillman200/mortgage-utilitas-app`; remote HEAD is `master`. `wrangler.jsonc` configures Worker `mortgage-utilitas-app`, static `dist` assets, and the custom domain `mortgage.utilitas.app`. Historical release evidence identifies Cloudflare Workers Builds on the production branch; confirm the exact deployment and live page after integration. Do not guess a main branch or deploy before exact-artifact editorial, QA and technical acceptance.
+
+Install with `npm ci`. Documented checks: `npm run validate`, `npm run test:e2e`, `npm run deploy:dry`. `npm run dev` and `npm run preview` use the Worker development wrapper. Housing snapshot refresh is for housing-data releases, not routine editorial corrections. IndexNow script: `scripts/submit-indexnow.mjs`; inspect its URL arguments and run only after publication verification.
+
+TES-325 is the bounded renewal-fee correction under portfolio TES-305. TES-195 and PR #27 own the distinct relief-offer checklist; PR #25 owns month-end payment-date repair. Preserve their work. Public verification must cover exact URL, HTTP 200, title/H1/description/canonical/body, links/schema, index/sitemap and established media. Margot reviews editorial/source/media, Viola reviews rendered QA, Cillian reviews technical readiness, and Morgan integrates and verifies release. Release-relative measurement checkpoints belong in the final outcome after actual publication.
