@@ -284,6 +284,8 @@ function downloadCityCsv(): void {
 <style scoped>
 .live-dashboard {
   display: grid;
+  /* Keep wide observation tables inside their scroll wrapper. */
+  grid-template-columns: minmax(0, 1fr);
   gap: 1.5rem;
 }
 
