@@ -2,6 +2,7 @@ export interface ArticleSection {
   heading: string;
   paragraphs: string[];
   bullets?: string[];
+  links?: Array<{ href: string; label: string }>;
 }
 
 export interface Article {
@@ -22,6 +23,132 @@ export interface Article {
 }
 
 export const ARTICLES: Article[] = [
+{
+  "slug": "mortgage-payment-relief-offer-checklist-canada",
+  "title": "Before accepting mortgage payment relief: a written-offer checklist",
+  "description": "Use a Canadian mortgage relief checklist to ask your lender for written payment terms, balance changes, costs, dates and a plan for what happens next.",
+  "keyword": "mortgage payment relief Canada",
+  "category": "Planning",
+  "readingMinutes": 5,
+  "published": "2026-10-22",
+  "updated": "2026-10-22",
+  "intro": [
+    "Before accepting mortgage payment relief, ask your lender for the agreed terms in writing. Organise the offer around what you owe now, what you would pay during relief, and what happens afterwards. A conversation is a starting point, not a completed agreement.",
+    "This Canadian checklist helps you prepare questions, not choose a product or decide whether relief is suitable for you. FCAC describes support expectations for federally regulated mortgage providers. That is not guaranteed approval for a particular option, or a statement that every Canadian lender follows the same framework. Contact your lender promptly if a payment may be difficult. See FCAC's financial-difficulties guidance in the sources."
+  ],
+  "keyTakeaways": [
+    "Request written confirmation of the agreed arrangement before changing how you pay.",
+    "Record today's position separately from the proposed position and the position after relief ends.",
+    "Ask about the total cost and remaining repayment period, not just the next payment.",
+    "Leave unanswered questions visibly open rather than treating a blank as zero or approval.",
+    "Keep the lender's offer, your questions and its final answers together."
+  ],
+  "sections": [
+    {
+      "heading": "Establish what is being offered",
+      "paragraphs": [
+        "FCAC's financial-difficulties guidance addresses existing residential mortgages on principal residences where borrowers are at risk of missing regular payments. It describes expectations for tailored support by banks and other federally regulated mortgage providers. Ask your provider which options it will assess for your circumstances.",
+        "Start a separate worksheet for each proposal. Give it the lender's reference and a date so a revised proposal does not get confused with an earlier conversation. The worksheet is your organisation tool, not the lender's approval document."
+      ],
+      "bullets": [
+        "Lender and contact: ______",
+        "Offer reference and date: ______",
+        "Relief measure being considered: ______",
+        "Information still needed for an assessment: ______",
+        "Conditions still awaiting approval: ______",
+        "Written offer location and response deadline: ______"
+      ]
+    },
+    {
+      "heading": "Put the before-and-after figures beside each other",
+      "paragraphs": [
+        "FCAC's financial-difficulties guidance says information before consent should cover the outstanding amount, dollar cost impact, amortization impact, revised payment schedule, interest rate and type, and effective date. Use those categories to request a comparison you can understand.",
+        "Ask the lender to date each figure and identify its assumptions. Keep a separate line for money paid immediately and money added to the loan. If two figures do not reconcile, write down the difference as a question rather than supplying your own explanation.",
+        "Planning estimates do not determine lender-specific relief terms or approval. Ask your lender for the arrangement that applies to your mortgage."
+      ],
+      "bullets": [
+        "Balance before relief, CAD, as of date: ______",
+        "Balance when relief starts, CAD, with explanation of changes: ______",
+        "Projected balance when relief ends, CAD, and assumptions: ______",
+        "Current payment, CAD, frequency and next due date: ______",
+        "Relief-period payment, CAD, frequency and first due date: ______",
+        "Payment after relief, CAD, or how and when it will be determined: ______",
+        "Current and proposed annual interest rate and fixed or variable type: ______",
+        "Remaining amortization before and after, in years and months: ______",
+        "Total mortgage cost impact, CAD, and calculation assumptions: ______",
+        "Upfront charges, amounts added to the loan and any confirmed waivers: ______"
+      ],
+      "links": [
+        {
+          "href": "/guides/mortgage-renewal-calculator-canada/",
+          "label": "If renewal is relevant, compare mortgage renewal scenarios"
+        },
+        {
+          "href": "/methodology/",
+          "label": "How our planning estimates work"
+        }
+      ]
+    },
+    {
+      "heading": "Ask what happens when temporary relief ends",
+      "paragraphs": [
+        "FCAC's relief-options page explains that a deferral is an agreement to delay payments, not erase them. Deferred payments must be repaid. Relief can increase overall mortgage costs. An amortization extension can reduce payments while increasing interest paid over time. These tradeoffs deserve their own questions, separate from the immediate payment amount.",
+        "Ask for a written sequence from the first changed payment to the review or end date. Do not assume that an end date automatically returns every part of the mortgage to its previous position. Request the lender's explanation of the next step and who will contact whom."
+      ],
+      "bullets": [
+        "Relief start and end dates: ______",
+        "First payment after relief and its due date: ______",
+        "Treatment and repayment schedule for amounts delayed: ______",
+        "Proposed remaining amortization after relief: ______",
+        "If amortization is extended, plan and review date for returning towards the original schedule: ______",
+        "What happens if circumstances have not improved: ______"
+      ]
+    },
+    {
+      "heading": "Confirm the arrangement before changing payments",
+      "paragraphs": [
+        "Do not skip a payment or cancel an automatic withdrawal because you have asked about relief. Request confirmation of what has actually been agreed, when it takes effect and what you must pay while the request is being assessed. If the next due date is approaching, contact the lender rather than assuming the proposal already applies.",
+        "Keep the final written terms beside your worksheet and check that they answer the same questions. Ask your lender how the agreed arrangement will be recorded and reported. This checklist does not promise a credit-reporting outcome. If the explanation remains unclear, seek help from a trustworthy qualified adviser before deciding."
+      ],
+      "bullets": [
+        "Agreement confirmed and copy received: ______",
+        "Payment instructions while assessment is pending: ______",
+        "Automatic withdrawal instructions confirmed by lender: ______",
+        "How the arrangement will be recorded and reported: ______",
+        "Open question, responsible contact and answer needed by: ______",
+        "Follow-up date and documents to retain: ______"
+      ]
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Does asking for relief mean I can stop paying?",
+      "answer": "No. A request is not an agreed change. Contact the lender about the approaching due date and ask for written confirmation of the payment instructions that apply. Do not assume a pending assessment changes your existing schedule."
+    },
+    {
+      "question": "Is a lower payment the same as a cheaper mortgage?",
+      "answer": "No. FCAC's relief-options guidance warns that relief can increase overall costs. Ask for the payment comparison, remaining amortization and dollar cost impact together, with the assumptions clearly identified."
+    },
+    {
+      "question": "Is mortgage relief guaranteed for every Canadian borrower?",
+      "answer": "No. FCAC describes expectations for federally regulated institutions and support tailored to the borrower's circumstances. Ask your lender which options it can assess and what conditions apply. Do not treat this checklist as an eligibility decision."
+    },
+    {
+      "question": "What if the offer leaves a figure blank?",
+      "answer": "Mark it as unanswered and ask the lender for the amount or the method and date for determining it. A blank is not confirmation that there is no cost or no later payment change."
+    }
+  ],
+  "sources": [
+    {
+      "label": "FCAC: paying your mortgage when experiencing financial difficulties",
+      "href": "https://www.canada.ca/en/financial-consumer-agency/services/rights-responsibilities/rights-mortgages/financial-difficulties.html"
+    },
+    {
+      "label": "FCAC: mortgage relief options",
+      "href": "https://www.canada.ca/en/financial-consumer-agency/services/mortgages/relief-options.html"
+    }
+  ]
+},
   {
     slug: "paying-off-your-mortgage-game-changer",
     title: "Paying Off Your Mortgage: The Game Changer Is What You Do Next",
@@ -422,16 +549,16 @@ export const ARTICLES: Article[] = [
   },
   {
     slug: "how-to-calculate-mortgage-payments",
-    title: "How to Calculate Mortgage Payments and Check the Result",
+    title: "How to Calculate Mortgage Payments by Hand or on a Financial Calculator",
     description:
-      "Learn the fixed-payment formula, compounding conventions, total housing costs, and the assumptions behind a mortgage calculator.",
+      "Work through a Canadian mortgage payment by hand, reproduce it on a BA II Plus financial calculator, and check how much of the first payment reduces your balance.",
     keyword: "how to calculate mortgage payments",
     category: "Mortgage basics",
     readingMinutes: 9,
     published: "2026-07-28",
-    updated: "2026-07-28",
+    updated: "2026-11-02",
     intro: [
-      "A standard mortgage payment is built from principal, periodic interest rate, and number of payments. The formula is compact, but real results also depend on compounding convention, payment frequency, insurance, taxes, fees, and rounding.",
+      "Borrow $300,000 at a nominal annual rate of 5% compounded semi-annually, with monthly payments over a 25-year amortization, and the scheduled principal and interest payment is $1,744.81. Here is how to reproduce it using either the formula or a financial calculator. The rate is illustrative.",
       "Mortgage Compass calculates the loan schedule in your browser and lets you switch between Canadian and U.S. conventions. The result is a planning estimate, not a lender quote."
     ],
     keyTakeaways: [
@@ -453,6 +580,22 @@ export const ARTICLES: Article[] = [
         paragraphs: [
           "Many U.S. fixed mortgages use a nominal annual rate divided by 12 for monthly calculations. Canadian fixed mortgage rates are generally quoted with semi-annual compounding, which requires an equivalent periodic conversion. The same displayed rate can therefore produce a slightly different payment.",
           "Payment frequency adds another layer. Ordinary biweekly payment divides the annual schedule into 26 calculated periods. Accelerated biweekly is often defined as half the monthly payment every two weeks, creating the equivalent of an extra monthly payment each year."
+        ]
+      },
+      {
+        heading: "How to calculate a monthly mortgage payment by hand",
+        paragraphs: [
+          "Start with the example above. Six monthly periods must earn the same interest as one half-year at 2.5%. The monthly rate is therefore r = (1.025)^(1/6) - 1, about 0.004123915465. Keep the full decimal in your calculation. With payments at month end, n = 25 × 12 = 300.",
+          "Substitute into the payment formula. Payment = 300,000 × r / (1 - (1 + r)^(-300)) = $1,744.81 to the nearest cent. For a five-year term on this loan, use 300 payments to set the payment size. The first 60 fall within that term.",
+          "Check the first amortization row. Interest is $300,000 × r = $1,237.17. Subtract that from $1,744.81 and you get $507.64 in principal. The next month starts with $299,492.36 and accrues about $1,235.08 in interest at the same rate."
+        ]
+      },
+      {
+        heading: "How to calculate mortgage payments on a BA II Plus financial calculator",
+        paragraphs: [
+          "Use the same loan so the hand calculation gives you a check. Clear the time-value-of-money registers with [2nd] [FV] (CLR TVM). Check that the calculator is in END mode for month-end payments. If BGN is displayed, press [2nd] [PMT], then [2nd] [ENTER] to switch to END, and [2nd] [CPT] to quit.",
+          "Set both frequencies before entering the loan. Press [2nd] [I/Y] to open P/Y, enter 12 and press [ENTER]. Press the down arrow to C/Y, enter 2 and press [ENTER]. Exit with [2nd] [CPT]. This tells the calculator that you pay 12 times a year and the quoted rate compounds twice.",
+          "Enter 300 [N], 5 [I/Y], 300000 [PV] and 0 [FV]. Press [CPT] [PMT]. The result rounds to -1,744.81. A positive loan advance and a negative repayment represent cash flowing in opposite directions. If your answer differs, check END mode, P/Y and C/Y first. Enter the annual percentage as 5 in I/Y, even though the hand formula uses a decimal periodic rate."
         ]
       },
       {
@@ -485,6 +628,10 @@ export const ARTICLES: Article[] = [
       }
     ],
     sources: [
+      {
+        label: "UBC Sauder School of Business BA II Plus mortgage payment examples",
+        href: "https://professional.sauder.ubc.ca/re_creditprogram/course_resources/courses/content/shared/financial-calculations-ti-ba.pdf"
+      },
       {
         label: "CFPB: how lenders calculate monthly payments",
         href: "https://www.consumerfinance.gov/ask-cfpb/how-do-mortgage-lenders-calculate-monthly-payments-en-1965/"
@@ -825,7 +972,7 @@ export const ARTICLES: Article[] = [
     category: "Planning",
     readingMinutes: 10,
     published: "2026-08-05",
-    updated: "2026-08-05",
+    updated: "2026-11-05",
     intro: [
       "A mortgage renewal calculator for Canada starts with the balance expected on the renewal date, not the amount originally borrowed. Add the proposed rate, remaining amortization, payment frequency, and any costs to switch lenders. The result is a planning estimate that helps you compare offers on consistent assumptions.",
       "Renewal deserves an early calculation because the offered rate is only one part of the decision. Term length, fixed or variable pricing, prepayment privileges, portability, fees, and a changed amortization can alter both the next payment and the longer-run interest cost."
@@ -842,7 +989,9 @@ export const ARTICLES: Article[] = [
         heading: "Gather the inputs for a renewal payment estimate",
         paragraphs: [
           "Find the remaining principal expected at the end of the current term. Your lender's renewal statement should show the balance at renewal, offered interest rate, payment frequency, term, and applicable charges. A federally regulated lender must provide that statement at least 21 days before the end of the term, but waiting for it can leave too little time to compare alternatives.",
-          "For an earlier estimate, use the current amortization schedule or account balance and project it forward to the renewal date. Enter that future balance in the refinance break-even calculator, set fees and the prepayment penalty to zero for an at-term renewal, and run each proposed rate with the same remaining amortization."
+          "For an earlier estimate, use the current amortization schedule or account balance and project it forward to the renewal date. In the refinance break-even calculator, enter that projected balance in Balance, the existing lender's renewal offer in Current rate, and a competing offer in New rate. Keep Years remaining and New amortization equal for a same-amortization comparison. For a renewal at the scheduled term end, confirm whether any prepayment penalty applies rather than treating the transaction as an early break.",
+          "Retain disclosed switching, discharge, registration, transfer or assignment, appraisal, legal, and administration costs that apply to each offer. Set an individual cost to zero only when confirmed not applicable or confirmed paid by the receiving lender, and record who pays it. FCAC recommends asking whether the new lender will pay some or all switching costs; reaching the end of a term does not establish that switching is free.",
+          "The linked refinance calculator uses monthly payments and adds Fees and Prepayment penalty to the proposed loan balance. Its break-even estimate also uses those entered costs as the amount to recover through monthly payment savings. It has no separate upfront-cost field, no selectable payment frequency in refinance mode, and no fee field for the existing lender's offer. Enter applicable costs in Fees only for a scenario where they will be financed, and enter any confirmed applicable penalty in Prepayment penalty with the same model limitation. Keep costs paid upfront and any costs of staying in a separate comparison record. If your offer uses another payment frequency or a different cost arrangement, the displayed result is an incomplete comparison; record the missing costs separately and obtain a matching payment estimate before deciding."
         ],
         bullets: [
           "Projected principal on the renewal date",
@@ -850,6 +999,18 @@ export const ARTICLES: Article[] = [
           "Remaining amortization and proposed term",
           "Monthly, biweekly, accelerated biweekly, or other payment frequency",
           "Transfer, appraisal, legal, registration, discharge, or administration costs"
+        ]
+      },
+      {
+        heading: "Check the same assumptions and record omitted costs",
+        paragraphs: [
+          "Use one comparison record for each written offer alongside the calculator results.",
+          "The displayed break-even and lifetime difference are model estimates, not guaranteed savings or a complete comparison of the offered terms."
+        ],
+        bullets: [
+          "Match the renewal-date balance, remaining amortization, payment frequency, and comparison term; label any deliberate difference.",
+          "List each disclosed cost, who pays it, and whether it is financed or paid upfront. Record the reason for every zero and avoid counting a cost twice.",
+          "Mark which costs appear in the calculator and which remain outside it, including any costs of staying. Confirm the payment and total cost over the same offered term with each lender."
         ]
       },
       {
@@ -998,14 +1159,14 @@ export const ARTICLES: Article[] = [
   },
   {
     slug: "mortgage-amortization-schedule-calculator-canada",
-    title: "Mortgage Amortization Schedule Calculator Canada Guide",
+    title: "How to Calculate Mortgage Amortization in Canada",
     description:
       "Build a Canadian mortgage amortization schedule, read principal and interest by payment or year, and understand what changes at renewal.",
     keyword: "mortgage amortization schedule calculator Canada",
     category: "Mortgage basics",
     readingMinutes: 8,
     published: "2026-08-06",
-    updated: "2026-08-06",
+    updated: "2026-11-02",
     intro: [
       "A mortgage amortization schedule is a payment-by-payment table showing how much goes to interest, how much reduces principal, and what balance remains. Enter the amount borrowed, annual rate, amortization, and payment frequency to generate the schedule.",
       "For a Canadian mortgage, the schedule is a projection rather than a promise that one rate lasts until the loan reaches zero. The mortgage term is usually shorter than the amortization, so a new rate and payment can create a new schedule at renewal."
@@ -1022,6 +1183,14 @@ export const ARTICLES: Article[] = [
         paragraphs: [
           "Start with mortgage principal, which is normally the purchase price minus the down payment plus any amount financed into the loan. Add the contract rate, amortization period, payment frequency, and the correct country convention. Do not use the original purchase price as principal after years of repayment.",
           "The payment formula converts the annual rate into a periodic rate and spreads repayment across the number of scheduled payments. Canadian fixed-rate mortgage examples commonly use a nominal annual rate compounded semi-annually. Exact lender dates, rounding, fees, insurance, and contract terms may produce small differences."
+        ]
+      },
+      {
+        heading: "How many payments are left at your current payment amount?",
+        paragraphs: [
+          "Suppose you owe $300,000 and pay $2,000 in principal and interest at the end of each month. At an illustrative 5% nominal rate compounded twice a year, the monthly rate r is (1.025)^(1/6) - 1, about 0.004123915465. The first month accrues $1,237.17 in interest, so the payment reduces the balance by $762.83.",
+          "To solve for time, use n = -ln(1 - balance × r / payment) / ln(1 + r), where ln is the natural logarithm. With these inputs n is about 234.21. That means 234 full payments followed by a smaller payment in month 235 if the rate and payment stay the same. Repeat the calculation with the actual balance and rate at renewal.",
+          "At zero interest, divide the balance by the payment. At a positive rate, the payment must exceed the interest for the period. If it only covers interest, the balance stays flat and there is no finite payoff date at that payment."
         ]
       },
       {
@@ -1059,16 +1228,16 @@ export const ARTICLES: Article[] = [
   },
   {
     slug: "mortgage-extra-payment-calculator-canada",
-    title: "Mortgage Extra Payment Calculator Canada Guide",
+    title: "Mortgage Prepayment Calculator Guide for Canada",
     description:
       "Compare one-time, annual, and recurring mortgage prepayments in Canada, including interest saved, payoff time, and contract limits.",
     keyword: "mortgage extra payment calculator Canada",
     category: "Planning",
     readingMinutes: 8,
     published: "2026-08-06",
-    updated: "2026-08-06",
+    updated: "2026-11-02",
     intro: [
-      "A mortgage extra payment calculator compares the regular amortization with a schedule that applies more money to principal. It can model an increase on every payment, an annual lump sum, a separate one-time lump sum, or a combination of the three.",
+      "A mortgage prepayment calculator shows how much interest you could save and how soon you could pay off the loan by making extra payments. Start with your current balance, rate, regular payment schedule and remaining amortization. Compare that baseline with a recurring increase, an annual lump sum or a single extra payment.",
       "The calculation shows a potential interest saving and earlier payoff, but the mortgage contract decides whether the payment is allowed without a charge. Check the amount, timing, notice, and annual reset rules before acting."
     ],
     keyTakeaways: [

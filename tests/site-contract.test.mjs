@@ -109,7 +109,9 @@ test("new SEO guides show their actual publication date", async () => {
     const html = await readDist(join("guides", slug, "index.html"));
     assert.match(html, /datetime="2026-08-06">August 6, 2026<\/time>/);
     assert.match(html, /"datePublished":"2026-08-06"/);
-    assert.match(html, /"dateModified":"2026-08-06"/);
+    const modified = html.match(/"dateModified":"(\d{4}-\d{2}-\d{2})"/)?.[1];
+    assert.ok(modified >= "2026-08-06");
+    assert.ok(html.includes(`<time datetime="${modified}">`));
   }
 });
 

@@ -46,14 +46,17 @@ test("closing-cost presets calculate Toronto tax and first-time relief", async (
 
 test("changing calculator tabs does not move the page", async ({ page }) => {
   await page.goto("/calculators/payment/");
-  const tabs = page.locator(".tool-tabs");
-  await tabs.scrollIntoViewIfNeeded();
-  await page.evaluate(() => window.scrollBy(0, -100));
+  await page.getByRole("button", { name: "Do not allow", exact: true }).click();
+  const tab = page.getByRole("tab", { name: "Afford", exact: true });
+  await tab.scrollIntoViewIfNeeded();
+  // Let smooth scrolling settle before measuring the actual click position.
+  await page.waitForTimeout(600);
   const before = await page.evaluate(() => window.scrollY);
-  await page.getByRole("tab", { name: "Afford" }).click();
+  await tab.click();
   await page.waitForTimeout(400);
   const after = await page.evaluate(() => window.scrollY);
   expect(Math.abs(after - before)).toBeLessThanOrEqual(2);
+  await expect(page.getByRole("heading", { name: "Affordability range" })).toBeVisible();
 });
 
 test("city page renders live metrics and graphs from its API", async ({ page }) => {
