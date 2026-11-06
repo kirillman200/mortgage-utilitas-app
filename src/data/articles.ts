@@ -972,7 +972,7 @@ export const ARTICLES: Article[] = [
     category: "Planning",
     readingMinutes: 10,
     published: "2026-08-05",
-    updated: "2026-08-05",
+    updated: "2026-11-05",
     intro: [
       "A mortgage renewal calculator for Canada starts with the balance expected on the renewal date, not the amount originally borrowed. Add the proposed rate, remaining amortization, payment frequency, and any costs to switch lenders. The result is a planning estimate that helps you compare offers on consistent assumptions.",
       "Renewal deserves an early calculation because the offered rate is only one part of the decision. Term length, fixed or variable pricing, prepayment privileges, portability, fees, and a changed amortization can alter both the next payment and the longer-run interest cost."
@@ -989,7 +989,9 @@ export const ARTICLES: Article[] = [
         heading: "Gather the inputs for a renewal payment estimate",
         paragraphs: [
           "Find the remaining principal expected at the end of the current term. Your lender's renewal statement should show the balance at renewal, offered interest rate, payment frequency, term, and applicable charges. A federally regulated lender must provide that statement at least 21 days before the end of the term, but waiting for it can leave too little time to compare alternatives.",
-          "For an earlier estimate, use the current amortization schedule or account balance and project it forward to the renewal date. Enter that future balance in the refinance break-even calculator, set fees and the prepayment penalty to zero for an at-term renewal, and run each proposed rate with the same remaining amortization."
+          "For an earlier estimate, use the current amortization schedule or account balance and project it forward to the renewal date. In the refinance break-even calculator, enter that projected balance in Balance, the existing lender's renewal offer in Current rate, and a competing offer in New rate. Keep Years remaining and New amortization equal for a same-amortization comparison. For a renewal at the scheduled term end, confirm whether any prepayment penalty applies rather than treating the transaction as an early break.",
+          "Retain disclosed switching, discharge, registration, transfer or assignment, appraisal, legal, and administration costs that apply to each offer. Set an individual cost to zero only when confirmed not applicable or confirmed paid by the receiving lender, and record who pays it. FCAC recommends asking whether the new lender will pay some or all switching costs; reaching the end of a term does not establish that switching is free.",
+          "The linked refinance calculator uses monthly payments and adds Fees and Prepayment penalty to the proposed loan balance. Its break-even estimate also uses those entered costs as the amount to recover through monthly payment savings. It has no separate upfront-cost field, no selectable payment frequency in refinance mode, and no fee field for the existing lender's offer. Enter applicable costs in Fees only for a scenario where they will be financed, and enter any confirmed applicable penalty in Prepayment penalty with the same model limitation. Keep costs paid upfront and any costs of staying in a separate comparison record. If your offer uses another payment frequency or a different cost arrangement, the displayed result is an incomplete comparison; record the missing costs separately and obtain a matching payment estimate before deciding."
         ],
         bullets: [
           "Projected principal on the renewal date",
@@ -997,6 +999,18 @@ export const ARTICLES: Article[] = [
           "Remaining amortization and proposed term",
           "Monthly, biweekly, accelerated biweekly, or other payment frequency",
           "Transfer, appraisal, legal, registration, discharge, or administration costs"
+        ]
+      },
+      {
+        heading: "Check the same assumptions and record omitted costs",
+        paragraphs: [
+          "Use one comparison record for each written offer alongside the calculator results.",
+          "The displayed break-even and lifetime difference are model estimates, not guaranteed savings or a complete comparison of the offered terms."
+        ],
+        bullets: [
+          "Match the renewal-date balance, remaining amortization, payment frequency, and comparison term; label any deliberate difference.",
+          "List each disclosed cost, who pays it, and whether it is financed or paid upfront. Record the reason for every zero and avoid counting a cost twice.",
+          "Mark which costs appear in the calculator and which remain outside it, including any costs of staying. Confirm the payment and total cost over the same offered term with each lender."
         ]
       },
       {

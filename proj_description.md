@@ -1,6 +1,6 @@
 # Mortgage Compass operational context
 
-Initialized 2026-10-20 from repository revision e28d78d34eeb62a8dcc8addb5d786667e667914c and targeted production reads. No article topic has been selected.
+Initialized 2026-10-20 from repository revision e28d78d34eeb62a8dcc8addb5d786667e667914c and targeted production reads. This initialization is historical; subsequent deliveries are recorded below.
 
 ## Product and audience
 
@@ -12,10 +12,10 @@ Nine tools cover payment, affordability, extra payments, refinance, amortization
 
 - Canonical host: https://mortgage.utilitas.app. Homepage, /guides/ and /sitemap.xml returned HTTP 200 during initialization.
 - Guides: /guides/<slug>/ with trailing slash. Internal destinations: /calculators/, /calculators/<slug>/, /housing/, /methodology/, /about/ and relevant existing guides. Exact calculator routes are in src/data/site.ts.
-- Repository-backed content, no Hygraph integration found. src/data/articles.ts defines Article, ARTICLES and ARTICLE_ROUTES. Current registry contains 18 guides; use the current registry plus production sitemap for duplicate-topic checks, not this count alone.
+- Repository-backed content, no Hygraph integration found. src/data/articles.ts defines Article, ARTICLES and ARTICLE_ROUTES. The initialization registry contained 18 guides; use the current registry plus production sitemap for duplicate-topic checks, not this count alone.
 - Article fields: slug, title, description, keyword, category, readingMinutes, published, updated, intro, keyTakeaways, sections (heading/paragraphs/optional bullets), faqs, sources and optional calculator. Sources are href/label pairs. Retain useful primary citations and accurate publication/modification dates.
 - src/pages/guides/[slug].astro renders Article and FAQPage JSON-LD, visible update date, sources, related articles and calculator CTA. src/layouts/BaseLayout.astro supplies title, description, canonical, Open Graph, Twitter, WebPage and breadcrumb metadata.
-- src/pages/guides/index.astro, src/pages/sitemap.xml.ts, src/pages/llms.txt.ts and src/pages/llms-full.txt.ts consume registries. Verify propagation after adding content. Sitemap currently uses SITE.updated globally; do not redate unrelated pages to announce a new guide. src/data/articles.test.ts and tests/site-contract.test.mjs contain content/route contracts.
+- src/pages/guides/index.astro, src/pages/sitemap.xml.ts, src/pages/llms.txt.ts and src/pages/llms-full.txt.ts consume registries. Verify propagation after adding content. The sitemap uses each guide modification date and SITE.updated for other routes; do not redate unrelated pages to announce a new guide. src/data/articles.test.ts and tests/site-contract.test.mjs contain content/route contracts.
 
 ## Media
 
@@ -34,3 +34,16 @@ Astro 7, Vue 3 and Chart.js; static output in dist, with src/worker.ts serving a
 ## Handoff and limitations
 
 This context was created on the isolated October 20 prerequisite branch for reuse by the later Mortgage Compass article delivery. It is not publication acceptance. No new article, image, CMS change, deployment or IndexNow submission is included. Production availability was checked only on the homepage, guide index and sitemap, not every article. Build, end-to-end and deployment access remain unverified by this documentation-only initialization. A later delivery must record its exact commit, reviewed release, targeted live article/index/sitemap/media checks and rollback (revert the scoped change and redeploy the last accepted revision through the established path).
+
+
+## November 6 integration context
+
+TES-195 and PR #27 own the distinct Canadian relief-offer checklist. TES-325 and merged PR #28 own the renewal switching-cost correction under portfolio TES-305. PR #25 owns the separate month-end payment-date repair. Preserve these deliveries and original publication dates. The renewal correction retains its November 5 modification date; the relief checklist retains October 22 publication and modification dates.
+
+`src/components/MortgageWorkbench.vue` renders calculator fields; `src/lib/mortgage.ts` owns formulas. Refinance mode uses monthly payments, finances Fees plus Prepayment penalty into the proposed balance, and also uses their sum as the cost-recovery numerator. It has no separate upfront-cost field or existing-offer fee field. Explain those limits rather than implying a complete renewal comparison.
+
+The actual default/production branch is `master`, verified November 6 at e0de6c5b28144a9ae273b2ddfc8ff15711d4fd76 after PR #28. Editorial release uses the reviewed GitHub PR and automatic Cloudflare Workers Builds from the merged production commit. Record the successful build, deployment/version and full live verification afterward. No Cloudflare CLI login is a prerequisite. Preserve the governed October 26 wildcard-trigger removal; never restore it.
+
+README still requires the housing refresh before a release. TES-195 includes the separately committed successful November 5 refresh and validated seven snapshots; April 2026 rent observations are not November rents. The shorter PR #28 context described refresh as housing-only, but it does not waive README or this delivery's accepted prerequisite evidence.
+
+Margot owns editorial/source/media acceptance, Viola rendered QA, Cillian technical readiness, and Morgan integration and production verification. Changed integration artifacts require renewed relevant exact-artifact receipts. Public verification covers exact URL, HTTP 200, title/H1/description/canonical/body, links/schema, index/sitemap and approved media treatment. Release-relative measurement checkpoints follow actual publication.
