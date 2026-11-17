@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ArticleSectionContent from "../../components/ArticleSectionContent.astro";
 import AdSlot from "../../components/AdSlot.astro";
 import { ARTICLES } from "../../data/articles";
 import { CALCULATORS, SITE } from "../../data/site";
@@ -44,7 +45,7 @@ const faqSchema = {
 };
 ---
 
-<BaseLayout title={article.title} description={article.description} canonical={canonical} type="article" jsonLd={[articleSchema, faqSchema]}>
+<BaseLayout title={article.title} description={article.description} canonical={canonical} type="article" seoTitle={article.seoTitle} ogDescription={article.ogDescription} jsonLd={[articleSchema, faqSchema]}>
   <div class="article-shell">
     <article class="article">
       <header class="article-header">
@@ -65,18 +66,16 @@ const faqSchema = {
         {article.intro.map((paragraph) => <p>{paragraph}</p>)}
         <AdSlot placement={`article-${article.slug}-intro`} />
 
-        <aside class="takeaways">
+        {article.keyTakeaways.length > 0 && <aside class="takeaways">
           <h2>Key takeaways</h2>
           <ul>{article.keyTakeaways.map((takeaway) => <li>{takeaway}</li>)}</ul>
-        </aside>
+        </aside>}
 
         {article.sections.map((section, index) => (
           <>
             <section>
               <h2>{section.heading}</h2>
-              {section.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
-              {section.bullets && <ul>{section.bullets.map((bullet) => <li>{bullet}</li>)}</ul>}
-              {section.links && <ul>{section.links.map((link) => <li><a href={link.href}>{link.label}</a></li>)}</ul>}
+              <ArticleSectionContent section={section} />
             </section>
             {(index === 0 || index === 2) && <AdSlot placement={`article-${article.slug}-section-${index + 1}`} format="rectangle" />}
           </>
@@ -92,7 +91,7 @@ const faqSchema = {
         )}
 
         <section>
-          <h2>Frequently asked questions</h2>
+          <h2>{article.faqHeading ?? "Frequently asked questions"}</h2>
           {article.faqs.map((faq) => (
             <details class="faq-item">
               <summary>{faq.question}</summary>
@@ -100,6 +99,12 @@ const faqSchema = {
             </details>
           ))}
         </section>
+
+        {article.closingSection && <section>
+          <h2>{article.closingSection.heading}</h2>
+          <ArticleSectionContent section={article.closingSection} />
+        </section>}
+        {article.sourcesChecked && <p>{article.sourcesChecked}</p>}
 
         <AdSlot placement={`article-${article.slug}-after-faq`} />
 

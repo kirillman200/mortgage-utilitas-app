@@ -1,0 +1,28 @@
+---
+import ArticleText from './ArticleText.astro';
+import type { ArticleSection } from '../data/articles';
+interface Props { section: ArticleSection }
+const { section } = Astro.props;
+---
+{section.paragraphs.map((paragraph) => <p><ArticleText text={paragraph} /></p>)}
+{section.blocks?.map((block) => block.type === 'paragraph' ? (
+  <p><ArticleText text={block.text} /></p>
+) : block.type === 'list' ? (
+  block.ordered ? <ol>{block.items.map((item) => <li><ArticleText text={item} /></li>)}</ol>
+    : <ul>{block.items.map((item) => <li><ArticleText text={item} /></li>)}</ul>
+) : (
+  <div class="article-table" role="region" aria-label={section.heading} tabindex="0">
+    <table>
+      <thead><tr>{block.headers.map((cell) => <th scope="col">{cell}</th>)}</tr></thead>
+      <tbody>{block.rows.map((row) => <tr>{row.map((cell, index) => index === 0 ? <th scope="row">{cell}</th> : <td>{cell}</td>)}</tr>)}</tbody>
+    </table>
+  </div>
+))}
+{section.bullets && <ul>{section.bullets.map((bullet) => <li>{bullet}</li>)}</ul>}
+{section.links && <ul>{section.links.map((link) => <li><a href={link.href}>{link.label}</a></li>)}</ul>}
+<style>
+  .article-table { overflow-x: auto; margin-block: 1.5rem; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+  th, td { padding: 0.75rem; border-bottom: 1px solid #cbd5db; text-align: left; vertical-align: top; min-width: 8rem; }
+  thead th { background: #edf3f5; }
+</style>

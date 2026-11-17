@@ -1,4 +1,10 @@
+export type ArticleBlock =
+  | { type: "paragraph"; text: string }
+  | { type: "list"; ordered: boolean; items: string[] }
+  | { type: "table"; headers: string[]; rows: string[][] };
+
 export interface ArticleSection {
+  blocks?: ArticleBlock[];
   heading: string;
   paragraphs: string[];
   bullets?: string[];
@@ -20,9 +26,311 @@ export interface Article {
   faqs: Array<{ question: string; answer: string }>;
   sources: Array<{ label: string; href: string }>;
   calculator?: string;
+  seoTitle?: string;
+  ogDescription?: string;
+  faqHeading?: string;
+  closingSection?: ArticleSection;
+  sourcesChecked?: string;
 }
 
 export const ARTICLES: Article[] = [
+{
+  "slug": "gifted-down-payment-canada",
+  "title": "Gifted Down Payment in Canada: Documents to Prepare",
+  "description": "Prepare a gifted down payment in Canada with a gift-letter checklist, transfer records and a worked cash plan that keeps closing costs separate.",
+  "keyword": "gifted down payment Canada",
+  "category": "Borrowing",
+  "readingMinutes": 7,
+  "published": "2026-11-17",
+  "updated": "2026-11-17",
+  "intro": [
+    "For a gifted down payment in Canada, prepare a signed family gift letter, proof of where the money came from and bank records showing its arrival. Ask your lender for its required form and transfer deadline, and keep a separate closing-cost budget so the same gift is not counted twice."
+  ],
+  "keyTakeaways": [],
+  "sections": [
+    {
+      "heading": "Can family give you money for a down payment?",
+      "paragraphs": [],
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "[CMHC Purchase lists a non-repayable gift from a relative](https://www.cmhc-schl.gc.ca/professionals/project-funding-and-mortgage-financing/mortgage-loan-insurance/mortgage-loan-insurance-homeownership-programs/purchase) among traditional down-payment sources for that mortgage insurance program. Start with two questions for your lender: will it accept this donor relationship for your application, and what evidence must you provide?"
+        },
+        {
+          "type": "paragraph",
+          "text": "A genuine gift has no agreement to pay the donor back. If your parent offers $30,000 but expects monthly repayments, describe that arrangement to the lender as borrowing rather than signing a non-repayable gift declaration."
+        },
+        {
+          "type": "paragraph",
+          "text": "For example, Mila's mother Elena offers $30,000 toward Mila's home purchase without repayment. Mila writes down Elena's relationship to her and the amount, then asks the lender to confirm its gift-document requirements before Elena signs anything. That creates a clear starting point without guessing which family relationships the lender accepts."
+        },
+        {
+          "type": "paragraph",
+          "text": "Use the [mortgage preapproval checklist](/guides/how-to-get-preapproved-for-mortgage/) for the rest of your application file, including income and existing debts."
+        }
+      ]
+    },
+    {
+      "heading": "What documents should you prepare for a gifted down payment?",
+      "paragraphs": [],
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "[CMHC's mortgage application checklist](https://www.cmhc-schl.gc.ca/professionals/industry-innovation-and-leadership/industry-expertise/resources-for-mortgage-professionals/mortgage-application-tips-what-your-mortgage-professional-needs-to-know) calls for a letter signed by the family member giving the money, confirming its purpose and non-repayable nature, plus evidence of the down payment and its source. It also lists recent financial statements and your debts."
+        },
+        {
+          "type": "paragraph",
+          "text": "Use this preparation table to request the lender's exact checklist. Treat the suggested details as questions to resolve, not a universal form."
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Document or detail",
+            "What to prepare or ask",
+            "Who follows up?"
+          ],
+          "rows": [
+            [
+              "Lender's gift form",
+              "Request the current form and signing instructions before drafting your own letter.",
+              "Buyer asks lender"
+            ],
+            [
+              "Donor and recipient details",
+              "Check which names, contact details and relationship information the lender wants.",
+              "Buyer and donor"
+            ],
+            [
+              "Gift amount and purpose",
+              "Record the amount in CAD and explain that it supports the home purchase; ask about any property details needed.",
+              "Buyer and donor"
+            ],
+            [
+              "Non-repayment confirmation",
+              "Confirm that the gift will not be repaid. Disclose any repayable amount separately to the lender before signing.",
+              "Donor and buyer"
+            ],
+            [
+              "Down-payment source evidence",
+              "Ask which donor records, recipient statements and transfer confirmations to provide.",
+              "Buyer asks lender"
+            ],
+            [
+              "Dates and signatures",
+              "Confirm required signers, dates and whether any further verification is needed.",
+              "Buyer asks lender"
+            ],
+            [
+              "Closing-cost cash plan",
+              "Show yourself which funds remain after the down payment, rather than counting them twice.",
+              "Buyer"
+            ]
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "For Mila's file, the first step is obtaining the form, not collecting Elena's entire banking history. Mila asks which records are needed, then keeps the completed letter and requested evidence together. Share financial records through the lender's verified submission channel."
+        }
+      ]
+    },
+    {
+      "heading": "How do you keep a clear transfer trail?",
+      "paragraphs": [],
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Build one small file that connects the promised gift to the money received:"
+        },
+        {
+          "type": "list",
+          "ordered": true,
+          "items": [
+            "Save the completed gift letter or lender form with the agreed amount.",
+            "Ask the lender what evidence it needs for the sending and receiving accounts.",
+            "Keep the requested statements and transfer confirmations together.",
+            "Record each transfer's date and amount, including any transfers between your own accounts.",
+            "Ask the lender to review the file and identify anything still missing."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Suppose Elena sends Mila's $30,000 gift in two transfers of $15,000. Mila records both receipts against the same gift, rather than presenting only one transfer and leaving the other unexplained. If she then moves the money into another account, she keeps a record of that movement for the lender's requested review."
+        },
+        {
+          "type": "paragraph",
+          "text": "Ask what statement period the lender needs; use its answer to build your document list. For an overseas transfer or a different currency, ask which conversion and sender records to retain before choosing the transfer method."
+        }
+      ]
+    },
+    {
+      "heading": "When should the gift arrive?",
+      "paragraphs": [],
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Work backwards from your purchase timetable with your lender and the lawyer or notary handling closing. Ask for dates for document submission, funds verification and the money needed to complete the purchase."
+        },
+        {
+          "type": "paragraph",
+          "text": "Write the answers in a short timeline:"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items": [
+            "Gift form: who signs it, and by what date?",
+            "Supporting records: what is needed, and when will the lender review it?",
+            "Transfer: when should the money arrive, and in which account?",
+            "Completion funds: when and how will you provide the amount requested for closing?"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "For example, Elena is ready to transfer before Mila has obtained the gift form. Mila first confirms the form, evidence and timing with the lender, then coordinates the transfer around those instructions. An agreed plan is more useful than copying another buyer's waiting period."
+        }
+      ]
+    },
+    {
+      "heading": "How much cash should remain for closing costs?",
+      "paragraphs": [],
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "[CMHC's homebuying guide separates upfront purchase costs](https://www.cmhc-schl.gc.ca/consumers/home-buying/buying-guides/home-buying), including legal or notary fees, adjustments and moving expenses. Give those costs their own allocation before deciding how much cash can go into the down payment."
+        },
+        {
+          "type": "paragraph",
+          "text": "Assume Mila has $48,000 in savings and receives Elena's $30,000 gift. She plans to put $60,000 toward the purchase as a down payment and budget $12,000 for closing and moving expenses. These are illustrative allocations, not a required down payment or a closing-cost quote."
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Cash ledger, CAD",
+            "Amount",
+            "Allocation"
+          ],
+          "rows": [
+            [
+              "Mila's savings",
+              "$48,000",
+              "Existing cash"
+            ],
+            [
+              "Elena's genuine gift",
+              "$30,000",
+              "Added cash"
+            ],
+            [
+              "Total available",
+              "$78,000",
+              "$48,000 + $30,000"
+            ],
+            [
+              "Planned down payment",
+              "$60,000",
+              "All $30,000 of the gift plus $30,000 of savings"
+            ],
+            [
+              "Cash after down payment",
+              "$18,000",
+              "$78,000 - $60,000"
+            ],
+            [
+              "Closing and moving budget",
+              "$12,000",
+              "Paid from the remaining savings"
+            ],
+            [
+              "Cash buffer after those costs",
+              "$6,000",
+              "$18,000 - $12,000"
+            ]
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "The $30,000 gift appears once in available funds and is fully allocated to the down payment. It cannot also become a second $30,000 closing-cost reserve."
+        },
+        {
+          "type": "paragraph",
+          "text": "If the closing and moving estimate rises to $14,000, Mila's buffer falls to $4,000. She can revise the purchase budget before committing the same dollars elsewhere. Use the [Canadian closing-cost checklist](/guides/closing-cost-calculator-canada/) to build your expense list, then carry the remaining cash buffer into the [home affordability calculator](/calculators/affordability/)."
+        }
+      ]
+    },
+    {
+      "heading": "What should you confirm before submitting the gift file?",
+      "paragraphs": [],
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Send one clear message to your mortgage contact:"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items": [
+            "Have you accepted the proposed donor relationship and gift arrangement for my application?",
+            "Is the completed form signed and dated correctly?",
+            "Do the transfer records explain the full gift amount?",
+            "Which statements or other records are still outstanding?",
+            "What funds and documents are due next, and on which dates?"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "For Mila, the final check is that the letter says $30,000, the two transfers total $30,000 and her cash plan allocates that amount only once. If the gift changes, she tells the lender and asks which records need updating."
+        }
+      ]
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Can I repay part of the money and call the rest a gift?",
+      "answer": "Explain both parts separately to the lender. For example, identify the amount that will be repaid and the amount genuinely given without repayment before asking which documents to complete."
+    },
+    {
+      "question": "Does a gift letter replace bank statements?",
+      "answer": "Prepare both the letter and the financial records the lender requests. The letter explains the arrangement; the records help document the down-payment funds."
+    },
+    {
+      "question": "Can I count the gift toward both my down payment and closing costs?",
+      "answer": "Allocate each dollar once. In Mila's example, all $30,000 of the gift goes toward the down payment, leaving savings to cover closing costs and the cash buffer."
+    },
+    {
+      "question": "Does an accepted gift letter mean the mortgage is approved?",
+      "answer": "No. The lender still needs to complete its remaining financial and property review. Ask which approval conditions remain after it accepts the gift documents."
+    }
+  ],
+  "calculator": "closing-costs",
+  "seoTitle": "Gifted Down Payment in Canada: Documents to Prepare",
+  "ogDescription": "Organize the family gift letter and transfer trail, then separate your down payment, closing-cost budget and remaining cash buffer.",
+  "sourcesChecked": "Sources checked November 2026.",
+  "faqHeading": "What else do buyers ask about down-payment gifts?",
+  "closingSection": {
+    "heading": "What is your next step?",
+    "paragraphs": [],
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Request the lender's gift checklist, then open the [closing-cost planner](/calculators/closing-costs/) and set aside your purchase expenses separately. Compare that budget with the cash left after your planned down payment before promising the full gift and all your savings to the purchase."
+      }
+    ]
+  },
+  "sources": [
+    {
+      "label": "CMHC Purchase lists a non-repayable gift from a relative",
+      "href": "https://www.cmhc-schl.gc.ca/professionals/project-funding-and-mortgage-financing/mortgage-loan-insurance/mortgage-loan-insurance-homeownership-programs/purchase"
+    },
+    {
+      "label": "CMHC's mortgage application checklist",
+      "href": "https://www.cmhc-schl.gc.ca/professionals/industry-innovation-and-leadership/industry-expertise/resources-for-mortgage-professionals/mortgage-application-tips-what-your-mortgage-professional-needs-to-know"
+    },
+    {
+      "label": "CMHC's homebuying guide separates upfront purchase costs",
+      "href": "https://www.cmhc-schl.gc.ca/consumers/home-buying/buying-guides/home-buying"
+    }
+  ]
+},
 {
   "slug": "mortgage-payment-relief-offer-checklist-canada",
   "title": "Before accepting mortgage payment relief: a written-offer checklist",
@@ -343,7 +651,7 @@ export const ARTICLES: Article[] = [
       {
         heading: "Prepare the financial file",
         paragraphs: [
-          "Lenders commonly ask for identification, employment and income evidence, tax records for self-employed applicants, bank or investment statements, the source of the down payment, and details of debts or support obligations. Requirements vary by lender, loan program, and country.",
+          "Lenders commonly ask for identification, employment and income evidence, tax records for self-employed applicants, bank or investment statements, the source of the down payment, and details of debts or support obligations. Requirements vary by lender, loan program, and country. For a family gift, use the [gifted down payment document checklist](/guides/gifted-down-payment-canada/).",
           "Review the numbers for consistency before submitting. Large deposits, recent loans, job changes, and transfers may require explanation. Keep an organized copy of everything provided and never send sensitive documents through an unverified link."
         ]
       },

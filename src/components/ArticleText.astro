@@ -1,0 +1,9 @@
+---
+interface Props { text: string }
+// Only repository-authored Markdown links are supported. Astro escapes all text.
+const parts = Astro.props.text.split(/(\[[^\]]+\]\((?:https:\/\/|\/)[^)]+\))/g);
+---
+{parts.map((part) => {
+  const link = part.match(/^\[([^\]]+)\]\(((?:https:\/\/|\/)[^)]+)\)$/);
+  return link ? <a href={link[2]}>{link[1]}</a> : part;
+})}
