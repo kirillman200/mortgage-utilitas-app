@@ -23,12 +23,13 @@ const {
   ogDescription = Astro.props.description,
   description,
   canonical = Astro.url.pathname,
-  image = "/assets/mortgage-compass-card.svg",
+  image = "/assets/mortgage-compass-card.png",
   type = "website",
   noindex = false,
   jsonLd
 } = Astro.props;
-const fullTitle = seoTitle ?? (title.includes("Mortgage Compass") ? title : `${title} | Mortgage Compass`);
+const brandedTitle = title.includes("Mortgage Compass") ? title : `${title} | Mortgage Compass`;
+const fullTitle = seoTitle ?? (type === "article" && brandedTitle.length > 62 ? title : brandedTitle);
 const canonicalUrl = new URL(canonical, SITE.origin).toString();
 const imageUrl = new URL(image, SITE.origin).toString();
 const segmentLabels: Record<string, string> = {
