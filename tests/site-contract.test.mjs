@@ -250,3 +250,24 @@ test("published articles contain no leaked AI or editorial reasoning", async () 
   assert.match(articles, /Darlene Early is an Ontario homeowner/);
   assert.match(articles, /competing claims in court/);
 });
+
+test("guide social metadata points to a 1200 by 630 PNG and titles are unique", async () => {
+  const image = await readFile(join(dist, "assets/mortgage-compass-card.png"));
+  assert.equal(image.subarray(0, 8).toString("hex"), "89504e470d0a1a0a");
+  assert.equal(image.readUInt32BE(16), 1200);
+  assert.equal(image.readUInt32BE(20), 630);
+  const titles = new Set();
+  const guides = await readdir(join(dist, "guides"), { withFileTypes: true });
+  for (const guide of guides.filter((entry) => entry.isDirectory())) {
+    const html = await readDist(join("guides", guide.name, "index.html"));
+    const title = html.match(/<title>([^<]+)<\/title>/)?.[1];
+    assert.ok(title, guide.name);
+    assert.ok(!titles.has(title), `duplicate title: ${title}`);
+    titles.add(title);
+    for (const attribute of ['property="og:image"', 'name="twitter:image"']) {
+      assert.ok(html.includes(`${attribute} content="${origin}/assets/mortgage-compass-card.png"`), guide.name);
+    }
+    assert.match(html, /property="og:image:width" content="1200"/);
+    assert.match(html, /property="og:image:height" content="630"/);
+  }
+});
