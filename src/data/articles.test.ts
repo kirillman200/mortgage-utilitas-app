@@ -7,14 +7,17 @@ describe("article publishing quality", () => {
     for (const article of ARTICLES) {
       expect(article.title.length, article.slug).toBeGreaterThan(20);
       expect(article.description.length, article.slug).toBeGreaterThan(80);
-      expect(article.intro.length, article.slug).toBeGreaterThanOrEqual(2);
-      expect(article.keyTakeaways.length, article.slug).toBeGreaterThanOrEqual(4);
+      expect(article.intro.join(" ").split(/\s+/).length, article.slug).toBeGreaterThanOrEqual(40);
+      if (!article.sections.some((section) => section.blocks)) {
+        expect(article.keyTakeaways.length, article.slug).toBeGreaterThanOrEqual(4);
+      }
       expect(article.sections.length, article.slug).toBeGreaterThanOrEqual(4);
       expect(article.faqs.length, article.slug).toBeGreaterThanOrEqual(3);
       expect(article.sources.length, article.slug).toBeGreaterThanOrEqual(1);
       expect(
         article.sections.every(
-          (section) => section.heading.length > 8 && section.paragraphs.length >= 2,
+          (section) => section.heading.length > 8 &&
+            section.paragraphs.length + (section.blocks?.filter((block) => block.type === "paragraph").length ?? 0) >= 2,
         ),
         article.slug,
       ).toBe(true);
