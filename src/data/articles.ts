@@ -41,8 +41,8 @@ export const ARTICLES: Article[] = [
   "keyword": "gifted down payment Canada",
   "category": "Borrowing",
   "readingMinutes": 7,
-  "published": "2026-11-17",
-  "updated": "2026-11-17",
+  "published": "2026-11-18",
+  "updated": "2026-11-18",
   "intro": [
     "For a gifted down payment in Canada, prepare a signed family gift letter, proof of where the money came from and bank records showing its arrival. Ask your lender for its required form and transfer deadline, and keep a separate closing-cost budget so the same gift is not counted twice."
   ],
